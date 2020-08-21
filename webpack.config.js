@@ -17,6 +17,17 @@ module.exports = {
         use: ['ts-loader', 'eslint-loader'],
         exclude: '/node_modules/',
       },
+      {
+        test: /\.s(a|c)ss$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: { modules: true },
+          },
+          'sass-loader',
+        ],
+      },
     ],
   },
   output: {
