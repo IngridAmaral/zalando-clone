@@ -18,6 +18,15 @@ module.exports = {
         exclude: '/node_modules/',
       },
       {
+        test: /\.tsx?$/,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.js$/,
+        use: ['source-map-loader'],
+        enforce: 'pre',
+      },
+      {
         test: /\.s(a|c)ss$/,
         use: [
           'style-loader',

@@ -1,10 +1,22 @@
 {
-    "compilerOptions": {
-      "outDir": "./dist",
-      "target": "es5",
-      "module": "es6",
-      "jsx": "react",
-      "noImplicitAny": true,
-      "allowSyntheticDefaultImports": true
-    }
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "outDir": "./dist",
+    "rootDir": "src",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "module": "commonjs",
+    "allowJs": true,
+    "target": "es6",
+    "jsx": "react",
+    "strict": true,
+    "typeRoots": ["node_modules/@types", "src/custom-types"],
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "esModuleInterop": true
+  },
+  "include": ["./src/**/*", "setupTests.js", "__mocks__"],
+  "exclude": ["node_modules"]
 }
