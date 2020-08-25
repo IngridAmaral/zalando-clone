@@ -1,4 +1,7 @@
 import React from 'react';
+import Home from './pages/Home';
 import './App.scss';
 
-export default function App() { return <h1>This is a clone from Zalando website!</h1>; }
+export default function App() {
+  return (<Home />);
+}
