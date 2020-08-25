@@ -16,10 +16,15 @@ module.exports = {
   rules: {
     'linebreak-style': 'off',
   },
-  overrides: {
-    files: ['./setupTests.js'],
-    rules: {
-      'import/no-extraneous-dependencies': ['error', {devDependencies: true}]
-    }
-  },
+  overrides: [
+    {
+      files: ['./setupTests.js'],
+      rules: {
+        'import/no-extraneous-dependencies': [
+          'error',
+          { devDependencies: true },
+        ],
+      },
+    },
+  ],
 };
