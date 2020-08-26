@@ -26,20 +26,6 @@ module.exports = {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
-      // {
-      //   test: /\.s(a|c)ss$/,
-      //   use: [
-      //     'style-loader',
-      //     {
-      //       loader: 'css-loader',
-      //       options: {
-      //         sourceMap: true,
-      //         modules: true,
-      //       },
-      //     },
-      //     'sass-loader',
-      //   ],
-      // },
     ],
   },
   output: {
