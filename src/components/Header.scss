@@ -1,0 +1,39 @@
+@import "../styles/flex-box";
+
+.header-container {
+    padding: .8rem 1.25rem;
+
+    svg {
+        width: 1.5rem;
+    }
+    
+    .top-row, .bottom-row {
+        @include space-between-center-row;
+    }
+    
+    .top-row {
+        padding-bottom: 0.85rem;
+
+        .nav-items {
+            @include center-all-row;
+        }
+
+        img {
+            height: 1.5rem;
+            width: auto;
+        }
+        
+        svg {
+            cursor: not-allowed;
+            padding-left: 1.25rem;
+        }
+    }
+
+    .bottom-row {
+        .search {
+            border-bottom: .1rem solid #000000;
+            width: 85%;
+        }
+    }
+    
+}
