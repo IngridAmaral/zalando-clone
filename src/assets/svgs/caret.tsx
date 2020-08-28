@@ -1,3 +1,3 @@
 import React from 'react';
 
-export default () => (<svg width="24" height="24" viewBox="0 0 24 24" className="z-icon_svg"><use xlinkHref="#icon_svg-chevron-right-small" href="#icon_svg-chevron-right-small" /></svg>);
+export default () => (<svg id="icon_svg-chevron-right-small" viewBox="0 0 24 24"><path d="M10 7.71l.704-.71 4.71 4.673-4.704 4.741-.71-.704 3.99-4.02z" fill="currentColor" fillRule="evenodd" /></svg>);
