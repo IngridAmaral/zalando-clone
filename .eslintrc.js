@@ -15,6 +15,7 @@ module.exports = {
   },
   rules: {
     'linebreak-style': 'off',
+    'react/state-in-constructor': 'off',
   },
   overrides: [
     {
