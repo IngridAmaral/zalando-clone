@@ -14,13 +14,17 @@
   "author": "Ingrid Amaral",
   "license": "ISC",
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
     "@babel/plugin-transform-modules-commonjs": "^7.10.4",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
+    "@reduxjs/toolkit": "^1.4.0",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^26.0.10",
+    "@types/node-sass": "^4.11.1",
     "@types/react": "^16.9.46",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
@@ -46,6 +50,7 @@
     "jest": "^26.4.2",
     "jest-cli": "^26.4.2",
     "node-sass": "^4.14.1",
+    "redux-devtools": "^3.6.1",
     "sass-loader": "^9.0.3",
     "source-map-loader": "^1.0.2",
     "style-loader": "^1.2.1",
@@ -58,6 +63,8 @@
   },
   "dependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.1",
+    "redux": "^4.0.5"
   }
 }
