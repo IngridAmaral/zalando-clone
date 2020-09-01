@@ -10,23 +10,23 @@ import './Header.scss';
 
 type MyState = {
   openMenu: boolean;
-  activeGender: string;
   shrinkMenuHeader: boolean;
+  activeGender: string;
 };
 
 class Header extends React.Component<{}, MyState> {
   state: MyState = {
-    openMenu: true,
-    activeGender: 'WOMEN',
+    openMenu: false,
     shrinkMenuHeader: false,
+    activeGender: 'WOMEN',
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     window.addEventListener('scroll', this.handleScroll);
-  }
+  };
 
   handleScroll = (e: any) => {
-    const scrolled = e.target.scrollTop;
+    const scrolled: number = e.target.scrollTop;
     const { shrinkMenuHeader } = this.state;
 
     if (scrolled > 50 && !shrinkMenuHeader) {
@@ -40,16 +40,16 @@ class Header extends React.Component<{}, MyState> {
     }
   };
 
-  handleClick = () => {
-    this.setState((prevState) => ({ openMenu: !prevState.openMenu }));
+  toggleMenu = () => {
+    this.setState((prevState) => ({ openMenu: !prevState.openMenu, shrinkMenuHeader: false }));
   };
 
-  handleGenderChange = (gender: string) => {
-    this.setState({ activeGender: gender });
-  };
+  handleGenderChange = (gender: string) => this.setState({ activeGender: gender });
 
   render() {
-    const { openMenu, activeGender, shrinkMenuHeader } = this.state;
+    const {
+      openMenu, activeGender, shrinkMenuHeader,
+    } = this.state;
     return (
       <div className="header-container">
         <div className="top-row">
@@ -62,7 +62,7 @@ class Header extends React.Component<{}, MyState> {
           </div>
         </div>
         <div className="bottom-row">
-          <button type="button" className="open-menu" onClick={this.handleClick}>
+          <button type="button" className="open-menu" onClick={this.toggleMenu}>
             <MenuIcon />
           </button>
           <div className="search">
@@ -71,7 +71,7 @@ class Header extends React.Component<{}, MyState> {
         </div>
         <div className={`lateral-menu-open-${openMenu}`} onScroll={this.handleScroll}>
           <Menu
-            close={this.handleClick}
+            close={this.toggleMenu}
             changeGender={this.handleGenderChange}
             activeGender={activeGender}
             shouldShrink={shrinkMenuHeader}

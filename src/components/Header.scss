@@ -11,14 +11,14 @@
         top: 0;
         left: 0;
         transform: translate3d(-100%, 0 ,0);
-        transition: all ease-in 500ms;
+        transition: all ease-in 200ms;
     }
 
     .lateral-menu-open-true {
         visibility: visible;
         transform: translate3d(0, 0 ,0);
         position: fixed;
-        transition: all ease-in 500ms;
+        transition: all ease-in 400ms;
         height: 100%;
         top: 0;
         left: 0;
