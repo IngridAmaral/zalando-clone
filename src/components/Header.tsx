@@ -6,7 +6,7 @@ import Wish from '../assets/svgs/wish';
 import Basket from '../assets/svgs/basket';
 import MenuIcon from '../assets/svgs/menu';
 import Menu from './Menu';
-import './Header.scss';
+import styles from './Header.module.scss';
 
 type MyState = {
   openMenu: boolean;
@@ -51,25 +51,25 @@ class Header extends React.Component<{}, MyState> {
       openMenu, activeGender, shrinkMenuHeader,
     } = this.state;
     return (
-      <div className="header-container">
-        <div className="top-row">
+      <div className={styles.headerContainer}>
+        <div className={styles.topRow}>
           <img src={logo} alt="Zalando logo" />
-          <div className="nav-items">
+          <div className={styles.navItems}>
             <Language />
             <Account />
             <Wish />
             <Basket />
           </div>
         </div>
-        <div className="bottom-row">
-          <button type="button" className="open-menu" onClick={this.toggleMenu}>
+        <div className={styles.bottomRow}>
+          <button type="button" className={styles.openMenu} onClick={this.toggleMenu}>
             <MenuIcon />
           </button>
-          <div className="search">
+          <div className={styles.search}>
             Search
           </div>
         </div>
-        <div className={`lateral-menu-open-${openMenu}`} onScroll={this.handleScroll}>
+        <div className={`${openMenu ? styles.lateralMenuOpenTrue : styles.lateralMenuOpenFalse}`} onScroll={this.handleScroll}>
           <Menu
             close={this.toggleMenu}
             changeGender={this.handleGenderChange}

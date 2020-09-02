@@ -2,7 +2,7 @@ import React from 'react';
 import Caret from '../assets/svgs/caret';
 import Close from '../assets/svgs/close';
 import Goback from '../assets/svgs/goback';
-import './Menu.scss';
+import styles from './Menu.module.scss';
 
 const CATEGORIES: any = {
   'Get The Look': {
@@ -34,7 +34,9 @@ const CATEGORIES: any = {
   },
 };
 
-const GENDERS: string[] = ['WOMEN', 'MEN', 'KIDS'];
+type TGender = 'WOMEN' | 'MEN' | 'KIDS';
+
+const GENDERS: TGender[] = ['WOMEN', 'MEN', 'KIDS'];
 
 const GET_THE_LOOK: string = 'Get The Look';
 
@@ -95,18 +97,18 @@ class Header extends React.Component<MyProps, MyState> {
 
     if (!openCategorie) {
       return (
-        <div className="gender">
-          {GENDERS.map((gender) => <button type="button" key={gender} id={gender} onClick={() => changeGender(gender)} className={activeGender === gender ? 'active' : ''}>{gender}</button>)}
+        <div className={styles.gender}>
+          {GENDERS.map((gender) => <button type="button" key={gender} id={gender} onClick={() => changeGender(gender)} className={activeGender === gender ? styles.active : ''}>{gender}</button>)}
         </div>
       );
     }
 
     return (
-      <div className="header-categorie">
-        <button type="button" className="go-back" onClick={() => this.backToOptions()}>
+      <div className={styles.headerCategorie}>
+        <button type="button" className={styles.goBack} onClick={() => this.backToOptions()}>
           <Goback />
         </button>
-        <div className="title">
+        <div className={styles.title}>
           <h2>
             {categorieList}
           </h2>
@@ -121,21 +123,21 @@ class Header extends React.Component<MyProps, MyState> {
     const titles: string[] = Object.keys(categorie);
 
     return (
-      <div className="menu-list">
+      <div className={styles.menuList}>
         <ul>
           {OPTIONS.map((option) => (
             <li key={option} onClick={() => this.handleCategorie(option)}>
-              <span className="item">
+              <span className={styles.item}>
                 {option}
                 <Caret />
               </span>
             </li>
           ))}
         </ul>
-        <div className={`categories ${openCategorie ? 'show' : 'hide'}`}>
+        <div className={`${styles.categories} ${openCategorie ? styles.show : styles.hide}`}>
           {titles.map((title: string) => (
-            <div className="categorie">
-              <span className="title">
+            <div className={styles.categorie}>
+              <span className={styles.title}>
                 {title}
               </span>
               <ul>
@@ -153,10 +155,10 @@ class Header extends React.Component<MyProps, MyState> {
       close, shouldShrink,
     } = this.props;
     return (
-      <div className="menu-container">
-        <div className={`menu-header ${shouldShrink ? 'shrink' : 'expand'}`}>
+      <div className={styles.menuContainer}>
+        <div className={`${styles.menuHeader} ${shouldShrink ? styles.shrink : styles.expand}`}>
           {this.renderTitle()}
-          <button type="button" className="close-menu" onClick={close}>
+          <button type="button" className={styles.closeMenu} onClick={close}>
             <Close />
           </button>
         </div>

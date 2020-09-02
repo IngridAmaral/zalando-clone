@@ -1,11 +1,11 @@
 @import "../styles/flex-box";
 
-.header-container {
+.headerContainer {
     padding: .8rem 1.25rem;
     position: relative;
     z-index: 0;
 
-    .lateral-menu-open-false {
+    .lateralMenuOpenFalse {
         visibility: hidden;
         position: fixed;
         top: 0;
@@ -14,7 +14,7 @@
         transition: all ease-in 200ms;
     }
 
-    .lateral-menu-open-true {
+    .lateralMenuOpenTrue {
         visibility: visible;
         transform: translate3d(0, 0 ,0);
         position: fixed;
@@ -28,14 +28,14 @@
         width: 1.5rem;
     }
     
-    .top-row, .bottom-row {
+    .topRow, .bottomRow {
         @include space-between-center-row;
     }
     
-    .top-row {
+    .topRow {
         padding-bottom: 0.85rem;
 
-        .nav-items {
+        .navItems {
             @include center-all-row;
         }
 
@@ -50,8 +50,8 @@
         }
     }
 
-    .bottom-row {
-        .open-menu{
+    .bottomRow {
+        .openMenu{
             padding: 0;
         }
 
