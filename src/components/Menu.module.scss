@@ -12,12 +12,9 @@
     transition: all ease-in 150ms;
   }
 
-  .menuHeader.expand {
+  .menuHeader {
     transition: all ease-in 150ms;
     height: 120px;
-  }
-
-  .menuHeader {
     @include space-between-center-row;
     background-image: linear-gradient(
         rgba(20, 20, 20, 0.3),
@@ -63,23 +60,33 @@
     .gender {
       height: 100%;
       @include end-y-row;
-
-      button {
-        @include end-y-row;
-        box-sizing: border-box;
-        font-size: 0.75rem;
-        margin-left: 0.5rem;
-        margin-right: 2.5rem;
-        padding-bottom: 0.8rem;
-        width: fit-content;
-        color: #ddd;
-        border-bottom: 0.2rem solid transparent;
-        transition: all 150ms ease-in;
+      
+      .activeGender {
+        display: none;
       }
-      .active {
-        color: white;
-        border-color: #ff6900;
-        font-weight: 600;
+      
+      .selectGender {
+        @include end-y-row;
+
+        span {
+          color: #ddd;
+          box-sizing: border-box;
+          font-size: 0.75rem;
+          margin-left: 0.8rem;
+          margin-right: 3.2rem;
+          padding-bottom: 0.8rem;
+          width: fit-content;
+          transition: all 150ms ease-in;
+          border-bottom: 0.2rem solid transparent;
+          text-transform: uppercase;
+        }
+
+        span.active {
+          color: white;
+          border-bottom: .2rem solid #ff6900;
+          font-weight: 600;
+          outline: none;
+        } 
       }
     }
 
@@ -168,4 +175,89 @@
       }
     }
   }
+}
+
+
+// IPAD
+@media (min-width: 768px) {
+  .menuContainer {
+    background: transparent;
+    width: 50vw;
+
+    .menuHeader, .menuList {
+      width: 50vw;
+    }
+
+    .menuHeader {
+      background-image: none;
+      background: #f3f3f3;
+      height: 60px;
+
+      .gender {
+        width: 100%;
+        @include start-x-row;
+        padding: 20px 24px;
+        box-sizing: border-box;
+        .activeGender {
+          text-transform: capitalize;
+          color: #999;
+          font-size: 1rem;
+          display: block;  
+        }
+  
+        .selectGender {
+          display: none;
+        }
+      }
+
+      .closeMenu {
+        svg {
+          path {
+            fill: #1a1a1a;
+          }
+        }
+      }
+
+      .headerCategorie {
+        // display: flex;
+        // width: 100%;
+        // height: 100%;
+        // @include space-between-center-row;
+  
+        .goBack {
+          @include start-x-row;
+  
+          svg {
+            width: 1.5rem;
+            g{
+              path:first-child {
+                fill: #1a1a1a;
+              }
+            }
+          }
+        }
+  
+        .title {
+          @include start-x-row;
+          color: #1a1a1a;
+  
+          h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    .menuList {
+      top: 60px;
+    }
+  }
+
+}
+
+// NOTEBOOK
+@media (min-width: 1024px) {
+ 
 }

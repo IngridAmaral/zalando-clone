@@ -34,78 +34,55 @@ const CATEGORIES: any = {
   },
 };
 
-type TGender = 'WOMEN' | 'MEN' | 'KIDS';
-
-const GENDERS: TGender[] = ['WOMEN', 'MEN', 'KIDS'];
-
-const GET_THE_LOOK: string = 'Get The Look';
-
-const OPTIONS: string[] = [
-  'Get The Look',
-  'New',
-  'Clothing',
-  'Shoes',
-  'Sport',
-  'Accessories',
-  'Beauty',
-  'Designer',
-  'Brands',
-  'Sale %',
-  'Help',
-  'Newsletter',
-  'Dutsch',
-  'English',
-];
-
 type MyProps = {
   close: () => void,
   changeGender: (gender: string) => void;
+  handleCategorie: (option: string) => void;
+  backToOptions: () => void;
   shouldShrink: boolean;
-  activeGender: string;
-};
-
-type MyState = {
-  categorieList: string,
   openCategorie: boolean,
+  activeGender: string;
+  categorieList: string,
+  genders: string[];
+  options: string[],
 };
 
-class Header extends React.Component<MyProps, MyState> {
-  state = {
-    categorieList: GET_THE_LOOK,
-    openCategorie: false,
-  };
-
-  handleCategorie = (option: string) => {
-    this.setState({
-      categorieList: option,
-      openCategorie: true,
-    });
-  };
-
-  backToOptions = () => {
-    this.setState({
-      categorieList: GET_THE_LOOK,
-      openCategorie: false,
-    });
-  };
-
+class Menu extends React.Component<MyProps, {}> {
   renderTitle = () => {
     const {
-      changeGender, activeGender,
+      changeGender,
+      activeGender,
+      genders,
+      openCategorie,
+      categorieList,
+      backToOptions,
     } = this.props;
-    const { openCategorie, categorieList } = this.state;
 
     if (!openCategorie) {
       return (
         <div className={styles.gender}>
-          {GENDERS.map((gender) => <button type="button" key={gender} id={gender} onClick={() => changeGender(gender)} className={activeGender === gender ? styles.active : ''}>{gender}</button>)}
+          <div className={styles.activeGender}>{activeGender}</div>
+          <div className={styles.selectGender}>
+            {genders.map((gender) => (
+              <span
+                role="button"
+                tabIndex={0}
+                key={gender}
+                id={gender}
+                onClick={() => changeGender(gender)}
+                className={activeGender === gender ? styles.active : ''}
+              >
+                {gender}
+              </span>
+            ))}
+          </div>
         </div>
       );
     }
 
     return (
       <div className={styles.headerCategorie}>
-        <button type="button" className={styles.goBack} onClick={() => this.backToOptions()}>
+        <button type="button" className={styles.goBack} onClick={backToOptions}>
           <Goback />
         </button>
         <div className={styles.title}>
@@ -118,15 +95,17 @@ class Header extends React.Component<MyProps, MyState> {
   };
 
   renderList = () => {
-    const { categorieList, openCategorie } = this.state;
+    const {
+      categorieList, openCategorie, handleCategorie, options,
+    } = this.props;
     const categorie: any = CATEGORIES[categorieList];
     const titles: string[] = Object.keys(categorie);
 
     return (
       <div className={styles.menuList}>
         <ul>
-          {OPTIONS.map((option) => (
-            <li key={option} onClick={() => this.handleCategorie(option)}>
+          {options.map((option) => (
+            <li key={option} onClick={() => handleCategorie(option)}>
               <span className={styles.item}>
                 {option}
                 <Caret />
@@ -136,7 +115,7 @@ class Header extends React.Component<MyProps, MyState> {
         </ul>
         <div className={`${styles.categories} ${openCategorie ? styles.show : styles.hide}`}>
           {titles.map((title: string) => (
-            <div className={styles.categorie}>
+            <div key={title} className={styles.categorie}>
               <span className={styles.title}>
                 {title}
               </span>
@@ -156,10 +135,12 @@ class Header extends React.Component<MyProps, MyState> {
     } = this.props;
     return (
       <div className={styles.menuContainer}>
-        <div className={`${styles.menuHeader} ${shouldShrink ? styles.shrink : styles.expand}`}>
+        <div className={`${styles.menuHeader} ${shouldShrink ? styles.shrink : ''}`}>
           {this.renderTitle()}
-          <button type="button" className={styles.closeMenu} onClick={close}>
-            <Close />
+          <button type="button" className={styles.closeMenu}>
+            <button type="button" onClick={close}>
+              <Close />
+            </button>
           </button>
         </div>
         {this.renderList()}
@@ -168,4 +149,4 @@ class Header extends React.Component<MyProps, MyState> {
   }
 }
 
-export default Header;
+export default Menu;
