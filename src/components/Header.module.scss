@@ -42,12 +42,6 @@
 
     .navItems {
       @include center-all-row;
-      .navItem {
-        padding: 0;
-        span {
-            display: none;
-        }
-      }
     }
 
     .logo {
@@ -55,13 +49,17 @@
       width: auto;
     }
 
-    svg {
+    > svg {
       cursor: not-allowed;
       padding-left: 1.25rem;
     }
   }
 
   .bottomRow {
+    .menuOptions {
+      display: none;
+    }
+
     .openMenu {
       padding: 0;
 
@@ -98,24 +96,6 @@
     .topRow {
       position: relative;
       padding-bottom: 1.2rem;
-
-      .navItems {
-        .navItem {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-items: center;
-          padding-left: 1rem;
-
-          svg {
-            padding: 0;
-          }
-
-          span {
-            display: block;
-          }
-        }
-      }
 
       .logo {
         position: absolute;
@@ -172,6 +152,7 @@
 // NOTEBOOK
 @media (min-width: 1024px) {
   .headerContainer {
+    padding: 1rem 6rem;
 
     .topRow {
       position: relative;

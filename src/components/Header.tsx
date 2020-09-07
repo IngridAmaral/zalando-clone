@@ -1,4 +1,5 @@
 import React from 'react';
+import NavItem from './NavItem';
 import logo from '../constants/imgs/logo';
 import Language from '../assets/svgs/language';
 import Account from '../assets/svgs/account';
@@ -29,27 +30,23 @@ const OPTIONS: string[] = [
   'Designer',
   'Brands',
   'Sale %',
-  'Help',
-  'Newsletter',
-  'Dutsch',
-  'English',
 ];
 
 type MyState = {
   openMenu: boolean;
   shrinkMenuHeader: boolean;
   activeGender: string;
-  categorieList: string;
+  categorieName: string;
   openCategorie: boolean;
 };
 
 class Header extends React.Component<{}, MyState> {
   state: MyState = {
-    openMenu: false,
+    openMenu: true,
     shrinkMenuHeader: false,
     activeGender: GENDERS[0],
-    categorieList: OPTIONS[0],
-    openCategorie: false,
+    categorieName: OPTIONS[0],
+    openCategorie: true,
   };
 
   handleScroll = (e: any) => {
@@ -68,15 +65,17 @@ class Header extends React.Component<{}, MyState> {
   };
 
   handleCategorie = (option: string) => {
-    this.setState({
-      categorieList: option,
-      openCategorie: true,
-    });
+    if (option === OPTIONS[0]) {
+      this.setState({
+        categorieName: option,
+        openCategorie: true,
+      });
+    }
   };
 
   backToOptions = () => {
     this.setState({
-      categorieList: OPTIONS[0],
+      categorieName: OPTIONS[0],
       openCategorie: false,
     });
   };
@@ -104,7 +103,7 @@ class Header extends React.Component<{}, MyState> {
 
   render() {
     const {
-      openMenu, activeGender, shrinkMenuHeader, openCategorie, categorieList,
+      openMenu, activeGender, shrinkMenuHeader, openCategorie, categorieName,
     } = this.state;
     return (
       <div className={styles.headerContainer}>
@@ -125,10 +124,7 @@ class Header extends React.Component<{}, MyState> {
           <img className={styles.logo} src={logo} alt="Zalando logo" />
           <div className={styles.navItems}>
             {ICONS.map((icon) => (
-              <button type="button" className={styles.navItem}>
-                {icon.icon}
-                <span>{icon.name}</span>
-              </button>
+              <NavItem key={icon.name} icon={icon} />
             ))}
           </div>
         </div>
@@ -141,6 +137,9 @@ class Header extends React.Component<{}, MyState> {
             <MenuIcon />
             <span>Menu</span>
           </button>
+          <div className={styles.menuOptions}>
+            {OPTIONS.map((option) => <span key={option}>{option}</span>)}
+          </div>
           <div className={styles.search}>
             Search
           </div>
@@ -164,7 +163,7 @@ class Header extends React.Component<{}, MyState> {
             shouldShrink={shrinkMenuHeader}
             genders={GENDERS}
             openCategorie={openCategorie}
-            categorieList={categorieList}
+            categorieName={categorieName}
             options={OPTIONS}
             handleCategorie={this.handleCategorie}
             backToOptions={this.backToOptions}
