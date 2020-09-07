@@ -1,8 +1,10 @@
 import React from 'react';
-import Caret from '../assets/svgs/caret';
+import MenuList from './menuList';
+import MenuListCategorie from './MenuListCategorie';
 import Close from '../assets/svgs/close';
 import Goback from '../assets/svgs/goback';
-import './Menu.scss';
+import ZalandoIcon from '../assets/svgs/zalando-icon';
+import styles from './Menu.module.scss';
 
 const CATEGORIES: any = {
   'Get The Look': {
@@ -34,81 +36,66 @@ const CATEGORIES: any = {
   },
 };
 
-const GENDERS: string[] = ['WOMEN', 'MEN', 'KIDS'];
-
-const GET_THE_LOOK: string = 'Get The Look';
-
-const OPTIONS: string[] = [
-  'Get The Look',
-  'New',
-  'Clothing',
-  'Shoes',
-  'Sport',
-  'Accessories',
-  'Beauty',
-  'Designer',
-  'Brands',
-  'Sale %',
-  'Help',
-  'Newsletter',
-  'Dutsch',
-  'English',
+const moreOptions: any = [['Help',
+  'Newsletter'],
+['Dutsch',
+  'English'],
 ];
 
 type MyProps = {
   close: () => void,
   changeGender: (gender: string) => void;
+  handleCategorie: (option: string) => void;
+  backToOptions: () => void;
   shouldShrink: boolean;
-  activeGender: string;
-};
-
-type MyState = {
-  categorieList: string,
   openCategorie: boolean,
+  activeGender: string;
+  categorieName: string,
+  genders: any;
+  options: string[],
 };
 
-class Header extends React.Component<MyProps, MyState> {
-  state = {
-    categorieList: GET_THE_LOOK,
-    openCategorie: false,
-  };
-
-  handleCategorie = (option: string) => {
-    this.setState({
-      categorieList: option,
-      openCategorie: true,
-    });
-  };
-
-  backToOptions = () => {
-    this.setState({
-      categorieList: GET_THE_LOOK,
-      openCategorie: false,
-    });
-  };
-
+class Menu extends React.Component<MyProps, {}> {
   renderTitle = () => {
     const {
-      changeGender, activeGender,
+      changeGender,
+      activeGender,
+      genders,
+      openCategorie,
+      categorieName,
+      backToOptions,
     } = this.props;
-    const { openCategorie, categorieList } = this.state;
 
     if (!openCategorie) {
       return (
-        <div className="gender">
-          {GENDERS.map((gender) => <button type="button" key={gender} id={gender} onClick={() => changeGender(gender)} className={activeGender === gender ? 'active' : ''}>{gender}</button>)}
+        <div className={styles.gender}>
+          <div className={styles.activeGender}>{activeGender}</div>
+          <div className={styles.selectGender}>
+            {genders.map((gender) => (
+              <span
+                role="button"
+                tabIndex={0}
+                key={gender}
+                id={gender}
+                onClick={() => changeGender(gender)}
+                className={activeGender === gender ? styles.active : ''}
+              >
+                {gender}
+              </span>
+            ))}
+          </div>
         </div>
       );
     }
 
     return (
-      <div className="header-categorie">
-        <button type="button" className="go-back" onClick={() => this.backToOptions()}>
+      <div className={styles.headerCategorie}>
+        <button type="button" className={styles.goBack} onClick={backToOptions}>
           <Goback />
         </button>
-        <div className="title">
+        <div className={styles.title}>
           <h2>
-            {categorieList}
+            {categorieName}
           </h2>
         </div>
       </div>
@@ -116,33 +103,35 @@ class Header extends React.Component<MyProps, MyState> {
   };
 
   renderList = () => {
-    const { categorieList, openCategorie } = this.state;
-    const categorie: any = CATEGORIES[categorieList];
+    const {
+      categorieName, openCategorie, handleCategorie, options, shouldShrink,
+    } = this.props;
+    const categorie: any = CATEGORIES[categorieName];
     const titles: string[] = Object.keys(categorie);
 
     return (
-      <div className="menu-list">
-        <ul>
-          {OPTIONS.map((option) => (
-            <li key={option} onClick={() => this.handleCategorie(option)}>
-              <span className="item">
-                {option}
-                <Caret />
-              </span>
-            </li>
+      <div className={`${styles.menuList}`}>
+        <div className={styles.options}>
+          <MenuList hasCaret list={options} handleCategorie={handleCategorie} />
+          {moreOptions.map((optionsList: any) => (
+            <MenuList list={optionsList} handleCategorie={handleCategorie} />
           ))}
-        </ul>
-        <div className={`categories ${openCategorie ? 'show' : 'hide'}`}>
-          {titles.map((title: string) => (
-            <div className="categorie">
-              <span className="title">
-                {title}
-              </span>
-              <ul>
-                {categorie[title].map((item: string) => <li key={item}>{item}</li>)}
-              </ul>
-            </div>
-          ))}
+        </div>
+        <div className={`
+          ${styles.categories} 
+          ${openCategorie ? styles.show : styles.hide}
+          ${openCategorie && shouldShrink ? styles.shrink : ''}
+          `}
+        >
+          {openCategorie && (
+          <div className={styles.categoriesWrapper}>
+            {titles.map((title: string) => (
+              <MenuListCategorie title={title} list={categorie[title]} />
+            ))}
+
+          </div>
+          )}
+
         </div>
       </div>
     );
@@ -153,17 +142,22 @@ class Header extends React.Component<MyProps, MyState> {
       close, shouldShrink,
     } = this.props;
     return (
-      <div className="menu-container">
-        <div className={`menu-header ${shouldShrink ? 'shrink' : 'expand'}`}>
+      <div className={styles.menuContainer}>
+        <div className={`${styles.menuHeader} ${shouldShrink ? styles.shrink : ''}`}>
           {this.renderTitle()}
-          <button type="button" className="close-menu" onClick={close}>
-            <Close />
+          <button type="button" className={styles.closeMenu}>
+            <button type="button" onClick={close}>
+              <Close />
+            </button>
           </button>
         </div>
         {this.renderList()}
+        <div className={styles.menuFooter}>
+          <ZalandoIcon />
+        </div>
       </div>
     );
   }
 }
 
-export default Header;
+export default Menu;

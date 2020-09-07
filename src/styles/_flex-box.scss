@@ -20,6 +20,13 @@
     align-items: flex-start;    
 }
 
+@mixin start-x-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;    
+}
+
 @mixin space-between-center-row {
     display: flex;
     flex-direction: row;
