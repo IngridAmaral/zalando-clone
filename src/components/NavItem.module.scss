@@ -1,0 +1,31 @@
+@import "../styles/flex-box";
+
+.navItem {
+  padding: 0;
+  span {
+    display: none;
+  }
+}
+
+// IPAD
+@media (min-width: 768px) {
+  .navItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    padding-left: 1rem;
+
+    * {
+      padding: 0;
+    }
+
+    span {
+      display: block;
+    }
+  }
+}
+
+// NOTEBOOK
+@media (min-width: 1024px) {
+}
