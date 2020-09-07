@@ -1,0 +1,40 @@
+@import "../styles/flex-box";
+
+.categorieLink {
+  margin-bottom: 0.3rem;
+
+  & ul {
+    width: 100vw;
+    background: white;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    margin: 0;
+    li {
+      list-style: none;
+      @include space-between-center-row;
+      margin-bottom: 0.3rem;
+      border-top: 1px solid #f3f3f3;
+
+      .item {
+        text-transform: uppercase;
+        padding: 1rem 0;
+        box-sizing: border-box;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+// IPAD
+@media (min-width: 768px) {
+  .categorieLink {
+    & ul {
+      width: 50vw;
+    }
+  }
+}
+
+// NOTEBOOK
+@media (min-width: 1024px) {
+}
