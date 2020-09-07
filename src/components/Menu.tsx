@@ -1,7 +1,9 @@
 import React from 'react';
-import Caret from '../assets/svgs/caret';
+import MenuList from './menuList';
+import MenuListCategorie from './MenuListCategorie';
 import Close from '../assets/svgs/close';
 import Goback from '../assets/svgs/goback';
+import ZalandoIcon from '../assets/svgs/zalando-icon';
 import styles from './Menu.module.scss';
 
 const CATEGORIES: any = {
@@ -34,6 +36,12 @@ const CATEGORIES: any = {
   },
 };
 
+const moreOptions: any = [['Help',
+  'Newsletter'],
+['Dutsch',
+  'English'],
+];
+
 type MyProps = {
   close: () => void,
   changeGender: (gender: string) => void;
@@ -42,8 +50,8 @@ type MyProps = {
   shouldShrink: boolean;
   openCategorie: boolean,
   activeGender: string;
-  categorieList: string,
-  genders: string[];
+  categorieName: string,
+  genders: any;
   options: string[],
 };
 
@@ -54,7 +62,7 @@ class Menu extends React.Component<MyProps, {}> {
       activeGender,
       genders,
       openCategorie,
-      categorieList,
+      categorieName,
       backToOptions,
     } = this.props;
 
@@ -87,7 +95,7 @@ class Menu extends React.Component<MyProps, {}> {
         </button>
         <div className={styles.title}>
           <h2>
-            {categorieList}
+            {categorieName}
           </h2>
         </div>
       </div>
@@ -96,34 +104,34 @@ class Menu extends React.Component<MyProps, {}> {
 
   renderList = () => {
     const {
-      categorieList, openCategorie, handleCategorie, options,
+      categorieName, openCategorie, handleCategorie, options, shouldShrink,
     } = this.props;
-    const categorie: any = CATEGORIES[categorieList];
+    const categorie: any = CATEGORIES[categorieName];
     const titles: string[] = Object.keys(categorie);
 
     return (
-      <div className={styles.menuList}>
-        <ul>
-          {options.map((option) => (
-            <li key={option} onClick={() => handleCategorie(option)}>
-              <span className={styles.item}>
-                {option}
-                <Caret />
-              </span>
-            </li>
+      <div className={`${styles.menuList}`}>
+        <div className={styles.options}>
+          <MenuList hasCaret list={options} handleCategorie={handleCategorie} />
+          {moreOptions.map((optionsList: any) => (
+            <MenuList list={optionsList} handleCategorie={handleCategorie} />
           ))}
-        </ul>
-        <div className={`${styles.categories} ${openCategorie ? styles.show : styles.hide}`}>
-          {titles.map((title: string) => (
-            <div key={title} className={styles.categorie}>
-              <span className={styles.title}>
-                {title}
-              </span>
-              <ul>
-                {categorie[title].map((item: string) => <li key={item}>{item}</li>)}
-              </ul>
-            </div>
-          ))}
+        </div>
+        <div className={`
+          ${styles.categories} 
+          ${openCategorie ? styles.show : styles.hide}
+          ${openCategorie && shouldShrink ? styles.shrink : ''}
+          `}
+        >
+          {openCategorie && (
+          <div className={styles.categoriesWrapper}>
+            {titles.map((title: string) => (
+              <MenuListCategorie title={title} list={categorie[title]} />
+            ))}
+
+          </div>
+          )}
+
         </div>
       </div>
     );
@@ -144,6 +152,9 @@ class Menu extends React.Component<MyProps, {}> {
           </button>
         </div>
         {this.renderList()}
+        <div className={styles.menuFooter}>
+          <ZalandoIcon />
+        </div>
       </div>
     );
   }
