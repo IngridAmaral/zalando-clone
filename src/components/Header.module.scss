@@ -5,7 +5,7 @@
   position: relative;
   z-index: 0;
 
-  .lateralMenu {
+  .lateralMenuClose {
     visibility: hidden;
     position: fixed;
     top: 0;
@@ -31,28 +31,6 @@
   .topRow,
   .bottomRow {
     @include space-between-center-row;
-  }
-
-  .topRow {
-    padding-bottom: 0.85rem;
-
-    .genderTop {
-      display: none;
-    }
-
-    .navItems {
-      @include center-all-row;
-    }
-
-    .logo {
-      height: 1.5rem;
-      width: auto;
-    }
-
-    > svg {
-      cursor: not-allowed;
-      padding-left: 1.25rem;
-    }
   }
 
   .bottomRow {
@@ -81,67 +59,39 @@
     padding: 0.8rem 2rem;
 
     .lateralMenu {
-        opacity: 0;
-        background: rgba(0, 0, 0, 0.1);
-        transition: opacity ease-in-out 0.5ms;
+      outline: none;
+      display: flex;
+      // height: 100vh;
+      // width: 100vw;
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 10;
+    }
+    
+    .lateralMenu::after {
+      content: '';
+      display: none;
+      width: 100vw;
+      height: 100vw;
+      background: rgba(0, 0, 0, 0.1);
     }
 
-    .lateralMenuOpen {
-        width: 100vw;
-        background: rgba(0, 0, 0, 0.1);
-        opacity: 1;
-        transition: opacity ease-in-out 0.5ms;
-    }
-
-    .topRow {
-      position: relative;
-      padding-bottom: 1.2rem;
-
-      .logo {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, 0);
-      }
-
-      .genderTop {
-        display: block;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-
-        span {
-          padding-bottom: .2rem;
-          letter-spacing: 1px;
-        }
-
-        span:focus {
-          outline: none;
-        } 
-
-        span.active {
-          font-weight: 600;
-          border-bottom: .1rem #1a1a1a solid;
-        }
-
-        span:not(:first-child)::before {
-          content: "|";
-          padding: 0 1rem;
-          padding-bottom: .2rem;
-          border-bottom: .1rem white solid;
-        }
-      }
+    .lateralMenu.fadeIn::after {
+      content: '';
+      display: flex;
     }
 
     .bottomRow {
       .openMenu {
         padding: 0;
         @include center-all-row;
-  
+
         span {
           display: flex;
         }
       }
-  
+
       .search {
         width: 30%;
       }
@@ -154,48 +104,11 @@
   .headerContainer {
     padding: 1rem 6rem;
 
-    .topRow {
-      position: relative;
-      padding-bottom: 1.2rem;
-      @include space-between-center-row;  
-
-      .logo {
-       position: unset;
-      }
-
-      .genderTop {
-        display: block;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-
-        span {
-          padding-bottom: .2rem;
-          letter-spacing: 1px;
-        }
-
-        span:focus {
-          outline: none;
-        } 
-
-        span.active {
-          font-weight: 600;
-          border-bottom: .1rem #1a1a1a solid;
-        }
-
-        span:not(:first-child)::before {
-          content: "|";
-          padding: 0 1rem;
-          padding-bottom: .2rem;
-          border-bottom: .1rem white solid;
-        }
-      }
-    }
-
     .bottomRow {
       .openMenu {
         display: none;
       }
-  
+
       .search {
         width: 30%;
       }
