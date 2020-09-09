@@ -1,7 +1,6 @@
 @import "../styles/flex-box";
 
 .navItem {
-  padding: 0;
   span {
     display: none;
   }
@@ -15,6 +14,7 @@
     align-items: center;
     justify-items: center;
     padding-left: 1rem;
+    padding-right: 0;
 
     * {
       padding: 0;
