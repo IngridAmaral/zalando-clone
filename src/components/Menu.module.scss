@@ -3,7 +3,7 @@
 .menuContainer {
   width: 100vw;
   letter-spacing: 0.05rem;
-  z-index: 1;
+  z-index: 5;
   overflow: scroll;
   height: 100%;
   background: #f3f3f3;
@@ -150,15 +150,28 @@
   .menuContainer {
     width: 50vw;
 
+    .menuHeader.shrink, .menuHeader {
+      height: 60px;
+    }
+
     .menuHeader,
     .menuList {
       width: 50vw;
+
+      .options, 
+      .categories, 
+      .categories.shrink {
+        margin-top: 0;
+      }
+    }
+
+    .menuList {
+      top: 60px;
     }
 
     .menuHeader {
       background-image: none;
       background: #f3f3f3;
-      height: 60px;
 
       .gender {
         width: 100%;
@@ -210,10 +223,6 @@
           }
         }
       }
-    }
-
-    .menuList {
-      top: 60px;
     }
   }
 }
