@@ -1,0 +1,91 @@
+@import "../styles/flex-box";
+
+.topRow {
+  @include space-between-center-row;
+  padding-bottom: 0.85rem;
+
+  .genderTop {
+    display: none;
+  }
+
+  .navItems {
+    @include center-all-row;
+  }
+
+  .logo {
+    height: 1.5rem;
+    width: auto;
+  }
+
+  > svg {
+    cursor: not-allowed;
+    padding-left: 1.25rem;
+  }
+}
+
+// IPAD
+@media (min-width: 768px) {
+  .topRow {
+    position: relative;
+    padding-bottom: 1.2rem;
+
+    .logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+
+    .genderTop {
+      display: flex;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+
+      .gender {
+        span {
+          padding-bottom: 0.2rem;
+          letter-spacing: 1px;
+        }
+
+        span:focus {
+          outline: none;
+        }
+
+        span.active {
+          font-weight: 600;
+          border-bottom: 0.1rem #1a1a1a solid;
+        }
+      }
+
+      .gender:not(:first-child)::before {
+        content: "|";
+        padding: 0 1rem;
+      }
+    }
+  }
+}
+
+// NOTEBOOK
+@media (min-width: 1024px) {
+  .topRow {
+    position: relative;
+    padding-bottom: 1.2rem;
+    @include space-between-center-row;
+
+    .logo {
+      position: unset;
+    }
+
+    .genderTop {
+      width: 30%;
+      .gender {
+        cursor: pointer;
+      }
+    }
+
+    .navItems {
+      width: 30%;
+      @include end-x-row;
+    }
+  }
+}
