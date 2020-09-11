@@ -1,6 +1,6 @@
 import React from 'react';
 import MenuList from './menuList';
-import MenuListCategorie from './MenuListCategorie';
+import MenuListCategory from './MenuListCategory';
 import Close from '../assets/svgs/close';
 import Goback from '../assets/svgs/goback';
 import ZalandoIcon from '../assets/svgs/zalando-icon';
@@ -52,21 +52,21 @@ type MyProps = {
 
 type MyState = {
   shrinkMenuHeader: boolean;
-  categorieName: string;
-  openCategorie: boolean;
+  categoryName: string;
+  openCategory: boolean;
 };
 
 class Menu extends React.Component<MyProps, MyState> {
   state = {
     shrinkMenuHeader: false,
-    categorieName: '',
-    openCategorie: false,
+    categoryName: '',
+    openCategory: false,
   };
 
   backToOptions = () => {
     this.setState({
-      categorieName: '',
-      openCategorie: false,
+      categoryName: '',
+      openCategory: false,
     });
   };
 
@@ -74,8 +74,8 @@ class Menu extends React.Component<MyProps, MyState> {
     const { options } = this.props;
     if (option === options[0]) {
       this.setState({
-        categorieName: option,
-        openCategorie: true,
+        categoryName: option,
+        openCategory: true,
       });
     }
   };
@@ -103,11 +103,11 @@ class Menu extends React.Component<MyProps, MyState> {
     } = this.props;
 
     const {
-      openCategorie,
-      categorieName,
+      openCategory,
+      categoryName,
     } = this.state;
 
-    if (!openCategorie) {
+    if (!openCategory) {
       return (
         <div className={styles.gender}>
           <div className={styles.activeGender}>{activeGender}</div>
@@ -130,13 +130,13 @@ class Menu extends React.Component<MyProps, MyState> {
     }
 
     return (
-      <div className={styles.headerCategorie}>
+      <div className={styles.headerCategory}>
         <button type="button" className={styles.goBack} onClick={this.backToOptions}>
           <Goback />
         </button>
         <div className={styles.title}>
           <h2>
-            {categorieName}
+            {categoryName}
           </h2>
         </div>
       </div>
@@ -145,9 +145,9 @@ class Menu extends React.Component<MyProps, MyState> {
 
   renderList = () => {
     const { options } = this.props;
-    const { openCategorie, shrinkMenuHeader } = this.state;
-    const categorie: any = CATEGORIES[options[0]];
-    const titles = Object.keys(categorie);
+    const { openCategory, shrinkMenuHeader } = this.state;
+    const category: any = CATEGORIES[options[0]];
+    const titles = Object.keys(category);
 
     return (
       <div className={`${styles.menuList}`}>
@@ -158,31 +158,37 @@ class Menu extends React.Component<MyProps, MyState> {
           <MenuList
             hasCaret
             list={options}
-            handleCategorie={this.handleSelectCategory}
+            handleCategory={this.handleSelectCategory}
           />
           {moreOptions.map((optionsList: any) => (
             <MenuList
               key={`${optionsList[0]}moreopt`}
               list={optionsList}
-              handleCategorie={this.handleSelectCategory}
+              handleCategory={this.handleSelectCategory}
             />
           ))}
+          <div className={styles.menuFooter}>
+            <ZalandoIcon />
+          </div>
         </div>
         <div
           id="categories"
           className={`
             ${styles.categories} 
-            ${openCategorie ? styles.show : styles.hide}
-            ${openCategorie && shrinkMenuHeader ? styles.shrink : ''}
+            ${openCategory ? styles.show : styles.hide}
+            ${openCategory && shrinkMenuHeader ? styles.shrink : ''}
           `}
         >
-          {openCategorie && (
+          {openCategory && (
             <div className={styles.categoriesWrapper}>
               {titles.map((title: string) => (
-                <MenuListCategorie key={title} title={title} list={categorie[title]} />
+                <MenuListCategory key={title} title={title} list={category[title]} />
               ))}
             </div>
           )}
+          <div className={styles.menuFooter}>
+            <ZalandoIcon />
+          </div>
         </div>
       </div>
     );
@@ -204,9 +210,6 @@ class Menu extends React.Component<MyProps, MyState> {
           </button>
         </div>
         {this.renderList()}
-        <div className={styles.menuFooter}>
-          <ZalandoIcon />
-        </div>
       </div>
     );
   }
