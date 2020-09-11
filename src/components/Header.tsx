@@ -1,10 +1,12 @@
 import React from 'react';
+import navCategories from './navCategories';
 import HeaderTopRow from './HeaderTopRow';
 import Language from '../assets/svgs/language';
 import Account from '../assets/svgs/account';
 import Wish from '../assets/svgs/wish';
 import Basket from '../assets/svgs/basket';
 import MenuIcon from '../assets/svgs/menu';
+import SearchIcon from '../assets/svgs/search';
 import Menu from './Menu';
 import styles from './Header.module.scss';
 
@@ -17,11 +19,6 @@ const ICONS = [
 type TGender = 'women' | 'men' | 'kids';
 
 const GENDERS: TGender[] = ['women', 'men', 'kids'];
-
-type MyState = {
-  openMenu: boolean;
-  activeGender: string;
-};
 
 const OPTIONS: string[] = [
   'Get The Look',
@@ -36,11 +33,25 @@ const OPTIONS: string[] = [
   'Sale %',
 ];
 
+type MyState = {
+  openMenu: boolean;
+  activeGender: string;
+  activeGenderData: Array<any>;
+};
+
 class Header extends React.Component<{}, MyState> {
   state = {
-    openMenu: true,
+    openMenu: false,
     activeGender: GENDERS[0],
+    activeGenderData: [],
   };
+
+  componentDidMount() {
+    const { activeGender } = this.state;
+    const activeData = navCategories[activeGender].children;
+
+    this.setState({ activeGenderData: activeData });
+  }
 
   handleOpenMenu = () => {
     this.setState(
@@ -58,10 +69,22 @@ class Header extends React.Component<{}, MyState> {
     }
   };
 
-  handleGenderChange = (gender: string) => this.setState({ activeGender: gender });
+  handleGenderChange = (gender: string) => {
+    const activeData = navCategories[gender].children;
+
+    this.setState({
+      activeGender: gender,
+      activeGenderData: activeData,
+    });
+  };
 
   render() {
-    const { openMenu, activeGender } = this.state;
+    const { openMenu, activeGender, activeGenderData } = this.state;
+
+    if (!activeGenderData.length) {
+      return (<div>loading</div>);
+    }
+
     return (
       <div className={styles.headerContainer}>
         <HeaderTopRow
@@ -80,9 +103,26 @@ class Header extends React.Component<{}, MyState> {
             <span>Menu</span>
           </button>
           <div className={styles.menuOptions}>
-            {OPTIONS.map((option) => <span key={option}>{option}</span>)}
+            {activeGenderData.map((categories: any) => (
+              <div key={categories.name} className={styles.option}>
+                <button type="button" key={categories.name}>
+                  {categories.name}
+                </button>
+                <div className={styles.dropdown}>
+                  {categories.children.map((subCategory: any) => (
+                    <div className={styles.categories} key={`1${categories.name}${subCategory.name}`}>
+                      <span>{subCategory.name}</span>
+                      <ul>
+                        {subCategory.children.map((sub, idx) => sub.name !== '--' && <li key={`${`${idx}0`}${categories.name}${sub.name}`}>{sub.name}</li>)}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
           <div className={styles.search}>
+            <SearchIcon />
             Search
           </div>
         </div>
