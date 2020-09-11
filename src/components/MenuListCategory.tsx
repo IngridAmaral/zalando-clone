@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './MenuListCategorie.module.scss';
+import styles from './MenuListCategory.module.scss';
 
 type MyProps = {
   list: any;
@@ -7,7 +7,7 @@ type MyProps = {
 };
 
 const MenuList = ({ list, title }: MyProps) => (
-  <div className={styles.categorie}>
+  <div className={styles.category}>
     <span className={styles.title}>
       {title}
     </span>

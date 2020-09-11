@@ -1,4 +1,5 @@
 @import "../styles/flex-box";
+@import "../styles/colors";
 
 .topRow {
   @include space-between-center-row;
@@ -53,7 +54,7 @@
 
         span.active {
           font-weight: 600;
-          border-bottom: 0.1rem #1a1a1a solid;
+          border-bottom: 0.1rem $secondary solid;
         }
       }
 

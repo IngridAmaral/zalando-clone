@@ -9,14 +9,14 @@ const defaultProps = {
 type MyProps = {
   list: any;
   hasCaret?: boolean;
-  handleCategorie: (option: string) => void;
+  handleCategory: (option: string) => void;
 } & typeof defaultProps;
 
-const MenuList = ({ list, hasCaret, handleCategorie }: MyProps) => (
-  <div className={styles.categorieLink}>
+const MenuList = ({ list, hasCaret, handleCategory }: MyProps) => (
+  <div className={styles.categoryLink}>
     <ul>
       {list.map((option: string) => (
-        <li key={option} onClick={() => handleCategorie(option)}>
+        <li key={option} onClick={() => handleCategory(option)}>
           <span className={styles.item}>
             {option}
           </span>
