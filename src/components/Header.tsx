@@ -33,10 +33,34 @@ const OPTIONS: string[] = [
   'Sale %',
 ];
 
+type ImageLink = {
+  image: string,
+  name: string,
+  url_key: string,
+  type: string,
+  image_mobile: {
+    uri: string,
+    name: string,
+    type: string,
+    url_key: string
+  }
+};
+
+type Category = {
+  children: Array<any>,
+  image_link: ImageLink,
+  name:string,
+  tracking_code:string,
+  type: string,
+  url_key: string,
+};
+
 type MyState = {
   openMenu: boolean;
   activeGender: string;
   activeGenderData: Array<any>;
+  hoverData: Category | {name: string, children: Array<any>};
+  shouldShowDropdown: boolean;
 };
 
 class Header extends React.Component<{}, MyState> {
@@ -44,6 +68,8 @@ class Header extends React.Component<{}, MyState> {
     openMenu: false,
     activeGender: GENDERS[0],
     activeGenderData: [],
+    hoverData: { name: '', children: [] },
+    shouldShowDropdown: false,
   };
 
   componentDidMount() {
@@ -78,8 +104,30 @@ class Header extends React.Component<{}, MyState> {
     });
   };
 
+  handleHover = (categories: Category) => {
+    const { hoverData } = this.state;
+
+    if (!hoverData || hoverData.name !== categories.name) {
+      this.setState({ hoverData: categories });
+    }
+  };
+
+  showDropdown = () => {
+    this.setState({ shouldShowDropdown: true });
+  };
+
+  hideDropdown = () => {
+    this.setState({ shouldShowDropdown: false });
+  };
+
   render() {
-    const { openMenu, activeGender, activeGenderData } = this.state;
+    const {
+      openMenu,
+      activeGender,
+      activeGenderData,
+      hoverData,
+      shouldShowDropdown,
+    } = this.state;
 
     if (!activeGenderData.length) {
       return (<div>loading</div>);
@@ -102,22 +150,22 @@ class Header extends React.Component<{}, MyState> {
             <MenuIcon />
             <span>Menu</span>
           </button>
-          <div className={styles.menuOptions}>
-            {activeGenderData.map((categories: any) => (
-              <div key={categories.name} className={styles.option}>
-                <button type="button" key={categories.name}>
+          <div
+            id="nav-items"
+            className={styles.menuOptions}
+            onMouseEnter={this.showDropdown}
+            onMouseLeave={this.hideDropdown}
+          >
+            {activeGenderData.map((categories: Category) => (
+              <div
+                key={categories.name}
+                className={styles.option}
+                onFocus={() => this.handleHover(categories)}
+                onMouseOver={() => this.handleHover(categories)}
+              >
+                <button type="button">
                   {categories.name}
                 </button>
-                <div className={styles.dropdown}>
-                  {categories.children.map((subCategory: any) => (
-                    <div className={styles.categories} key={`1${categories.name}${subCategory.name}`}>
-                      <span>{subCategory.name}</span>
-                      <ul>
-                        {subCategory.children.map((sub, idx) => sub.name !== '--' && <li key={`${`${idx}0`}${categories.name}${sub.name}`}>{sub.name}</li>)}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
               </div>
             ))}
           </div>
@@ -149,6 +197,30 @@ class Header extends React.Component<{}, MyState> {
               isMenuOpen={openMenu}
             />
           </div>
+        </div>
+        <div
+          onMouseEnter={this.showDropdown}
+          onMouseLeave={this.hideDropdown}
+          className={`${styles.dropdown} ${shouldShowDropdown ? styles.show : ''}`}
+        >
+          <div id="cetegories" className={styles.categoriesLists}>
+            {hoverData.children.map((subCategory: any) => (
+              <div id="cetegory" className={styles.category} key={`1${subCategory.name}`}>
+                <span>{subCategory.name}</span>
+                <ul>
+                  {subCategory.children.map((sub, idx) => sub.name !== '--' && <li key={`${`${idx}0`}${sub.name}`}>{sub.name}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <img
+            alt="banner"
+            style={{
+              backgroundColor: '#0C7AA4',
+              color: '#FFFFFF',
+            }}
+            src="https://mosaic02.ztat.net/nvg/z-header-fragment/images/production/en-DE/women/beca8fef-ec5a-4538-b226-b360a12c626c/image/1599222782390/large2x.jpg"
+          />
         </div>
       </div>
     );
