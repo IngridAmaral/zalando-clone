@@ -3,11 +3,13 @@ import NavItem from './NavItem';
 import logo from '../constants/imgs/logo';
 import styles from './HeaderTopRow.module.scss';
 
+type TIcon = { icon: React.ReactNode, name: string };
+
 type MyProps ={
   changeGender: (gender: string) => void;
   activeGender: string;
   genders: string[];
-  icons: any;
+  icons: Array<TIcon>;
 };
 
 const HeaderTopRow = ({

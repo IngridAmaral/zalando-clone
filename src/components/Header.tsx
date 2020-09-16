@@ -10,7 +10,10 @@ import SearchIcon from '../assets/svgs/search';
 import Menu from './Menu';
 import styles from './Header.module.scss';
 
-const ICONS = [
+type TIcon = { icon: React.ReactNode, name: string };
+type TIcons = Array<TIcon>;
+
+const ICONS: TIcons = [
   { icon: <Language />, name: 'English' },
   { icon: <Account />, name: 'Login' },
   { icon: <Wish />, name: 'Wish list' },
@@ -33,33 +36,20 @@ const OPTIONS: string[] = [
   'Sale %',
 ];
 
-type ImageLink = {
-  image: string,
-  name: string,
-  url_key: string,
-  type: string,
-  image_mobile: {
-    uri: string,
-    name: string,
-    type: string,
-    url_key: string
-  }
-};
+type CategoryChildren = {name: string};
 
 type Category = {
-  children: Array<any>,
-  image_link: ImageLink,
+  children: Array<CategoryChildren>,
   name:string,
-  tracking_code:string,
-  type: string,
-  url_key: string,
 };
+
+type Categories = {name: string};
 
 type MyState = {
   openMenu: boolean;
   activeGender: string;
-  activeGenderData: Array<any>;
-  hoverData: Category | {name: string, children: Array<any>};
+  activeGenderData: Array<Categories>;
+  hoverData: Category;
   shouldShowDropdown: boolean;
 };
 
@@ -87,9 +77,10 @@ class Header extends React.Component<{}, MyState> {
     );
   };
 
-  handleClickOutside = (e: any) => {
+  handleClickOutside = (e: React.MouseEvent<HTMLDivElement>): void => {
+    const { id } = e.target as HTMLDivElement;
     const { openMenu } = this.state;
-    if (openMenu && e.target.id === 'wrapper-menu') {
+    if (openMenu && id === 'wrapper-menu') {
       e.stopPropagation();
       this.setState({ openMenu: false });
     }
@@ -194,6 +185,7 @@ class Header extends React.Component<{}, MyState> {
               activeGender={activeGender}
               genders={GENDERS}
               options={OPTIONS}
+              categories={activeGenderData}
               isMenuOpen={openMenu}
             />
           </div>
@@ -204,7 +196,7 @@ class Header extends React.Component<{}, MyState> {
           className={`${styles.dropdown} ${shouldShowDropdown ? styles.show : ''}`}
         >
           <div id="cetegories" className={styles.categoriesLists}>
-            {hoverData.children.map((subCategory: any) => (
+            {hoverData.children.map((subCategory: Category) => (
               <div id="cetegory" className={styles.category} key={`1${subCategory.name}`}>
                 <span>{subCategory.name}</span>
                 <ul>

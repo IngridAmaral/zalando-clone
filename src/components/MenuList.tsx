@@ -4,21 +4,24 @@ import Caret from '../assets/svgs/caret';
 
 const defaultProps = {
   hasCaret: false,
+  categoriesList: [],
 };
 
 type MyProps = {
-  list: any;
   hasCaret?: boolean;
   handleCategory: (option: string) => void;
+  categoriesList?: any;
 } & typeof defaultProps;
 
-const MenuList = ({ list, hasCaret, handleCategory }: MyProps) => (
+const MenuList = ({
+  hasCaret, handleCategory, categoriesList,
+}: MyProps) => (
   <div className={styles.categoryLink}>
     <ul>
-      {list.map((option: string) => (
-        <li key={option} onClick={() => handleCategory(option)}>
+      {categoriesList.map((option: any) => (
+        <li key={option.name} onClick={() => handleCategory(option.name)}>
           <span className={styles.item}>
-            {option}
+            {option.name}
           </span>
           {hasCaret && (<Caret />)}
         </li>
