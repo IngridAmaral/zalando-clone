@@ -1,20 +1,30 @@
 import React from 'react';
 import styles from './MenuListCategory.module.scss';
+import Caret from '../assets/svgs/caret';
 
 type MyProps = {
-  list: any;
-  title: string;
+  hasCaret?: boolean;
+  handleCategory: (option: string) => void;
+  categoriesList: Array<{name: string}>;
 };
 
-const MenuList = ({ list, title }: MyProps) => (
-  <div className={styles.category}>
-    <span className={styles.title}>
-      {title}
-    </span>
+const MenuListCategory = ({
+  hasCaret, handleCategory, categoriesList,
+}: MyProps) => (
+  <div className={styles.categoryLink}>
     <ul>
-      {list.map((item: string) => <li key={item}>{item}</li>)}
+      {categoriesList.map((option) => (
+        <li key={option.name} onClick={() => handleCategory(option.name)}>
+          <span className={styles.item}>
+            {option.name}
+          </span>
+          {hasCaret && (<Caret />)}
+        </li>
+      ))}
     </ul>
   </div>
 );
 
-export default MenuList;
+MenuListCategory.defaultProps = { hasCaret: false };
+
+export default MenuListCategory;
