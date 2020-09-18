@@ -1,11 +1,10 @@
 import React from 'react';
 import styles from './NavItem.module.scss';
+import { TIcon } from './Header';
 
-type MyProps = {
-  icon: any;
-};
+type NavItemProps = { icon: TIcon };
 
-const NavItem = ({ icon }: MyProps) => (
+const NavItem = ({ icon }: NavItemProps )  => (
   <button type="button" className={styles.navItem}>
     {icon.icon}
     <span>{icon.name}</span>

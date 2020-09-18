@@ -1,8 +1,16 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
-  extends: ['airbnb-typescript'],
+  plugins: ['react', '@typescript-eslint', 'jest'],
+  extends: [
+    'airbnb-typescript',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:jest/recommended',
+    'prettier',
+    'prettier/react',
+    'prettier/@typescript-eslint',
+    'plugin:prettier/recommended',
+  ],
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module',
@@ -12,6 +20,7 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
+    jest: true,
   },
   rules: {
     'linebreak-style': 'off',
@@ -19,6 +28,12 @@ module.exports = {
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
   },
   overrides: [
     {

@@ -1,12 +1,13 @@
 @import "../styles/flex-box";
+@import "../styles/colors";
 
 .menuContainer {
   width: 100vw;
   letter-spacing: 0.05rem;
-  z-index: 1;
+  z-index: 5;
   overflow: scroll;
   height: 100%;
-  background: #f3f3f3;
+  background: $terciary;
 
   .menuHeader.shrink {
     height: 60px;
@@ -27,7 +28,7 @@
     width: 100vw;
     z-index: 2;
 
-    .headerCategorie {
+    .headerCategory {
       display: flex;
       width: 100%;
       height: 100%;
@@ -70,7 +71,7 @@
         @include end-y-row;
 
         span {
-          color: #ddd;
+          color: $grey-alto;
           box-sizing: border-box;
           font-size: 0.75rem;
           margin-left: 0.8rem;
@@ -84,7 +85,7 @@
 
         span.active {
           color: white;
-          border-bottom: 0.2rem solid #ff6900;
+          border-bottom: 0.2rem solid $primary;
           font-weight: 600;
           outline: none;
         }
@@ -124,9 +125,9 @@
       position: absolute;
       display: flex;
       flex-direction: column;
-      background: #e2e1e1;
       width: 100%;
       transition: all ease-out 100ms;
+      background: $terciary;
     }
 
     .categories.shrink {
@@ -150,15 +151,29 @@
   .menuContainer {
     width: 50vw;
 
+    .menuHeader.shrink, .menuHeader {
+      height: 60px;
+    }
+
     .menuHeader,
     .menuList {
       width: 50vw;
+      height: 100wh;
+
+      .options, 
+      .categories, 
+      .categories.shrink {
+        margin-top: 0;
+      }
+    }
+
+    .menuList {
+      top: 60px;
     }
 
     .menuHeader {
       background-image: none;
-      background: #f3f3f3;
-      height: 60px;
+      background: $terciary;
 
       .gender {
         width: 100%;
@@ -167,7 +182,7 @@
         box-sizing: border-box;
         .activeGender {
           text-transform: capitalize;
-          color: #999;
+          color: $grey-dust;
           font-size: 1rem;
           display: block;
         }
@@ -180,12 +195,12 @@
       .closeMenu {
         svg {
           path {
-            fill: #1a1a1a;
+            fill: $secondary;
           }
         }
       }
 
-      .headerCategorie {
+      .headerCategory {
         .goBack {
           @include start-x-row;
 
@@ -193,7 +208,7 @@
             width: 1.5rem;
             g {
               path:first-child {
-                fill: #1a1a1a;
+                fill: $secondary;
               }
             }
           }
@@ -201,7 +216,7 @@
 
         .title {
           @include start-x-row;
-          color: #1a1a1a;
+          color: $secondary;
 
           h2 {
             font-size: 1rem;
@@ -210,10 +225,6 @@
           }
         }
       }
-    }
-
-    .menuList {
-      top: 60px;
     }
   }
 }

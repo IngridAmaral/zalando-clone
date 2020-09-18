@@ -1,4 +1,5 @@
 @import "../styles/flex-box";
+@import "../styles/colors";
 
 .headerContainer {
   padding: 0.8rem 1.25rem;
@@ -33,28 +34,10 @@
     @include space-between-center-row;
   }
 
-  .topRow {
-    padding-bottom: 0.85rem;
-
-    .genderTop {
-      display: none;
-    }
-
-    .navItems {
-      @include center-all-row;
-    }
-
-    .logo {
-      height: 1.5rem;
-      width: auto;
-    }
-
-    > svg {
-      cursor: not-allowed;
-      padding-left: 1.25rem;
-    }
+  .dropdown {
+    display: none;
   }
-
+  
   .bottomRow {
     .menuOptions {
       display: none;
@@ -69,7 +52,7 @@
     }
 
     .search {
-      border-bottom: 0.1rem solid #000000;
+      border-bottom: 0.1rem solid $secondary;
       width: 85%;
     }
   }
@@ -80,68 +63,40 @@
   .headerContainer {
     padding: 0.8rem 2rem;
 
-    .lateralMenu {
-        opacity: 0;
-        background: rgba(0, 0, 0, 0.1);
-        transition: opacity ease-in-out 0.5ms;
+    .lateralMenuWrapper {
+      outline: none;
+      display: flex;
+
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 10;
+      height: 100vh;
     }
 
-    .lateralMenuOpen {
-        width: 100vw;
-        background: rgba(0, 0, 0, 0.1);
-        opacity: 1;
-        transition: opacity ease-in-out 0.5ms;
+    .lateralMenuWrapper::after {
+      content: "";
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.1);
     }
 
-    .topRow {
-      position: relative;
-      padding-bottom: 1.2rem;
-
-      .logo {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, 0);
-      }
-
-      .genderTop {
-        display: block;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-
-        span {
-          padding-bottom: .2rem;
-          letter-spacing: 1px;
-        }
-
-        span:focus {
-          outline: none;
-        } 
-
-        span.active {
-          font-weight: 600;
-          border-bottom: .1rem #1a1a1a solid;
-        }
-
-        span:not(:first-child)::before {
-          content: "|";
-          padding: 0 1rem;
-          padding-bottom: .2rem;
-          border-bottom: .1rem white solid;
-        }
-      }
+    .lateralMenuWrapper.fadeIn::after {
+      content: "";
+      display: flex;
     }
 
     .bottomRow {
       .openMenu {
         padding: 0;
         @include center-all-row;
-  
+
         span {
           display: flex;
         }
       }
-  
+
       .search {
         width: 30%;
       }
@@ -154,51 +109,94 @@
   .headerContainer {
     padding: 1rem 6rem;
 
-    .topRow {
-      position: relative;
-      padding-bottom: 1.2rem;
-      @include space-between-center-row;  
-
-      .logo {
-       position: unset;
-      }
-
-      .genderTop {
-        display: block;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-
-        span {
-          padding-bottom: .2rem;
-          letter-spacing: 1px;
-        }
-
-        span:focus {
-          outline: none;
-        } 
-
-        span.active {
-          font-weight: 600;
-          border-bottom: .1rem #1a1a1a solid;
-        }
-
-        span:not(:first-child)::before {
-          content: "|";
-          padding: 0 1rem;
-          padding-bottom: .2rem;
-          border-bottom: .1rem white solid;
-        }
-      }
-    }
-
     .bottomRow {
       .openMenu {
         display: none;
       }
-  
+
+      .menuOptions {
+        display: flex;
+
+        .option {
+          position: relative;
+
+          button {
+            padding: 1rem 1rem 1rem 0;
+            font-size: 0.8rem;
+            cursor: pointer;
+            overflow: hidden;
+          }
+        }
+      }
+
       .search {
         width: 30%;
       }
+    }
+
+    .dropdown {
+      overflow: hidden;
+      width: 100vw;
+      transition: max-height ease-in 200ms;
+      max-height: 0;
+      height: 380px;
+      position: fixed;
+      top: 8.5rem;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      background: white;
+      padding: 0 10rem;
+      box-sizing: border-box;
+
+      .categoriesLists {
+        width: 60%;
+        column-count: 3;
+        padding-bottom: 3rem;
+        column-fill: balance;
+        height: inherit;
+        box-sizing: border-box;
+
+        .category {
+          padding: 0 1rem 0.5rem 1rem;
+          box-sizing: border-box;
+          white-space: nowrap;
+          column-width: 33%;
+          margin: 0;
+          -webkit-column-break-inside: avoid;
+          page-break-inside: avoid;
+          break-inside: avoid-column;
+          display: table;
+
+          span {
+            text-transform: uppercase;
+            font-weight: bolder;
+            font-size: 0.85rem;
+            padding: 0.1rem 0;
+          }
+          ul {
+            margin: 0.2rem 0;
+            padding: 0;
+            font-size: 0.8rem;
+
+            li {
+              padding: 0.2rem 0;
+              box-sizing: border-box;
+            }
+          }
+        }
+      }
+
+      img {
+        width: 30%;
+        height: auto;
+      }
+    }
+
+    .dropdown.show {
+      max-height: 450px;
     }
   }
 }

@@ -27,6 +27,14 @@
     align-items: center;    
 }
 
+@mixin end-x-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;    
+}
+
+
 @mixin space-between-center-row {
     display: flex;
     flex-direction: row;

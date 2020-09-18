@@ -1,172 +1,200 @@
 import React from 'react';
-import NavItem from './NavItem';
-import logo from '../constants/imgs/logo';
+import navCategories from './navCategories';
+import HeaderTopRow from './HeaderTopRow';
 import Language from '../assets/svgs/language';
 import Account from '../assets/svgs/account';
 import Wish from '../assets/svgs/wish';
 import Basket from '../assets/svgs/basket';
 import MenuIcon from '../assets/svgs/menu';
+import SearchIcon from '../assets/svgs/search';
 import Menu from './Menu';
 import styles from './Header.module.scss';
 
-const ICONS = [
+export type TIcon = { icon: React.ReactNode, name: string };
+
+
+const ICONS: Array<TIcon> = [
   { icon: <Language />, name: 'English' },
   { icon: <Account />, name: 'Login' },
   { icon: <Wish />, name: 'Wish list' },
-  { icon: <Basket />, name: 'Your bag' }];
+  { icon: <Basket />, name: 'Your bag' },
+];
 
 type TGender = 'women' | 'men' | 'kids';
 
 const GENDERS: TGender[] = ['women', 'men', 'kids'];
 
-const OPTIONS: string[] = [
-  'Get The Look',
-  'New',
-  'Clothing',
-  'Shoes',
-  'Sport',
-  'Accessories',
-  'Beauty',
-  'Designer',
-  'Brands',
-  'Sale %',
-];
-
-type MyState = {
-  openMenu: boolean;
-  shrinkMenuHeader: boolean;
-  activeGender: string;
-  categorieName: string;
-  openCategorie: boolean;
+export type TCategories = {
+  children: Array<{name: string, children: Array<{name: string, children: Array<{name: string}>}>}>,
+  name:string,
 };
 
-class Header extends React.Component<{}, MyState> {
-  state: MyState = {
-    openMenu: true,
-    shrinkMenuHeader: false,
+type HeaderState = {
+  openMenu: boolean;
+  activeGender: string;
+  activeGenderCategoriesData: Array<TCategories>;
+  hoverCategoryData: TCategories;
+  shouldShowDropdown: boolean;
+};
+
+class Header extends React.Component<{}, HeaderState> {
+  state: HeaderState = {
+    openMenu: false,
     activeGender: GENDERS[0],
-    categorieName: OPTIONS[0],
-    openCategorie: true,
+    activeGenderCategoriesData: [],
+    hoverCategoryData: { name: '', children: [] },
+    shouldShowDropdown: false,
   };
 
-  handleScroll = (e: any) => {
-    const scrolled: number = e.target.scrollTop;
-    const { shrinkMenuHeader } = this.state;
+  componentDidMount() {
+    const { activeGender } = this.state;
+    const activeData = navCategories[activeGender].children;
 
-    if (scrolled > 50 && !shrinkMenuHeader) {
-      this.setState({
-        shrinkMenuHeader: true,
-      });
-    } else if (scrolled < 50 && shrinkMenuHeader) {
-      this.setState({
-        shrinkMenuHeader: false,
-      });
-    }
-  };
+    this.setState({ activeGenderCategoriesData: activeData });
+  }
 
-  handleCategorie = (option: string) => {
-    if (option === OPTIONS[0]) {
-      this.setState({
-        categorieName: option,
-        openCategorie: true,
-      });
-    }
-  };
-
-  backToOptions = () => {
-    this.setState({
-      categorieName: OPTIONS[0],
-      openCategorie: false,
-    });
-  };
-
-  handleMenuOpen = () => {
+  handleOpenMenu = () => {
     this.setState(
       (prevState) => ({
         openMenu: !prevState.openMenu,
-        shrinkMenuHeader: false,
-        openCategorie: false,
       }),
     );
   };
 
-  handleClickOutside = (e: any) => {
+  handleClickOutside = (e: React.MouseEvent<HTMLDivElement>): void => {
+    const { id } = e.target as HTMLDivElement;
     const { openMenu } = this.state;
-    e.stopPropagation();
-
-    if (openMenu && e.target.id === 'wrapper-menu') {
-      this.setState({ openMenu: false, shrinkMenuHeader: false });
+    if (openMenu && id === 'wrapper-menu') {
+      e.stopPropagation();
+      this.setState({ openMenu: false });
     }
   };
 
-  handleGenderChange = (gender: string) => this.setState({ activeGender: gender });
+  handleGenderChange = (gender: string) => {
+    const activeData = navCategories[gender].children;
+
+    this.setState({
+      activeGender: gender,
+      activeGenderCategoriesData: activeData,
+    });
+  };
+
+  handleHover = (category: TCategories) => {
+    const { hoverCategoryData } = this.state;
+
+    if (!hoverCategoryData || hoverCategoryData.name !== category.name) {
+      this.setState({ hoverCategoryData: category });
+    }
+  };
+
+  showDropdown = () => {
+    this.setState({ shouldShowDropdown: true });
+  };
+
+  hideDropdown = () => {
+    this.setState({ shouldShowDropdown: false });
+  };
 
   render() {
     const {
-      openMenu, activeGender, shrinkMenuHeader, openCategorie, categorieName,
+      openMenu,
+      activeGender,
+      activeGenderCategoriesData,
+      hoverCategoryData,
+      shouldShowDropdown,
     } = this.state;
+
+    if (!activeGenderCategoriesData.length) {
+      return (<div>loading</div>);
+    }
+
     return (
       <div className={styles.headerContainer}>
-        <div className={styles.topRow}>
-          <div className={styles.genderTop}>
-            {GENDERS.map((gender, idx) => (
-              <span
-                role="button"
-                tabIndex={idx}
-                onClick={() => this.handleGenderChange(gender)}
-                key={`${gender}top`}
-                className={activeGender === gender ? styles.active : ''}
-              >
-                {gender}
-              </span>
-            ))}
-          </div>
-          <img className={styles.logo} src={logo} alt="Zalando logo" />
-          <div className={styles.navItems}>
-            {ICONS.map((icon) => (
-              <NavItem key={icon.name} icon={icon} />
-            ))}
-          </div>
-        </div>
+        <HeaderTopRow
+          changeGender={this.handleGenderChange}
+          activeGender={activeGender}
+          icons={ICONS}
+          genders={GENDERS}
+        />
         <div className={styles.bottomRow}>
           <button
             type="button"
             className={styles.openMenu}
-            onClick={this.handleMenuOpen}
+            onClick={this.handleOpenMenu}
           >
             <MenuIcon />
             <span>Menu</span>
           </button>
-          <div className={styles.menuOptions}>
-            {OPTIONS.map((option) => <span key={option}>{option}</span>)}
+          <div
+            id="nav-items"
+            className={styles.menuOptions}
+            onMouseEnter={this.showDropdown}
+            onMouseLeave={this.hideDropdown}
+          >
+            {activeGenderCategoriesData.map((categories) => (
+              <div
+                key={categories.name}
+                className={styles.option}
+                onFocus={() => this.handleHover(categories)}
+                onMouseOver={() => this.handleHover(categories)}
+              >
+                <button type="button">
+                  {categories.name}
+                </button>
+              </div>
+            ))}
           </div>
           <div className={styles.search}>
+            <SearchIcon />
             Search
           </div>
         </div>
         <div
           id="wrapper-menu"
+          className={`${styles.lateralMenuWrapper} ${openMenu ? styles.fadeIn : ''}`}
           role="button"
           tabIndex={0}
-          className={`
-            ${openMenu
-            ? styles.lateralMenuOpen
-            : styles.lateralMenu
-              }`}
-          onScroll={this.handleScroll}
           onClick={this.handleClickOutside}
         >
-          <Menu
-            close={this.handleMenuOpen}
-            changeGender={this.handleGenderChange}
-            activeGender={activeGender}
-            shouldShrink={shrinkMenuHeader}
-            genders={GENDERS}
-            openCategorie={openCategorie}
-            categorieName={categorieName}
-            options={OPTIONS}
-            handleCategorie={this.handleCategorie}
-            backToOptions={this.backToOptions}
+          <div
+            className={`${
+              openMenu
+                ? styles.lateralMenuOpen
+                : styles.lateralMenu
+            }`}
+          >
+            <Menu
+              onClose={this.handleOpenMenu}
+              onChangeGender={this.handleGenderChange}
+              activeGender={activeGender}
+              genders={GENDERS}
+              categories={activeGenderCategoriesData}
+              isMenuOpen={openMenu}
+            />
+          </div>
+        </div>
+        <div
+          onMouseEnter={this.showDropdown}
+          onMouseLeave={this.hideDropdown}
+          className={`${styles.dropdown} ${shouldShowDropdown ? styles.show : ''}`}
+        >
+          <div id="cetegories" className={styles.categoriesLists}>
+            {hoverCategoryData.children.map((subCategory) => (
+              <div id="cetegory" className={styles.category} key={`1${subCategory.name}`}>
+                <span>{subCategory.name}</span>
+                <ul>
+                  {subCategory.children.map((sub, idx) => sub.name !== '--' && <li key={`${`${idx}0`}${sub.name}`}>{sub.name}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <img
+            alt="banner"
+            style={{
+              backgroundColor: '#0C7AA4',
+              color: '#FFFFFF',
+            }}
+            src="https://mosaic02.ztat.net/nvg/z-header-fragment/images/production/en-DE/women/beca8fef-ec5a-4538-b226-b360a12c626c/image/1599222782390/large2x.jpg"
           />
         </div>
       </div>
