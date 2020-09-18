@@ -10,9 +10,10 @@ import SearchIcon from '../assets/svgs/search';
 import Menu from './Menu';
 import styles from './Header.module.scss';
 
-type TIcons = Array<{ icon: React.ReactNode, name: string }>;
+export type TIcon = { icon: React.ReactNode, name: string };
 
-const ICONS: TIcons = [
+
+const ICONS: Array<TIcon> = [
   { icon: <Language />, name: 'English' },
   { icon: <Account />, name: 'Login' },
   { icon: <Wish />, name: 'Wish list' },

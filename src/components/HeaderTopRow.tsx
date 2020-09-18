@@ -2,8 +2,7 @@ import React from 'react';
 import NavItem from './NavItem';
 import logo from '../constants/imgs/logo';
 import styles from './HeaderTopRow.module.scss';
-
-type TIcon = { icon: React.ReactNode, name: string };
+import { TIcon }  from './Header'
 
 type MyProps ={
   changeGender: (gender: string) => void;
