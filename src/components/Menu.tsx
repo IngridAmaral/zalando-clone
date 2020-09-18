@@ -1,62 +1,33 @@
 import React from 'react';
-import MenuList from './menuList';
 import MenuListCategory from './MenuListCategory';
+import MenuListSubCategory from './MenuListSubCategory';
 import Close from '../assets/svgs/close';
 import Goback from '../assets/svgs/goback';
 import ZalandoIcon from '../assets/svgs/zalando-icon';
 import styles from './Menu.module.scss';
+import { TCategories } from './Header';
 
-const CATEGORIES: any = {
-  'Get The Look': {
-    'Get The Look': [
-      'All Outfits',
-      'Classic Outfits',
-      'Casual Outfits',
-      'Trendy Outfits',
-      'Party Outfits',
-      'Sporty Outfits'],
-    VIP: [
-      'Toni Garrn',
-      'Rebecca Mir'],
-    TRENDS: [
-      'Slip Dresses',
-      'Organza Blouses',
-      'Statement Bags',
-      'Pattern Styles',
-      'Trendy Cardigans',
-      'Unisex',
-      'Trendy Pearls',
-      'Minimalism',
-      'Bucket Hats',
-      'Trendy Shirts',
-      'Pastel Palette'],
-    HIGHLIGHTS: [
-      'Textile Masks',
-      '#supportthestores'],
-  },
-};
-
-const moreOptions: any = [
-  ['Help', 'Newsletter'],
-  ['Dutsch', 'English'],
+const moreOptions: Array<Array<{name: string}>> = [
+  [{ name: 'Help' }, { name: 'Newsletter' }],
+  [{ name: 'Dutsch' }, { name: 'English' }],
 ];
 
-type MyProps = {
-  close: () => void,
-  changeGender: (gender: string) => void;
+type MenuProps = {
+  onClose: () => void,
+  onChangeGender: (gender: string) => void;
   activeGender: string;
   genders: string[];
-  options: string[];
   isMenuOpen: boolean;
+  categories: Array<TCategories>;
 };
 
-type MyState = {
+type MenuState = {
   shrinkMenuHeader: boolean;
   categoryName: string;
   openCategory: boolean;
 };
 
-class Menu extends React.Component<MyProps, MyState> {
+class Menu extends React.Component<MenuProps, MenuState> {
   state = {
     shrinkMenuHeader: false,
     categoryName: '',
@@ -71,8 +42,8 @@ class Menu extends React.Component<MyProps, MyState> {
   };
 
   handleSelectCategory = (option: string) => {
-    const { options } = this.props;
-    if (option === options[0]) {
+    const { categories } = this.props;
+    if (categories.some((category) => category.name === option)) {
       this.setState({
         categoryName: option,
         openCategory: true,
@@ -80,8 +51,8 @@ class Menu extends React.Component<MyProps, MyState> {
     }
   };
 
-  handleScroll = (e: any) => {
-    const scrolled: number = e.target.scrollTop;
+  handleScroll = (e: React.UIEvent<HTMLElement>): void => {
+    const scrolled = e.currentTarget.scrollTop;
     const { shrinkMenuHeader } = this.state;
 
     if (scrolled > 50 && !shrinkMenuHeader) {
@@ -97,7 +68,7 @@ class Menu extends React.Component<MyProps, MyState> {
 
   renderTitle = () => {
     const {
-      changeGender,
+      onChangeGender,
       activeGender,
       genders,
     } = this.props;
@@ -118,7 +89,7 @@ class Menu extends React.Component<MyProps, MyState> {
                 tabIndex={0}
                 key={gender}
                 id={gender}
-                onClick={() => changeGender(gender)}
+                onClick={() => onChangeGender(gender)}
                 className={activeGender === gender ? styles.active : ''}
               >
                 {gender}
@@ -144,10 +115,8 @@ class Menu extends React.Component<MyProps, MyState> {
   };
 
   renderList = () => {
-    const { options } = this.props;
-    const { openCategory, shrinkMenuHeader } = this.state;
-    const category: any = CATEGORIES[options[0]];
-    const titles = Object.keys(category);
+    const { categories } = this.props;
+    const { openCategory, shrinkMenuHeader, categoryName } = this.state;
 
     return (
       <div className={`${styles.menuList}`}>
@@ -155,16 +124,16 @@ class Menu extends React.Component<MyProps, MyState> {
           id="categories-link"
           className={styles.options}
         >
-          <MenuList
+          <MenuListCategory
             hasCaret
-            list={options}
+            categoriesList={categories}
             handleCategory={this.handleSelectCategory}
           />
-          {moreOptions.map((optionsList: any) => (
-            <MenuList
-              key={`${optionsList[0]}moreopt`}
-              list={optionsList}
-              handleCategory={this.handleSelectCategory}
+          {moreOptions.map((optionsList) => (
+            <MenuListCategory
+              key={`${optionsList[0].name}moreopt`}
+              categoriesList={optionsList}
+              handleCategory={() => {}}
             />
           ))}
           <div className={styles.menuFooter}>
@@ -181,9 +150,18 @@ class Menu extends React.Component<MyProps, MyState> {
         >
           {openCategory && (
             <div className={styles.categoriesWrapper}>
-              {titles.map((title: string) => (
-                <MenuListCategory key={title} title={title} list={category[title]} />
-              ))}
+              {categories.map((category) => {
+                if (category.name === categoryName) {
+                  return category.children.map((subCategory) => (
+                    <MenuListSubCategory
+                      key={subCategory.name}
+                      subCategoryTitle={subCategory.name}
+                      subCategoryList={subCategory.children}
+                    />
+                  ));
+                }
+                return null;
+              })}
             </div>
           )}
           <div className={styles.menuFooter}>
@@ -195,16 +173,17 @@ class Menu extends React.Component<MyProps, MyState> {
   };
 
   render() {
-    const { close } = this.props;
+    const { onClose } = this.props;
     const { shrinkMenuHeader } = this.state;
+
     return (
       <div className={styles.menuContainer} onScroll={this.handleScroll}>
         <div className={`${styles.menuHeader} ${shrinkMenuHeader ? styles.shrink : ''}`}>
           {this.renderTitle()}
           <button
-            className={styles.closeMenu}
+            className={styles.onCloseMenu}
             type="button"
-            onClick={close}
+            onClick={onClose}
           >
             <Close />
           </button>
