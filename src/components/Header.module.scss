@@ -6,7 +6,7 @@
   position: relative;
   z-index: 0;
 
-  .lateralMenuClose {
+  .lateralMenu {
     visibility: hidden;
     position: fixed;
     top: 0;
@@ -34,6 +34,10 @@
     @include space-between-center-row;
   }
 
+  .dropdown {
+    display: none;
+  }
+  
   .bottomRow {
     .menuOptions {
       display: none;
@@ -59,7 +63,7 @@
   .headerContainer {
     padding: 0.8rem 2rem;
 
-    .lateralMenu {
+    .lateralMenuWrapper {
       outline: none;
       display: flex;
 
@@ -70,7 +74,7 @@
       height: 100vh;
     }
 
-    .lateralMenu::after {
+    .lateralMenuWrapper::after {
       content: "";
       display: none;
       width: 100vw;
@@ -78,7 +82,7 @@
       background: rgba(0, 0, 0, 0.1);
     }
 
-    .lateralMenu.fadeIn::after {
+    .lateralMenuWrapper.fadeIn::after {
       content: "";
       display: flex;
     }

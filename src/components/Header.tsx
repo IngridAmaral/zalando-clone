@@ -10,55 +10,38 @@ import SearchIcon from '../assets/svgs/search';
 import Menu from './Menu';
 import styles from './Header.module.scss';
 
-type TIcon = { icon: React.ReactNode, name: string };
-type TIcons = Array<TIcon>;
+type TIcons = Array<{ icon: React.ReactNode, name: string }>;
 
 const ICONS: TIcons = [
   { icon: <Language />, name: 'English' },
   { icon: <Account />, name: 'Login' },
   { icon: <Wish />, name: 'Wish list' },
-  { icon: <Basket />, name: 'Your bag' }];
+  { icon: <Basket />, name: 'Your bag' },
+];
 
 type TGender = 'women' | 'men' | 'kids';
 
 const GENDERS: TGender[] = ['women', 'men', 'kids'];
 
-const OPTIONS: string[] = [
-  'Get The Look',
-  'New',
-  'Clothing',
-  'Shoes',
-  'Sport',
-  'Accessories',
-  'Beauty',
-  'Designer',
-  'Brands',
-  'Sale %',
-];
-
-type CategoryChildren = {name: string};
-
-type Category = {
-  children: Array<CategoryChildren>,
+export type TCategories = {
+  children: Array<{name: string, children: Array<{name: string, children: Array<{name: string}>}>}>,
   name:string,
 };
 
-type Categories = {name: string};
-
-type MyState = {
+type HeaderState = {
   openMenu: boolean;
   activeGender: string;
-  activeGenderData: Array<Categories>;
-  hoverData: Category;
+  activeGenderCategoriesData: Array<TCategories>;
+  hoverCategoryData: TCategories;
   shouldShowDropdown: boolean;
 };
 
-class Header extends React.Component<{}, MyState> {
-  state = {
+class Header extends React.Component<{}, HeaderState> {
+  state: HeaderState = {
     openMenu: false,
     activeGender: GENDERS[0],
-    activeGenderData: [],
-    hoverData: { name: '', children: [] },
+    activeGenderCategoriesData: [],
+    hoverCategoryData: { name: '', children: [] },
     shouldShowDropdown: false,
   };
 
@@ -66,7 +49,7 @@ class Header extends React.Component<{}, MyState> {
     const { activeGender } = this.state;
     const activeData = navCategories[activeGender].children;
 
-    this.setState({ activeGenderData: activeData });
+    this.setState({ activeGenderCategoriesData: activeData });
   }
 
   handleOpenMenu = () => {
@@ -91,15 +74,15 @@ class Header extends React.Component<{}, MyState> {
 
     this.setState({
       activeGender: gender,
-      activeGenderData: activeData,
+      activeGenderCategoriesData: activeData,
     });
   };
 
-  handleHover = (categories: Category) => {
-    const { hoverData } = this.state;
+  handleHover = (category: TCategories) => {
+    const { hoverCategoryData } = this.state;
 
-    if (!hoverData || hoverData.name !== categories.name) {
-      this.setState({ hoverData: categories });
+    if (!hoverCategoryData || hoverCategoryData.name !== category.name) {
+      this.setState({ hoverCategoryData: category });
     }
   };
 
@@ -115,12 +98,12 @@ class Header extends React.Component<{}, MyState> {
     const {
       openMenu,
       activeGender,
-      activeGenderData,
-      hoverData,
+      activeGenderCategoriesData,
+      hoverCategoryData,
       shouldShowDropdown,
     } = this.state;
 
-    if (!activeGenderData.length) {
+    if (!activeGenderCategoriesData.length) {
       return (<div>loading</div>);
     }
 
@@ -147,7 +130,7 @@ class Header extends React.Component<{}, MyState> {
             onMouseEnter={this.showDropdown}
             onMouseLeave={this.hideDropdown}
           >
-            {activeGenderData.map((categories: Category) => (
+            {activeGenderCategoriesData.map((categories) => (
               <div
                 key={categories.name}
                 className={styles.option}
@@ -167,7 +150,7 @@ class Header extends React.Component<{}, MyState> {
         </div>
         <div
           id="wrapper-menu"
-          className={`${styles.lateralMenu} ${openMenu ? styles.fadeIn : ''}`}
+          className={`${styles.lateralMenuWrapper} ${openMenu ? styles.fadeIn : ''}`}
           role="button"
           tabIndex={0}
           onClick={this.handleClickOutside}
@@ -176,16 +159,15 @@ class Header extends React.Component<{}, MyState> {
             className={`${
               openMenu
                 ? styles.lateralMenuOpen
-                : styles.lateralMenuClose
+                : styles.lateralMenu
             }`}
           >
             <Menu
-              close={this.handleOpenMenu}
-              changeGender={this.handleGenderChange}
+              onClose={this.handleOpenMenu}
+              onChangeGender={this.handleGenderChange}
               activeGender={activeGender}
               genders={GENDERS}
-              options={OPTIONS}
-              categories={activeGenderData}
+              categories={activeGenderCategoriesData}
               isMenuOpen={openMenu}
             />
           </div>
@@ -196,7 +178,7 @@ class Header extends React.Component<{}, MyState> {
           className={`${styles.dropdown} ${shouldShowDropdown ? styles.show : ''}`}
         >
           <div id="cetegories" className={styles.categoriesLists}>
-            {hoverData.children.map((subCategory: Category) => (
+            {hoverCategoryData.children.map((subCategory) => (
               <div id="cetegory" className={styles.category} key={`1${subCategory.name}`}>
                 <span>{subCategory.name}</span>
                 <ul>
