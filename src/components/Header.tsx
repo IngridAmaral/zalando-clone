@@ -12,7 +12,6 @@ import styles from './Header.module.scss';
 
 export type TIcon = { icon: React.ReactNode, name: string };
 
-
 const ICONS: Array<TIcon> = [
   { icon: <Language />, name: 'English' },
   { icon: <Account />, name: 'Login' },
@@ -33,7 +32,7 @@ type HeaderState = {
   openMenu: boolean;
   activeGender: string;
   activeGenderCategoriesData: Array<TCategories>;
-  hoverCategoryData: TCategories;
+  hoverCategoryData: {name: string, data: TCategories};
   shouldShowDropdown: boolean;
 };
 
@@ -42,7 +41,7 @@ class Header extends React.Component<{}, HeaderState> {
     openMenu: false,
     activeGender: GENDERS[0],
     activeGenderCategoriesData: [],
-    hoverCategoryData: { name: '', children: [] },
+    hoverCategoryData: { name: '', data: {name:'', children: []} },
     shouldShowDropdown: false,
   };
 
@@ -79,11 +78,11 @@ class Header extends React.Component<{}, HeaderState> {
     });
   };
 
-  handleHover = (category: TCategories) => {
+  handleHover = (category: TCategories, name: string) => {
     const { hoverCategoryData } = this.state;
 
-    if (!hoverCategoryData || hoverCategoryData.name !== category.name) {
-      this.setState({ hoverCategoryData: category });
+    if (!hoverCategoryData || hoverCategoryData.name !== name) {
+      this.setState({ hoverCategoryData: {name: name, data: category} });
     }
   };
 
@@ -135,8 +134,8 @@ class Header extends React.Component<{}, HeaderState> {
               <div
                 key={categories.name}
                 className={styles.option}
-                onFocus={() => this.handleHover(categories)}
-                onMouseOver={() => this.handleHover(categories)}
+                onFocus={() => this.handleHover(categories, categories.name)}
+                onMouseOver={() => this.handleHover(categories, categories.name)}
               >
                 <button type="button">
                   {categories.name}
@@ -178,10 +177,10 @@ class Header extends React.Component<{}, HeaderState> {
           onMouseLeave={this.hideDropdown}
           className={`${styles.dropdown} ${shouldShowDropdown ? styles.show : ''}`}
         >
-          <div id="cetegories" className={styles.categoriesLists}>
-            {hoverCategoryData.children.map((subCategory) => (
+          <div id={`${hoverCategoryData.name.replace(/[^A-Z0-9]+/ig, '')}`} className={styles.categoriesLists}>
+            {hoverCategoryData.data.children.map((subCategory) => (
               <div id="cetegory" className={styles.category} key={`1${subCategory.name}`}>
-                <span>{subCategory.name}</span>
+                <span id="subcategory-name">{subCategory.name}</span>
                 <ul>
                   {subCategory.children.map((sub, idx) => sub.name !== '--' && <li key={`${`${idx}0`}${sub.name}`}>{sub.name}</li>)}
                 </ul>
