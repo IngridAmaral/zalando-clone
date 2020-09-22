@@ -12,7 +12,7 @@ import styles from './Header.module.scss';
 
 export type TIcon = { icon: React.ReactNode, name: string };
 
-const ICONS: Array<TIcon> = [
+export const ICONS: Array<TIcon> = [
   { icon: <Language />, name: 'English' },
   { icon: <Account />, name: 'Login' },
   { icon: <Wish />, name: 'Wish list' },
@@ -21,7 +21,7 @@ const ICONS: Array<TIcon> = [
 
 type TGender = 'women' | 'men' | 'kids';
 
-const GENDERS: TGender[] = ['women', 'men', 'kids'];
+export const GENDERS: TGender[] = ['women', 'men', 'kids'];
 
 export type TCategories = {
   children: Array<{name: string, children: Array<{name: string, children: Array<{name: string}>}>}>,
