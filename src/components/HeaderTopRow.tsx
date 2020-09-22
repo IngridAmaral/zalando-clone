@@ -2,7 +2,7 @@ import React from 'react';
 import NavItem from './NavItem';
 import logo from '../constants/imgs/logo';
 import styles from './HeaderTopRow.module.scss';
-import { TIcon }  from './Header'
+import { TIcon }  from './Header';
 
 type MyProps ={
   changeGender: (gender: string) => void;
@@ -22,7 +22,7 @@ const HeaderTopRow = ({
             role="button"
             tabIndex={idx}
             onClick={() => changeGender(gender)}
-            className={activeGender === gender ? styles.active : ''}
+            className={`genderSelect ${activeGender === gender ? styles.active : ''}`}
           >
             {gender}
           </span>
