@@ -7,7 +7,7 @@ import ZalandoIcon from '../assets/svgs/zalando-icon';
 import styles from './Menu.module.scss';
 import { TCategories } from './Header';
 
-const moreOptions: Array<Array<{name: string}>> = [
+export const moreOptions: Array<Array<{name: string}>> = [
   [{ name: 'Help' }, { name: 'Newsletter' }],
   [{ name: 'Dutsch' }, { name: 'English' }],
 ];
@@ -114,9 +114,21 @@ class Menu extends React.Component<MenuProps, MenuState> {
     );
   };
 
+  renderMoreOptions = () => {
+    return moreOptions.map((optionsList) => (
+      <MenuListCategory
+        key={`${optionsList[0].name}moreopt`}
+        categoriesList={optionsList}
+        handleCategory={() => {}}
+      />
+    ))
+  }
+
   renderList = () => {
     const { categories } = this.props;
     const { openCategory, shrinkMenuHeader, categoryName } = this.state;
+
+    const currentCategory = categories.find(category => category.name === categoryName);  
 
     return (
       <div className={`${styles.menuList}`}>
@@ -129,13 +141,7 @@ class Menu extends React.Component<MenuProps, MenuState> {
             categoriesList={categories}
             handleCategory={this.handleSelectCategory}
           />
-          {moreOptions.map((optionsList) => (
-            <MenuListCategory
-              key={`${optionsList[0].name}moreopt`}
-              categoriesList={optionsList}
-              handleCategory={() => {}}
-            />
-          ))}
+          {this.renderMoreOptions()}
           <div className={styles.menuFooter}>
             <ZalandoIcon />
           </div>
@@ -150,18 +156,13 @@ class Menu extends React.Component<MenuProps, MenuState> {
         >
           {openCategory && (
             <div className={styles.categoriesWrapper}>
-              {categories.map((category) => {
-                if (category.name === categoryName) {
-                  return category.children.map((subCategory) => (
+              {currentCategory && currentCategory.children.map((subCategory) => (
                     <MenuListSubCategory
                       key={subCategory.name}
                       subCategoryTitle={subCategory.name}
                       subCategoryList={subCategory.children}
                     />
-                  ));
-                }
-                return null;
-              })}
+              ))}
             </div>
           )}
           <div className={styles.menuFooter}>

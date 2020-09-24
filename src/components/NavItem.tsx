@@ -6,7 +6,7 @@ type NavItemProps = { icon: TIcon };
 
 const NavItem = ({ icon }: NavItemProps )  => (
   <button type="button" className={styles.navItem}>
-    {icon.icon}
+    {icon.component}
     <span>{icon.name}</span>
   </button>
 );

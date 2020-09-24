@@ -4,7 +4,7 @@ import logo from '../constants/imgs/logo';
 import styles from './HeaderTopRow.module.scss';
 import { TIcon }  from './Header';
 
-type MyProps ={
+type MyProps = {
   changeGender: (gender: string) => void;
   activeGender: string;
   genders: string[];
@@ -16,16 +16,14 @@ const HeaderTopRow = ({
 }: MyProps) => (
   <div className={styles.topRow}>
     <div className={styles.genderTop}>
-      {genders.map((gender, idx) => (
+      {genders.map((gender) => (
         <div key={`${gender}top`} className={styles.gender}>
-          <span
-            role="button"
-            tabIndex={idx}
+          <button
             onClick={() => changeGender(gender)}
             className={`genderSelect ${activeGender === gender ? styles.active : ''}`}
           >
             {gender}
-          </span>
+          </button>
         </div>
       ))}
     </div>
