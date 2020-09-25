@@ -92,7 +92,7 @@
       }
     }
 
-    .closeMenu {
+    .onCloseMenu {
       height: 100%;
       @include start-y-row;
       padding: 0.8rem;
@@ -192,7 +192,7 @@
         }
       }
 
-      .closeMenu {
+      .onCloseMenu {
         svg {
           path {
             fill: $secondary;
