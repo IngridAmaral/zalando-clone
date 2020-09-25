@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './MenuListSubCategory.module.scss';
 import { filterEmptyNames } from '../utils/filterEmptyNames';
 
-export type TSubCategory = {name: string};
+export type TSubCategory = { name: string };
 
 type MenuListSubCategoryProps = {
   subCategoryList: Array<TSubCategory>;

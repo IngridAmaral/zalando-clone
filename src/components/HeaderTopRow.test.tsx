@@ -6,7 +6,7 @@ import NavItem from './NavItem';
 import styles from './HeaderTopRow.module.scss';
 
 const defaultProps = {
-  changeGender: () => {},
+  changeGender: () => { },
   activeGender: 'women',
   genders: GENDERS,
   icons: ICONS,
@@ -31,7 +31,7 @@ describe('<HeaderTopRow />', () => {
 
   it('triggers the function on click and makes sure the correct gender is displayed', () => {
     const click = jest.fn();
-    const wrapper = shallow(<HeaderTopRow {...defaultProps} changeGender={click}/>);
+    const wrapper = shallow(<HeaderTopRow {...defaultProps} changeGender={click} />);
 
     GENDERS.forEach((gender, idx) => {
       wrapper.find('.genderSelect').at(idx).simulate('click');
