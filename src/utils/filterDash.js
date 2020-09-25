@@ -1,1 +1,0 @@
-export const filterDash = (list) => list.filter((item) => item.name !== '--');

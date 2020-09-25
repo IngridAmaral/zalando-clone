@@ -1,0 +1,1 @@
+export const filterEmptyNames = (list) => list.filter((item) => item.name !== '--');

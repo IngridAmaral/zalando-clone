@@ -5,12 +5,18 @@ import Close from '../assets/svgs/close';
 import Goback from '../assets/svgs/goback';
 import ZalandoIcon from '../assets/svgs/zalando-icon';
 import styles from './Menu.module.scss';
-import { TCategories } from './Header';
 
-export const moreOptions: Array<Array<{name: string}>> = [
+export const SCROLL_THRESHOLD = 50;
+
+export const moreOptions: Array<Array<{ name: string }>> = [
   [{ name: 'Help' }, { name: 'Newsletter' }],
   [{ name: 'Dutsch' }, { name: 'English' }],
 ];
+
+export type TCategories = {
+  children: Array<{ name: string, children: Array<{ name: string }> }>,
+  name: string,
+};
 
 type MenuProps = {
   onClose: () => void,
@@ -55,11 +61,11 @@ class Menu extends React.Component<MenuProps, MenuState> {
     const scrolled = e.currentTarget.scrollTop;
     const { shrinkMenuHeader } = this.state;
 
-    if (scrolled > 50 && !shrinkMenuHeader) {
+    if (scrolled > SCROLL_THRESHOLD && !shrinkMenuHeader) {
       this.setState({
         shrinkMenuHeader: true,
       });
-    } else if (scrolled < 50 && shrinkMenuHeader) {
+    } else if (scrolled < SCROLL_THRESHOLD && shrinkMenuHeader) {
       this.setState({
         shrinkMenuHeader: false,
       });
@@ -119,7 +125,7 @@ class Menu extends React.Component<MenuProps, MenuState> {
       <MenuListCategory
         key={`${optionsList[0].name}moreopt`}
         categoriesList={optionsList}
-        handleCategory={() => {}}
+        handleCategory={() => { }}
       />
     ))
   }
@@ -128,7 +134,7 @@ class Menu extends React.Component<MenuProps, MenuState> {
     const { categories } = this.props;
     const { openCategory, shrinkMenuHeader, categoryName } = this.state;
 
-    const currentCategory = categories.find(category => category.name === categoryName);  
+    const currentCategory = categories.find(category => category.name === categoryName);
 
     return (
       <div className={`${styles.menuList}`}>
@@ -157,11 +163,11 @@ class Menu extends React.Component<MenuProps, MenuState> {
           {openCategory && (
             <div className={styles.categoriesWrapper}>
               {currentCategory && currentCategory.children.map((subCategory) => (
-                    <MenuListSubCategory
-                      key={subCategory.name}
-                      subCategoryTitle={subCategory.name}
-                      subCategoryList={subCategory.children}
-                    />
+                <MenuListSubCategory
+                  key={subCategory.name}
+                  subCategoryTitle={subCategory.name}
+                  subCategoryList={subCategory.children}
+                />
               ))}
             </div>
           )}

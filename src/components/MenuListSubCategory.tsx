@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './MenuListSubCategory.module.scss';
-import { filterDash } from '../utils/filterDash';
+import { filterEmptyNames } from '../utils/filterEmptyNames';
 
-type TSubCategory = {name: string};
+export type TSubCategory = {name: string};
 
 type MenuListSubCategoryProps = {
   subCategoryList: Array<TSubCategory>;
@@ -15,7 +15,7 @@ const MenuListSubCategory = ({ subCategoryTitle, subCategoryList }: MenuListSubC
       {subCategoryTitle}
     </span>
     <ul>
-      {filterDash(subCategoryList).map((item: TSubCategory) => <li key={item.name}>{item.name}</li>)}
+      {filterEmptyNames(subCategoryList).map((item: TSubCategory) => <li key={item.name}>{item.name}</li>)}
     </ul>
   </div>
 );
