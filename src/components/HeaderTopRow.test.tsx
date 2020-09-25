@@ -35,7 +35,6 @@ describe('<HeaderTopRow />', () => {
 
     GENDERS.forEach((gender, idx) => {
       wrapper.find('.genderSelect').at(idx).simulate('click');
-      wrapper.update();
 
       expect(wrapper.find('.genderSelect').at(idx).text()).toEqual(gender);
       expect(click).toHaveBeenCalled();
