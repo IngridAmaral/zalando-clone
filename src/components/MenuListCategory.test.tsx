@@ -8,7 +8,7 @@ import styles from './MenuListSubCategory.module.scss';
 const list = NAVCATEGORIES.women.children;
 
 const defaultProps = {
-  handleCategory: () => {},
+  handleCategory: () => { },
   categoriesList: list
 };
 
@@ -19,7 +19,7 @@ describe('<MenuListCategory />', () => {
 
   it('renders the correctly the options', () => {
     const wrapper = shallow(<MenuListCategory {...defaultProps} />);
-  
+
     defaultProps.categoriesList.forEach((option, idx) => {
       expect(wrapper.find(`.${styles.item}`).at(idx).text()).toEqual(option.name);
       expect(wrapper.find(Caret).at(idx).exists()).toBe(false);

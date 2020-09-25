@@ -26,7 +26,7 @@ describe('<MenuListSubCategory />', () => {
   it('renders the correctly the options', () => {
     const wrapper = shallow(<MenuListSubCategory {...defaultProps} />);
     const excludeDash = filterEmptyNames(defaultProps.subCategoryList)
-  
+
     excludeDash.forEach((option: TSubCategory, idx: number) => {
       expect(wrapper.find('li').at(idx).text()).toEqual(option.name);
       expect(wrapper.find('li').at(idx).text()).not.toEqual('--');

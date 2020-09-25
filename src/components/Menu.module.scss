@@ -92,20 +92,20 @@
       }
     }
 
-    .closeMenu {
+    .onCloseMenu {
       height: 100%;
       @include start-y-row;
       padding: 0.8rem;
     }
   }
 
-
   .menuList {
     position: relative;
     display: flex;
     height: fit-content;
 
-    .options, .categories { 
+    .options,
+    .categories {
       margin-top: 120px;
     }
 
@@ -151,7 +151,8 @@
   .menuContainer {
     width: 50vw;
 
-    .menuHeader.shrink, .menuHeader {
+    .menuHeader.shrink,
+    .menuHeader {
       height: 60px;
     }
 
@@ -160,8 +161,8 @@
       width: 50vw;
       height: 100wh;
 
-      .options, 
-      .categories, 
+      .options,
+      .categories,
       .categories.shrink {
         margin-top: 0;
       }
@@ -192,7 +193,7 @@
         }
       }
 
-      .closeMenu {
+      .onCloseMenu {
         svg {
           path {
             fill: $secondary;

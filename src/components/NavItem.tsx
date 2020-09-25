@@ -4,7 +4,7 @@ import { TIcon } from './Header';
 
 type NavItemProps = { icon: TIcon };
 
-const NavItem = ({ icon }: NavItemProps )  => (
+const NavItem = ({ icon }: NavItemProps) => (
   <button type="button" className={styles.navItem}>
     {icon.component}
     <span>{icon.name}</span>
