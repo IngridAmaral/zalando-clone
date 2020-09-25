@@ -17,6 +17,6 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
   },
-  "include": ["./src/**/*", "setupTests.js", "__mocks__", "custom.d.ts"],
+  "include": ["./src/**/*", "setupTests.js", "__mocks__", "custom.d.ts", "src/components/.test.tsx"],
   "exclude": ["node_modules"]
 }
