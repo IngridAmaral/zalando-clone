@@ -1,0 +1,41 @@
+@import url(//db.onlinewebfonts.com/c/37b29158c68de167677fa4a3087d7188?family=Tiempos+Text+Regular);
+@import url(//db.onlinewebfonts.com/c/0976a2619014c5855690b7509fab4c6e?family=Helvetica+Now+Display);
+
+@mixin helveticaNow {
+    font-family: 'Helvetica Now Display', Helvetica, sans-serif;
+}
+
+@mixin tiempos {
+    font-family: 'Tiempos Text Regular', 'Times New Roman',serif;
+}
+
+@mixin title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    letter-spacing: -.24px;
+}
+
+@mixin subtitle {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    letter-spacing: -.24px;
+}
+
+@mixin text {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: -.16px;
+}
+
+@mixin cardText {
+    font-size: .875rem;
+    line-height: 1.25rem;
+    letter-spacing: 0;
+}
+
+@mixin cardSmallDescription {
+    text-transform: uppercase;
+}
+
