@@ -1,0 +1,52 @@
+@import "../styles/flex-box";
+@import "../styles/colors";
+@import "../styles/campaign";
+
+.cardContainer {
+  max-width: 45%;
+  padding: 0 .4rem;
+  white-space: nowrap;
+  @include start-column;
+  @include cardText;
+  
+  .productImage {
+    width: 100%;
+    height: auto;
+  }
+
+  .productInfos {
+    @include start-column;
+    min-height: 8rem;
+
+    .title {
+      @include tiempos;
+    }
+    
+    .title, .description {
+      margin: 0;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      @include cardText;
+    }
+    
+    .description {
+      @include cardSmallDescription;  
+      @include helveticaNow;
+      font-weight: 500;  
+    }
+
+    .priceTag {
+      padding-top: 1rem;
+    }
+  }
+
+}
+
+// IPAD
+@media (min-width: 768px) {
+}
+
+// NOTEBOOK
+@media (min-width: 1024px) {
+}
