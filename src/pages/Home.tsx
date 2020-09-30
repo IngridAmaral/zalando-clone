@@ -1,5 +1,5 @@
 import React from 'react';
-import CardCampaign from '../components/CardCampaign';
+import CardsCampaignSlider from '../components/CardsCampaignSlider';
 import Header from '../components/Header';
 import banner1 from '../constants/imgs/imgs';
 
@@ -10,7 +10,7 @@ const Home = () => (
     <Header />
     <img src={banner1} alt="banner1" />
     <div>
-      <CardCampaign />
+      <CardsCampaignSlider />
     </div>
   </div>
 );

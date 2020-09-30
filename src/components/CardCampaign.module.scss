@@ -3,8 +3,9 @@
 @import "../styles/campaign";
 
 .cardContainer {
-  max-width: 45%;
+  max-width: 100%;
   padding: 0 .4rem;
+  box-sizing: border-box;
   white-space: nowrap;
   @include start-column;
   @include cardText;
