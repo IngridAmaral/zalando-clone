@@ -1,15 +1,17 @@
 import React from 'react';
 import styles from './CardCampaign.module.scss';
-import { campaignData } from '../Data/campaign-data';
+import { TCardData } from './CardsCampaignSlider';
 
-const exempleCard = campaignData[0].cards[0];
-const exempleBrand = campaignData[0].brandTitle;
+type CardCampaignProps = {
+    cardData: TCardData,
+    brandName: string,
+}
 
 const addDecimal = (price: number) => Number.isInteger(price) ? `${price.toString()}.00` : price;
 
 const renderPrice = (price: number, hasDifferentPrices: boolean = false) => (
     <span className={styles.priceTag}>
-        { hasDifferentPrices ? `${addDecimal(price)} €` : `From ${addDecimal(price)} €` }
+        { hasDifferentPrices ? `${addDecimal(price)} €` : `From ${addDecimal(price)} €`}
     </span>
 )
 
@@ -19,31 +21,27 @@ const renderExtraInfo = (information: string) => (
     </span>
 )
 
-const renderText = () => (
+const renderText = (cardData: TCardData, brandName: string) => (
     <div className={styles.productInfos}>
         <div>
-            <span className={styles.title}>{exempleBrand}</span>
-            <h3 className={styles.description}>{exempleCard.description}</h3>
+            <span className={styles.title}>{brandName}</span>
+            <h3 className={styles.description}>{cardData.description}</h3>
         </div>
-        {renderPrice(exempleCard.price, exempleCard.hasDifferentPrices)}
-        {exempleCard.extraInfos && renderExtraInfo(exempleCard.extraInformation)}
+        {renderPrice(cardData.price, cardData.hasDifferentPrices)}
+        {cardData.extraInformation && renderExtraInfo(cardData.extraInformation)}
     </div>
 )
 
-const CardCampaign = () => (
+const CardCampaign = ({ cardData, brandName }: CardCampaignProps) => (
     <div
         className={styles.cardContainer}
-        style={{
-            background: `${campaignData[0].cardsBackground}`,
-            color: `${campaignData[0].fontColor}`
-        }}
     >
-        <img 
+        <img
             className={styles.productImage}
-            alt={exempleCard.description} 
-            src={exempleCard.productImageLink} 
+            alt={cardData.description}
+            src={cardData.productImageLink}
         />
-       {renderText()}
+        {renderText(cardData, brandName)}
     </div>
 );
 

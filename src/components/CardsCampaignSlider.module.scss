@@ -1,0 +1,17 @@
+@import "../styles/flex-box";
+@import "../styles/colors";
+@import "../styles/campaign";
+
+.sliderContainer {
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+// IPAD
+@media (min-width: 768px) {
+}
+
+// NOTEBOOK
+@media (min-width: 1024px) {
+}

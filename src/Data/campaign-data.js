@@ -1,13 +1,13 @@
 export const campaignData = [
     {
-        brandTitle: 'The North Face',
+        brandName: 'The North Face',
         subTitle: 'I hike for...',
         text: 'Clarity.Happiness.Inspiration.What do you hike for?#neverstopexploring',
         linkText: 'Explore now',
         background: '#1F8350',
         mainImg: 'https://mosaic03.ztat.net/crt/creative-content/612bb8ca-fc31-4bee-9838-c215bc061527.jpg',
         cardsBackground: 'hsl(149,61.7%,19.08%)',
-        fontColor: '#fff',
+        fontColor: '#ffffff',
         id: 'b89db002-9857-45bc-9fae-0f356f8d6337',
         cards: [
             {
@@ -61,13 +61,14 @@ export const campaignData = [
         ] 
     },
     {
-        brandTitle: 'Chantelle',
+        brandName: 'Chantelle',
         subTitle: 'Autumn - Winter 2020',
         text: 'This season, Chantelle introduces a timeless collection combined with modern accents.',
         linkText: 'Shop now',
         background: '#FE584D',
         mainImg: 'https://mosaic03.ztat.net/vgs/media/cropbyfocalarea/1115/1072/2229/2140/1053/spp-media-p1/16daa9d226d145d889b6b810eab6c960/d1b761d0e8cd4a91a34da45a649790cc.jpg',
         cardsBackground: 'hsl(4,98.9%,90.86000000000001%)',
+        fontColor: '#1a1a1a',
         id: '9df8b4b3-d60e-4c40-9b01-51f2d6650c24',
         cards: [
             {
