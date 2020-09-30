@@ -7,9 +7,15 @@ const exempleBrand = campaignData[0].brandTitle;
 
 const addDecimal = (price: number) => Number.isInteger(price) ? `${price.toString()}.00` : price;
 
-const renderPrice = (price: number, hasDifferentPrices?: boolean) => (
+const renderPrice = (price: number, hasDifferentPrices: boolean = false) => (
     <span className={styles.priceTag}>
         { hasDifferentPrices ? `${addDecimal(price)} €` : `From ${addDecimal(price)} €` }
+    </span>
+)
+
+const renderExtraInfo = (information: string) => (
+    <span className={styles.extraInformation}>
+        {information}
     </span>
 )
 
@@ -20,6 +26,7 @@ const renderText = () => (
             <h3 className={styles.description}>{exempleCard.description}</h3>
         </div>
         {renderPrice(exempleCard.price, exempleCard.hasDifferentPrices)}
+        {exempleCard.extraInfos && renderExtraInfo(exempleCard.extraInformation)}
     </div>
 )
 

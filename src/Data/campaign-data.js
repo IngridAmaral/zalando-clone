@@ -34,7 +34,7 @@ export const campaignData = [
                 description: 'WOMENS ELECTRA 11 - Rucksack - black heather/white',
                 price: 62.95,
                 productImageLink: 'https://img01.ztat.net/article/spp-media-p1/303e4ae9bdb13888b9db4121125adb54/f7bf740ac5f247318f27569405056cc6.jpg?imwidth=300',
-                weight: '380g',
+                extraInformation: '380g',
                 id: '75abe966-627d-4907-a0a6-340a86531a4c',
             },
             {
