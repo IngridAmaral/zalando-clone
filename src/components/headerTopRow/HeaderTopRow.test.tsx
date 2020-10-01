@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import HeaderTopRow from './HeaderTopRow';
-import { GENDERS, ICONS } from './Header';
-import NavItem from './NavItem';
+import { GENDERS, ICONS } from '../header/Header';
+import NavItem from '../navItem/NavItem';
 import styles from './HeaderTopRow.module.scss';
 
 const defaultProps = {

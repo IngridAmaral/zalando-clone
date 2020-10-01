@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './MenuListCategory.module.scss';
-import Caret from '../assets/svgs/caret';
+import Caret from '../../assets/svgs/caret';
 
 
 type MyProps = {

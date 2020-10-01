@@ -1,8 +1,8 @@
 import React from 'react';
-import NavItem from './NavItem';
-import logo from '../constants/imgs/logo';
+import NavItem from '../navItem/NavItem';
+import logo from '../../constants/imgs/logo';
 import styles from './HeaderTopRow.module.scss';
-import { TIcon } from './Header';
+import { TIcon } from '../header/Header';
 
 type MyProps = {
   changeGender: (gender: string) => void;

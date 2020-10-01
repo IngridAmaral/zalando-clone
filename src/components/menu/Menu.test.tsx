@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Menu, { SCROLL_THRESHOLD, moreOptions } from './Menu';
-import MenuListCategory from './MenuListCategory';
-import MenuListSubCategory from './MenuListSubCategory';
-import { GENDERS } from './Header';
-import NAVCATEGORIES from './navCategories'
+import MenuListCategory from '../menuListCategory/MenuListCategory';
+import MenuListSubCategory from '../menuListSubCategory/MenuListSubCategory';
+import { GENDERS } from '../header/Header';
+import NAVCATEGORIES from '../../data/navCategories';
 import styles from './Menu.module.scss';
 
 

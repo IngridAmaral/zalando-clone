@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import MenuListSubCategory, { TSubCategory } from './MenuListSubCategory';
-import NAVCATEGORIES from './navCategories';
-import { filterEmptyNames } from '../utils/filterEmptyNames';
+import NAVCATEGORIES from '../../data/navCategories';
+import { filterEmptyNames } from '../../utils/filterEmptyNames';
 import styles from './MenuListSubCategory.module.scss';
 
 const subList = NAVCATEGORIES.women.children[0].children;

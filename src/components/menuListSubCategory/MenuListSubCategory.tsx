@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './MenuListSubCategory.module.scss';
-import { filterEmptyNames } from '../utils/filterEmptyNames';
+import { filterEmptyNames } from '../../utils/filterEmptyNames';
 
 export type TSubCategory = { name: string };
 
