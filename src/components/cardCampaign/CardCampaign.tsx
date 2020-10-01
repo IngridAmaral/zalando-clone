@@ -1,13 +1,12 @@
 import React from 'react';
 import styles from './CardCampaign.module.scss';
-import { TCardData } from './CardsCampaignSlider';
+import { TCardData } from '../cardsCampaignSlider/CardsCampaignSlider';
+import { addDecimal } from '../../utils/addDecimal';
 
 type CardCampaignProps = {
     cardData: TCardData,
     brandName: string,
 }
-
-const addDecimal = (price: number) => Number.isInteger(price) ? `${price.toString()}.00` : price;
 
 const renderPrice = (price: number, hasDifferentPrices: boolean = false) => (
     <span className={styles.priceTag}>
@@ -21,7 +20,7 @@ const renderExtraInfo = (information: string) => (
     </span>
 )
 
-const renderText = (cardData: TCardData, brandName: string) => (
+const renderTextContent = (cardData: TCardData, brandName: string) => (
     <div className={styles.productInfos}>
         <div>
             <span className={styles.title}>{brandName}</span>
@@ -41,7 +40,7 @@ const CardCampaign = ({ cardData, brandName }: CardCampaignProps) => (
             alt={cardData.description}
             src={cardData.productImageLink}
         />
-        {renderText(cardData, brandName)}
+        {renderTextContent(cardData, brandName)}
     </div>
 );
 

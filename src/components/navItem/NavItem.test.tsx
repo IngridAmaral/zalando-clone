@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import NavItem from './NavItem';
-import Language from '../assets/svgs/language';
+import Language from '../../assets/svgs/language';
 
 const defaultProps = {
   icon: { component: <Language />, name: 'English' },

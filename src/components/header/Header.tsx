@@ -1,14 +1,14 @@
 import React from 'react';
-import navCategories from './navCategories';
-import HeaderTopRow from './HeaderTopRow';
-import Language from '../assets/svgs/language';
-import Account from '../assets/svgs/account';
-import Wish from '../assets/svgs/wish';
-import Basket from '../assets/svgs/basket';
-import MenuIcon from '../assets/svgs/menu';
-import SearchIcon from '../assets/svgs/search';
-import Menu from './Menu';
-import { filterEmptyNames } from '../utils/filterEmptyNames';
+import navCategories from '../../data/navCategories';
+import HeaderTopRow from '../headerTopRow/HeaderTopRow';
+import Language from '../../assets/svgs/language';
+import Account from '../../assets/svgs/account';
+import Wish from '../../assets/svgs/wish';
+import Basket from '../../assets/svgs/basket';
+import MenuIcon from '../../assets/svgs/menu';
+import SearchIcon from '../../assets/svgs/search';
+import Menu from '../menu/Menu';
+import { filterEmptyNames } from '../../utils/filterEmptyNames';
 import styles from './Header.module.scss';
 
 export type TIcon = { component: React.ReactNode, name: string };

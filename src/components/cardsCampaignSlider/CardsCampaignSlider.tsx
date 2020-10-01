@@ -1,9 +1,9 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import React from 'react';
-import CardCampaign from './CardCampaign';
+import CardCampaign from '../cardCampaign/CardCampaign';
 import styles from './CardsCampaignSlider.module.scss';
 import './CardsCampaignSlider.scss';
-import { campaignData } from '../Data/campaign-data';
+import { campaignData } from '../../data/campaign-data';
 
 // type campaignBrand = {
 //     brandName: string,
@@ -27,34 +27,34 @@ const SLIDER_OPTIONS = {
     pagination: false,
     arrows: false,
     breakpoints: {
-      450: {
-        perPage: 2.2,
-        cover: false,
-      },
-      800: {
-        perPage: 3.2,
-        cover: false,
-      },
-      1400: {
-        perPage: 4,
-        cover: false,
-      },
-      2000: {
-        perPage: 5,
-        cover: false,
-      },
+        600: {
+            perPage: 2.2,
+            cover: false,
+        },
+        768: {
+            perPage: 3.2,
+            cover: false,
+        },
+        992: {
+            perPage: 4,
+            cover: false,
+        },
+        1200: {
+            perPage: 5,
+            cover: false,
+        },
     },
-  };
+};
 
 export type TCardData = {
+    id: string,
     description: string,
     price: number,
     productImageLink: string,
-    isNew?: boolean | undefined,
-    hasSustainabilityFlag?: boolean | undefined,
-    hasDifferentPrices?: boolean | undefined,
-    id: string,
-    extraInformation?: string | undefined,
+    isNew?: boolean,
+    hasSustainabilityFlag?: boolean,
+    hasDifferentPrices?: boolean,
+    extraInformation?: string,
 }
 
 const cards: Array<TCardData> = campaignData[0].cards;
@@ -70,10 +70,8 @@ const CardsCampaignSlider = () => (
             color: `${fontColor}`
         }}
     >
-        <Splide
-            options={SLIDER_OPTIONS}   
-        >
-            {cards.map((card: TCardData) => (
+        <Splide options={SLIDER_OPTIONS}>
+            {cards.map((card) => (
                 <SplideSlide key={card.id}>
                     <CardCampaign
                         cardData={card}
