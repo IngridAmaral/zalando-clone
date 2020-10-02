@@ -10,9 +10,35 @@
   @include start-column;
   @include cardText;
   
-  .productImage {
+  .imageWrapper {
+    position: relative;
     width: 100%;
-    height: auto;
+    top: 0;
+    .productImage {
+      width: 100%;
+      height: auto;
+    }
+
+    .wish {
+      @include center-all-row;
+      position: absolute;
+      background-color: #fff;
+      top: .5rem;
+      right: 0.1rem;
+      width: 2.5rem;
+      height: 2.5rem;
+
+      svg {
+        width: 2rem;
+      }
+    }
+
+    .flags {
+      @include start-column;
+      position: absolute;
+      bottom: .75rem;
+      left: 0;
+    }
   }
 
   .productInfos {
@@ -34,6 +60,7 @@
     .description {  
       @include helveticaNow;
       font-weight: 500; 
+      letter-spacing: 1px;
       text-transform: uppercase; 
     }
 
