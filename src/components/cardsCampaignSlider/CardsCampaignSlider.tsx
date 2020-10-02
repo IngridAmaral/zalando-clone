@@ -3,20 +3,7 @@ import React from 'react';
 import CardCampaign from '../cardCampaign/CardCampaign';
 import styles from './CardsCampaignSlider.module.scss';
 import './CardsCampaignSlider.scss';
-import { campaignData } from '../../data/campaign-data';
-
-// type campaignBrand = {
-//     brandName: string,
-//     subTitle: string,
-//     text: string,
-//     linkText: string,
-//     background: string,
-//     mainImg: string,
-//     cardsBackground: string,
-//     fontColor: string,
-//     id: string,
-//     cards: Array<TCardData>
-// }
+import { TCardData } from '../bottomCampaignWrapper/BottomCampaignWrapper';
 
 const SLIDER_OPTIONS = {
     perMove: 2,
@@ -46,29 +33,14 @@ const SLIDER_OPTIONS = {
     },
 };
 
-export type TCardData = {
-    id: string,
-    description: string,
-    price: number,
-    productImageLink: string,
-    isNew?: boolean,
-    hasSustainabilityFlag?: boolean,
-    hasDifferentPrices?: boolean,
-    extraInformation?: string,
+type CardsCampaignSliderProps = {
+    cards: TCardData[],
+    brandName: string,
 }
 
-const cards: Array<TCardData> = campaignData[0].cards;
-const brandName = campaignData[0].brandName;
-const fontColor = campaignData[0].fontColor;
-const background = campaignData[0].background
-
-const CardsCampaignSlider = () => (
+const CardsCampaignSlider = ({ cards, brandName }: CardsCampaignSliderProps) => (
     <div
         className={styles.sliderContainer}
-        style={{
-            background: `${background}`,
-            color: `${fontColor}`
-        }}
     >
         <Splide options={SLIDER_OPTIONS}>
             {cards.map((card) => (
