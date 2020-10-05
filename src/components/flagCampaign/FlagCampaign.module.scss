@@ -1,0 +1,22 @@
+@import "../../styles/flex-box";
+@import "../../styles/colors";
+@import "../../styles/campaign";
+
+.flag {
+  padding: 0.2rem;
+  padding-right: .3rem;
+  font-weight: 700;
+  margin-top: .4rem;
+  width: fit-content;
+  font-size: .75rem;
+  letter-spacing: 0;
+  line-height: 1rem;
+}
+
+// IPAD
+@media (min-width: 768px) {
+}
+
+// NOTEBOOK
+@media (min-width: 1024px) {
+}

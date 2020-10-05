@@ -1,7 +1,10 @@
 import React from 'react';
 import styles from './CardCampaign.module.scss';
-import { TCardData } from '../cardsCampaignSlider/CardsCampaignSlider';
+import { TCardData } from '../bottomCampaignWrapper/BottomCampaignWrapper';
+import Wish from '../../assets/svgs/wish';
+import FlagCampaign from '../flagCampaign/FlagCampaign';
 import { addDecimal } from '../../utils/addDecimal';
+import { FLAGS } from '../../data/flags';
 
 type CardCampaignProps = {
     cardData: TCardData,
@@ -32,14 +35,27 @@ const renderTextContent = (cardData: TCardData, brandName: string) => (
 )
 
 const CardCampaign = ({ cardData, brandName }: CardCampaignProps) => (
-    <div
-        className={styles.cardContainer}
-    >
-        <img
-            className={styles.productImage}
-            alt={cardData.description}
-            src={cardData.productImageLink}
-        />
+    <div className={styles.cardContainer}>
+        <div className={styles.imageWrapper}>
+            <img
+                className={styles.productImage}
+                alt={cardData.description}
+                src={cardData.productImageLink}
+            />
+            <div className={styles.wish}>
+                <Wish />
+            </div>
+            <div className={styles.flags}>
+                {Object.keys(FLAGS).map((flag) => (
+                    cardData[flag] &&
+                    <FlagCampaign
+                        flagText={FLAGS[flag].flagText}
+                        background={FLAGS[flag].background}
+                        fontColor={FLAGS[flag].color}
+                    />
+                ))}
+            </div>
+        </div>
         {renderTextContent(cardData, brandName)}
     </div>
 );
