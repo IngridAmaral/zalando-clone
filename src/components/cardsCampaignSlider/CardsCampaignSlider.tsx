@@ -7,28 +7,23 @@ import { TCardData } from '../bottomCampaignWrapper/BottomCampaignWrapper';
 
 const SLIDER_OPTIONS = {
     perMove: 2,
-    rewind: false,
     drag: true,
-    type: 'loop',
     keyBoard: true,
     pagination: false,
     arrows: false,
+    isNavigation: true,
     breakpoints: {
         600: {
             perPage: 2.2,
-            cover: false,
         },
         768: {
             perPage: 3.2,
-            cover: false,
         },
         992: {
             perPage: 4,
-            cover: false,
         },
-        1200: {
-            perPage: 5,
-            cover: false,
+        1500: {
+            perPage: 4.5,
         },
     },
 };
