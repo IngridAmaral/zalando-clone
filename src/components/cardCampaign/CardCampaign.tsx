@@ -49,6 +49,7 @@ const CardCampaign = ({ cardData, brandName }: CardCampaignProps) => (
                 {Object.keys(FLAGS).map((flag) => (
                     cardData[flag] &&
                     <FlagCampaign
+                        key={flag}
                         flagText={FLAGS[flag].flagText}
                         background={FLAGS[flag].background}
                         fontColor={FLAGS[flag].color}
