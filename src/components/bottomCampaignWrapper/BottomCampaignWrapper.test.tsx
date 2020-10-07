@@ -6,11 +6,10 @@ import FollowBrandCampaign from '../followBrandCampaign/FollowBrandCampaign';
 import styles from './BottomCampaignWrapper.module.scss';
 import { campaignData } from '../../data/campaign-data';
 
-const cards = campaignData[0].cards;
-const brandName = campaignData[0].brandName;
-const fontColor = campaignData[0].fontColor;
-const background = campaignData[0].background;
-const style = {background: `${background}`, color: `${fontColor}`}
+const {cards, brandName, fontColor, cardsBackground } = campaignData[0];
+
+const style = {background: `${cardsBackground}`, color: `${fontColor}`}
+
 
 describe('<BottomCampaignWrapper />', () => {
   it('renders without crashing', () => {
