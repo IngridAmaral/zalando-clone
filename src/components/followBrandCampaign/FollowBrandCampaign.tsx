@@ -10,11 +10,11 @@ type FollowBrandCampaignProps = {
 
 const FollowBrandCampaign = ({ brandName, fontColor }: FollowBrandCampaignProps) => (
     <div className={styles.followBrandContainer}>
-        <button className={styles.followBrand} style={{color: `${fontColor}`, boxShadow: `inset 0 0 0 1px ${fontColor}`}} type='button'>
+        <button className={styles.followBrand} style={{ color: `${fontColor}`, boxShadow: `inset 0 0 0 1px ${fontColor}` }} type='button'>
             <Close />
             Follow
         </button>
-       {brandName}
+        {brandName}
     </div>
 );
 
