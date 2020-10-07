@@ -46,12 +46,6 @@ export const campaignData = [
                 id: '632fdd80-841e-43a6-b6a1-f66cdf8074ad',
             },
             {
-                description: 'EASY TANK - Top - black',
-                price: 29.05,
-                productImageLink: 'https://img01.ztat.net/article/spp-media-p1/3f73a5582fe33b4a8f4ca41aa3d890a4/c700f4a52649424db69443beb3bd1fd4.jpg?imwidth=300',
-                id: '384d344c-3a70-4878-9cea-de7505dc9a3d'
-            },
-            {
                 description: 'WOMENS CLASS JOGGER - Outdoor trousers - mallard blue',
                 price: 77.45,
                 productImageLink: 'https://img01.ztat.net/article/spp-media-p1/f75d4d1c70083c0cb9af7e41b9f866e9/10eade1b85044626b8a7c4828dd95178.jpg?imwidth=300',
