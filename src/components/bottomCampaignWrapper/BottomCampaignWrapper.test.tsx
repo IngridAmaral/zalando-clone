@@ -20,7 +20,7 @@ describe('<BottomCampaignWrapper />', () => {
   it('renders the correct style', () => {
     const wrapper = shallow(<BottomCampaignWrapper />);
 
-    expect(wrapper.find(`.${styles.followBrandContainer}`).prop('style')).toEqual(style);
+    expect(wrapper.find(`.${styles.bottomCampaignContainer}`).prop('style')).toEqual(style);
   });
 
   it('renders the card campaign slider', () => {

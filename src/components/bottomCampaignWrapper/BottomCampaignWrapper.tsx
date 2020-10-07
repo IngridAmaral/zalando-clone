@@ -17,10 +17,7 @@ import styles from './BottomCampaignWrapper.module.scss';
 //     cards: Array<TCardData>
 // }
 
-const cards: Array<TCardData> = campaignData[0].cards;
-const brandName = campaignData[0].brandName;
-const fontColor = campaignData[0].fontColor;
-const background = campaignData[0].background;
+const { brandName, fontColor, cards, cardsBackground } = campaignData[0];
 
 export type TCardData = {
     id: string,
@@ -42,9 +39,9 @@ export type TCardData = {
 
 const BottomCampaignWrapper = () => (
     <div 
-        className={styles.followBrandContainer}
+        className={styles.bottomCampaignContainer}
         style={{
-            background: `${background}`,
+            background: `${cardsBackground}`,
             color: `${fontColor}`
         }}
     >
