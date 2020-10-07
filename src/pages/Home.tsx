@@ -1,7 +1,7 @@
 import React from 'react';
-import BannerCampaign from '../components/bannerCampaign/BannerCampaign';
-import BottomCampaignWrapper from '../components/bottomCampaignWrapper/BottomCampaignWrapper';
 import Header from '../components/header/Header';
+import CampaignWrapper from '../components/campaignWrapper/campaignWrapper';
+import { campaignData } from '../data/campaign-data';
 import './Home.scss';
 
 
@@ -9,8 +9,9 @@ const Home = () => (
   <div>
     <Header />
     <div>
-      <BannerCampaign />
-      <BottomCampaignWrapper />
+      {campaignData.map((brand) => <CampaignWrapper brand={brand} />)}
+
+
     </div>
   </div>
 );
