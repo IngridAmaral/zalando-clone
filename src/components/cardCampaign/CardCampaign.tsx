@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './CardCampaign.module.scss';
-import { TCardData } from '../bottomCampaignWrapper/BottomCampaignWrapper';
+import { TCardData } from '../campaignWrapper/CampaignWrapper';
 import Wish from '../../assets/svgs/wish';
 import FlagCampaign from '../flagCampaign/FlagCampaign';
 import { addDecimal } from '../../utils/addDecimal';
