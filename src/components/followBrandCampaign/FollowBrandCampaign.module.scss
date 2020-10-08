@@ -6,7 +6,7 @@
   @include start-x-row;
 
   .followBrand {
-    margin: 1rem;
+    margin: 1rem 1rem 1rem 0;
     @include start-x-row;
     padding: .5rem;
     padding-right: 1rem;
@@ -21,8 +21,21 @@
 
 // IPAD
 @media (min-width: 768px) {
+  .followBrandContainer {
+    padding-left: 1.5rem;
+  }
 }
 
 // NOTEBOOK
 @media (min-width: 1024px) {
+  .followBrandContainer {
+    padding-left: 2rem;
+  }
+}
+
+// NOTEBOOK BIG
+@media (min-width: 1400px) {
+  .followBrandContainer {
+    padding-left: 7rem;
+  }
 }
