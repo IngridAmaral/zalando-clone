@@ -88,9 +88,19 @@
 // NOTEBOOK
 @media (min-width: 1024px) {
     .bannerCampaignContainer {
+        padding-left: 2rem;
         .imageWrapper {
             width: 55%;
             max-height: 329px;
         }
     }
 }
+
+// NOTEBOOK
+@media (min-width: 1400px) {
+    .bannerCampaignContainer {
+        padding-left: 7rem;
+    }
+}
+
+

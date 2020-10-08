@@ -12,8 +12,22 @@
 
 // IPAD
 @media (min-width: 768px) {
+  .sliderContainer {
+    padding-left: 1.5rem;
+    padding-top: 2rem;
+  }
 }
 
 // NOTEBOOK
 @media (min-width: 1024px) {
+  .sliderContainer {
+    padding-left: 2rem;
+  }
+}
+
+// NOTEBOOK BIG
+@media (min-width: 1400px) {
+  .sliderContainer {
+    padding-left: 7rem;
+  }
 }
