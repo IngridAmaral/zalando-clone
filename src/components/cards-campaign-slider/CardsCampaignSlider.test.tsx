@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import CardsCampaignSlider from './CardsCampaignSlider';
-import CardCampaign from '../cardCampaign/CardCampaign';
-import { TCardData } from '../campaignWrapper/CampaignWrapper';
+import CardCampaign from '../card-campaign/CardCampaign';
+import { TCardData } from '../campaign-wrapper/CampaignWrapper';
 import { campaignData } from '../../data/campaign-data';
 
 const defaultProps = {

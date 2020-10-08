@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './CardCampaign.module.scss';
-import { TCardData } from '../campaignWrapper/CampaignWrapper';
-import Wish from '../../assets/svgs/wish';
-import FlagCampaign from '../flagCampaign/FlagCampaign';
+import Wish from '../../assets/svgs/Wish';
+import FlagCampaign from '../flag-campaign/FlagCampaign';
+import { TCardData } from '../campaign-wrapper/CampaignWrapper';
 import { addDecimal } from '../../utils/addDecimal';
 import { FLAGS } from '../../data/flags';
 

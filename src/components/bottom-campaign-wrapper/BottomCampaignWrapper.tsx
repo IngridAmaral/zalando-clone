@@ -1,7 +1,7 @@
 import React from 'react';
-import CardsCampaignSlider from '../cardsCampaignSlider/CardsCampaignSlider';
-import FollowBrandCampaign from '../followBrandCampaign/FollowBrandCampaign';
-import { TCardData } from '../campaignWrapper/campaignWrapper';
+import CardsCampaignSlider from '../cards-campaign-slider/CardsCampaignSlider';
+import FollowBrandCampaign from '../follow-brand-campaign/FollowBrandCampaign';
+import { TCardData } from '../campaign-wrapper/campaignWrapper';
 import styles from './BottomCampaignWrapper.module.scss';
 
 

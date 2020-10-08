@@ -1,6 +1,6 @@
 import React from 'react';
-import NavItem from '../navItem/NavItem';
-import logo from '../../constants/imgs/logo';
+import NavItem from '../nav-item/NavItem';
+import logo from '../../constants/Imgs/logo';
 import styles from './HeaderTopRow.module.scss';
 import { TIcon } from '../header/Header';
 

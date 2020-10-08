@@ -1,5 +1,5 @@
 import React from 'react';
-import Follow from '../../assets/svgs/close'
+import Follow from '../../assets/svgs/Close'
 import styles from './FollowBrandCampaign.module.scss';
 
 

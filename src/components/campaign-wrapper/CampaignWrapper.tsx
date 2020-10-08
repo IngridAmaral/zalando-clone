@@ -1,6 +1,6 @@
 import React from 'react';
-import BannerCampaign from '../bannerCampaign/BannerCampaign';
-import BottomCampaignWrapper from '../bottomCampaignWrapper/BottomCampaignWrapper';
+import BannerCampaign from '../banner-campaign/BannerCampaign';
+import BottomCampaignWrapper from '../bottom-campaign-wrapper/BottomCampaignWrapper';
 import styles from './campaignWrapper.module.scss';
 
 export type TCardData = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import MenuListSubCategory, { TSubCategory } from './MenuListSubCategory';
-import NAVCATEGORIES from '../../data/navCategories';
+import NAVCATEGORIES from '../../data/nav-categories';
 import { filterEmptyNames } from '../../utils/filterEmptyNames';
 import styles from './MenuListSubCategory.module.scss';
 

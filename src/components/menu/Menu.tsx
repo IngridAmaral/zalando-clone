@@ -1,9 +1,9 @@
 import React from 'react';
-import MenuListCategory from '../menuListCategory/MenuListCategory';
-import MenuListSubCategory from '../menuListSubCategory/MenuListSubCategory';
-import Close from '../../assets/svgs/close';
-import Goback from '../../assets/svgs/goback';
-import ZalandoIcon from '../../assets/svgs/zalando-icon';
+import MenuListCategory from '../menu-list-category/MenuListCategory';
+import MenuListSubCategory from '../menu-list-sub-category/MenuListSubCategory';
+import Close from '../../assets/svgs/Close';
+import Goback from '../../assets/svgs/GoBack';
+import ZalandoIcon from '../../assets/svgs/ZalandoIcon';
 import styles from './Menu.module.scss';
 
 export const SCROLL_THRESHOLD = 50;

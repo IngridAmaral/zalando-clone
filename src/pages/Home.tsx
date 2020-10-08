@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/header/Header';
-import CampaignWrapper from '../components/campaignWrapper/campaignWrapper';
+import CampaignWrapper from '../components/campaign-wrapper/campaignWrapper';
 import { campaignData } from '../data/campaign-data';
 import './Home.scss';
 

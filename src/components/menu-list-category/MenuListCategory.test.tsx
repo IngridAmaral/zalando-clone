@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import MenuListCategory from './MenuListCategory';
-import Caret from '../../assets/svgs/caret';
-import NAVCATEGORIES from '../../data/navCategories';
+import Caret from '../../assets/svgs/Caret';
+import NAVCATEGORIES from '../../data/nav-categories';
 import styles from './MenuListSubCategory.module.scss';
 
 const list = NAVCATEGORIES.women.children;

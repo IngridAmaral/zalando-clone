@@ -1,9 +1,9 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import React from 'react';
-import CardCampaign from '../cardCampaign/CardCampaign';
+import CardCampaign from '../card-campaign/CardCampaign';
 import styles from './CardsCampaignSlider.module.scss';
 import './CardsCampaignSlider.scss';
-import { TCardData } from '../campaignWrapper/CampaignWrapper';
+import { TCardData } from '../campaign-wrapper/CampaignWrapper';
 
 const SLIDER_OPTIONS = {
     perMove: 2,

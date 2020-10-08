@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import CardCampaign from './CardCampaign';
-import FlagCampaign from '../flagCampaign/FlagCampaign';
+import FlagCampaign from '../flag-campaign/FlagCampaign';
 import styles from './CardCampaign.module.scss';
 import { campaignData } from '../../data/campaign-data';
 import { addDecimal } from '../../utils/addDecimal';

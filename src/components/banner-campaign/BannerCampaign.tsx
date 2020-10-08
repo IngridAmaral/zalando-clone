@@ -1,5 +1,5 @@
 import React from 'react';
-import Go from '../../assets/svgs/goback';
+import Go from '../../assets/svgs/GoBack';
 import styles from './BannerCampaign.module.scss';
 
 type BannerCampaignProps = {

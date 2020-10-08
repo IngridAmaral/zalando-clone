@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Header, { GENDERS, ICONS } from './Header';
 import styles from './Header.module.scss';
-import HeaderTopRow from '../headerTopRow/HeaderTopRow';
+import HeaderTopRow from '../header-top-row/HeaderTopRow';
 
 
 describe('<Header />', () => {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import BottomCampaignWrapper from './BottomCampaignWrapper';
-import CardsCampaignSlider from '../cardsCampaignSlider/CardsCampaignSlider';
-import FollowBrandCampaign from '../followBrandCampaign/FollowBrandCampaign';
+import CardsCampaignSlider from '../cards-campaign-slider/CardsCampaignSlider';
+import FollowBrandCampaign from '../follow-brand-campaign/FollowBrandCampaign';
 import styles from './BottomCampaignWrapper.module.scss';
 import { campaignData } from '../../data/campaign-data';
 

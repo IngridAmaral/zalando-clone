@@ -1,10 +1,10 @@
 import React from 'react';
 
-type TGoback = {
+type TGoBack = {
   color?: string
 }
 
-const goback = ({color = '#fff'}: TGoback) => (
+const GoBack = ({color = '#fff'}: TGoBack) => (
   <svg id="icon_svg-go-back-white" viewBox="0 0 24 24">
     <g fill="none" fillRule="evenodd">
       <path fill={color} d="M21.008 11v2h-13l4.418 4.626-1.4 1.4-7.026-7L11.026 5l1.4 1.4L8.008 11z" />
@@ -13,4 +13,4 @@ const goback = ({color = '#fff'}: TGoback) => (
   </svg>
 );
 
-export default goback;
+export default GoBack;

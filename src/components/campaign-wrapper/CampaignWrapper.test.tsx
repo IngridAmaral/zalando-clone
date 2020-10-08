@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import CampaignWrapper from './CampaignWrapper';
-import BannerCampaign from '../bannerCampaign/BannerCampaign';
-import BottomCampaignWrapper from '../bottomCampaignWrapper/BottomCampaignWrapper';
+import BannerCampaign from '../banner-campaign/BannerCampaign';
+import BottomCampaignWrapper from '../bottom-campaign-wrapper/BottomCampaignWrapper';
 import { campaignData } from '../../data/campaign-data';
 
 const defaultProps = {
