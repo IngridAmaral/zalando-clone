@@ -1,5 +1,5 @@
 import React from 'react';
-import GoBack from '../../assets/svgs/goback';
+import Go from '../../assets/svgs/goback';
 import styles from './BannerCampaign.module.scss';
 
 type BannerCampaignProps = {
@@ -28,7 +28,7 @@ const BannerCampaign = ({ brandName, background, fontColor, subTitle, linkText, 
 
             <div className={styles.link}>
                 <span>{linkText}</span>
-                <GoBack />
+                <Go color={fontColor}/>
             </div>
         </div>
         <div className={styles.imageWrapper}>
