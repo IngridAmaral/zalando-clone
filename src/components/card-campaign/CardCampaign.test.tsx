@@ -4,7 +4,7 @@ import CardCampaign from './CardCampaign';
 import FlagCampaign from '../flag-campaign/FlagCampaign';
 import styles from './CardCampaign.module.scss';
 import { campaignData } from '../../data/campaign-data';
-import { addDecimal } from '../../utils/addDecimal';
+import { addDecimal } from '../../utils/add-decimal';
 import { FLAGS } from '../../data/flags';
 
 const defaultProps = {

@@ -8,7 +8,7 @@ import Basket from '../../assets/svgs/Basket';
 import MenuIcon from '../../assets/svgs/Menu';
 import SearchIcon from '../../assets/svgs/Search';
 import Menu from '../menu/Menu';
-import { filterEmptyNames } from '../../utils/filterEmptyNames';
+import { filterEmptyCategrories } from '../../utils/filter-empty-categories';
 import styles from './Header.module.scss';
 
 export type TIcon = { component: React.ReactNode, name: string };
@@ -26,7 +26,7 @@ export const GENDERS: TGender[] = ['women', 'men', 'kids'];
 
 type TName = { name: string };
 
-type TChildren = { name: string, children: Array<TName> };
+export type TChildren = { name: string, children: Array<TName> };
 
 export type TCategories = {
   children: Array<{ name: string, children: Array<TChildren> }>,
@@ -148,7 +148,7 @@ class Header extends React.Component<{}, HeaderState> {
           <div className={styles.category} key={`sub${subCategory.name}`}>
             <span>{subCategory.name}</span>
             <ul>
-              {filterEmptyNames(subCategory.children).map((sub: TName, idx: number) => sub.name !== '--' && <li key={`${`${idx}0`}${sub.name}`}>{sub.name}</li>)}
+              {filterEmptyCategrories(subCategory.children).map((sub: TName, idx: number) => sub.name !== '--' && <li key={`${`${idx}0`}${sub.name}`}>{sub.name}</li>)}
             </ul>
           </div>
         ))}

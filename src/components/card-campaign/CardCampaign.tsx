@@ -3,7 +3,7 @@ import styles from './CardCampaign.module.scss';
 import Wish from '../../assets/svgs/Wish';
 import FlagCampaign from '../flag-campaign/FlagCampaign';
 import { TCardData } from '../campaign-wrapper/CampaignWrapper';
-import { addDecimal } from '../../utils/addDecimal';
+import { addDecimal } from '../../utils/add-decimal';
 import { FLAGS } from '../../data/flags';
 
 type CardCampaignProps = {
