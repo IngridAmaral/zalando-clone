@@ -1,21 +1,18 @@
 import React from 'react';
-import { campaignData } from '../../data/campaign-data';
-import GoBack from '../../assets/svgs/goback';
+import Go from '../../assets/svgs/goback';
 import styles from './BannerCampaign.module.scss';
 
-const { brandName, background, fontColor, subTitle, linkText, mainImg, text } = campaignData[0]
+type BannerCampaignProps = {
+    brandName: string,
+    background: string,
+    fontColor: string,
+    subTitle: string,
+    linkText: string,
+    mainImg: string,
+    text: string,
+}
 
-// type BannerCampaignProps = {
-//     brandName: string,
-//     background: string,
-//     fontColor: string,
-//     subTitle: string,
-//     linkText: string,
-//     mainImg: string,
-//     text: string,
-// }
-
-const BannerCampaign = () => (
+const BannerCampaign = ({ brandName, background, fontColor, subTitle, linkText, mainImg, text }: BannerCampaignProps) => (
     <div
         className={styles.bannerCampaignContainer}
         style={{
@@ -31,7 +28,7 @@ const BannerCampaign = () => (
 
             <div className={styles.link}>
                 <span>{linkText}</span>
-                <GoBack />
+                <Go color={fontColor}/>
             </div>
         </div>
         <div className={styles.imageWrapper}>

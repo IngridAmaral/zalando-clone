@@ -3,7 +3,7 @@ import React from 'react';
 import CardCampaign from '../cardCampaign/CardCampaign';
 import styles from './CardsCampaignSlider.module.scss';
 import './CardsCampaignSlider.scss';
-import { TCardData } from '../bottomCampaignWrapper/BottomCampaignWrapper';
+import { TCardData } from '../campaignWrapper/CampaignWrapper';
 
 const SLIDER_OPTIONS = {
     perMove: 2,

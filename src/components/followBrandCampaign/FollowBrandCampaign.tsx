@@ -1,5 +1,5 @@
 import React from 'react';
-import Close from '../../assets/svgs/close'
+import Follow from '../../assets/svgs/close'
 import styles from './FollowBrandCampaign.module.scss';
 
 
@@ -10,11 +10,11 @@ type FollowBrandCampaignProps = {
 
 const FollowBrandCampaign = ({ brandName, fontColor }: FollowBrandCampaignProps) => (
     <div className={styles.followBrandContainer}>
-        <button className={styles.followBrand} style={{color: `${fontColor}`, boxShadow: `inset 0 0 0 1px ${fontColor}`}} type='button'>
-            <Close />
+        <button className={styles.followBrand} style={{ color: `${fontColor}`, boxShadow: `inset 0 0 0 1px ${fontColor}` }} type='button'>
+            <Follow color={fontColor} />
             Follow
         </button>
-       {brandName}
+        {brandName}
     </div>
 );
 
