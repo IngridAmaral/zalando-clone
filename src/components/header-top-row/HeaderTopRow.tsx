@@ -4,16 +4,16 @@ import logo from '../../constants/Imgs/logo';
 import styles from './HeaderTopRow.module.scss';
 import { TIcon } from '../header/Header';
 
-type MyProps = {
+type HeaderTopRowProps = {
   changeGender: (gender: string) => void;
   activeGender: string;
   genders: string[];
-  icons: Array<TIcon>;
+  icons: TIcon[];
 };
 
 const HeaderTopRow = ({
   changeGender, activeGender, icons, genders,
-}: MyProps) => (
+}: HeaderTopRowProps) => (
     <div className={styles.topRow}>
       <div className={styles.genderTop}>
         {genders.map((gender) => (

@@ -5,6 +5,7 @@ import Close from '../../assets/svgs/Close';
 import Goback from '../../assets/svgs/GoBack';
 import ZalandoIcon from '../../assets/svgs/ZalandoIcon';
 import styles from './Menu.module.scss';
+import { TCategories } from '../header/Header';
 
 export const SCROLL_THRESHOLD = 50;
 
@@ -13,18 +14,13 @@ export const moreOptions: Array<Array<{ name: string }>> = [
   [{ name: 'Dutsch' }, { name: 'English' }],
 ];
 
-export type TCategories = {
-  children: Array<{ name: string, children: Array<{ name: string }> }>,
-  name: string,
-};
-
 type MenuProps = {
   onClose: () => void,
   onChangeGender: (gender: string) => void;
   activeGender: string;
   genders: string[];
   isMenuOpen: boolean;
-  categories: Array<TCategories>;
+  categories: TCategories[];
 };
 
 type MenuState = {

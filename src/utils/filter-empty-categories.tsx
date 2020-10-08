@@ -1,3 +1,5 @@
-import { TChildren } from '../components/header/Header';
+type TList = {
+    name: string
+}
 
-export const filterEmptyCategrories = (list: TChildren[]) => list.filter((item) => item.name !== '--');
+export const filterEmptyCategrories = (list: TList[]) => list.filter((item) => item.name !== '--');

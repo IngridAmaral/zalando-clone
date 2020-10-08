@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import MenuListSubCategory, { TSubCategory } from './MenuListSubCategory';
+import MenuListSubCategory from './MenuListSubCategory';
+import { TSubSubCategory } from '../header/Header';
 import NAVCATEGORIES from '../../data/nav-categories';
 import { filterEmptyCategrories } from '../../utils/filter-empty-categories';
 import styles from './MenuListSubCategory.module.scss';
@@ -27,7 +28,7 @@ describe('<MenuListSubCategory />', () => {
     const wrapper = shallow(<MenuListSubCategory {...defaultProps} />);
     const excludeDash = filterEmptyCategrories(defaultProps.subCategoryList)
 
-    excludeDash.forEach((option: TSubCategory, idx: number) => {
+    excludeDash.forEach((option: TSubSubCategory, idx: number) => {
       expect(wrapper.find('li').at(idx).text()).toEqual(option.name);
       expect(wrapper.find('li').at(idx).text()).not.toEqual('--');
     });

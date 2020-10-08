@@ -13,7 +13,7 @@ import styles from './Header.module.scss';
 
 export type TIcon = { component: React.ReactNode, name: string };
 
-export const ICONS: Array<TIcon> = [
+export const ICONS: TIcon[] = [
   { component: <Language />, name: 'English' },
   { component: <Account />, name: 'Login' },
   { component: <Wish />, name: 'Wish list' },
@@ -24,19 +24,19 @@ type TGender = 'women' | 'men' | 'kids';
 
 export const GENDERS: TGender[] = ['women', 'men', 'kids'];
 
-type TName = { name: string };
+export type TSubSubCategory = { name: string };
 
-export type TChildren = { name: string, children: Array<TName> };
+export type TSubCategory = { name: string, children: TSubSubCategory[] };
 
 export type TCategories = {
-  children: Array<{ name: string, children: Array<TChildren> }>,
+  children: Array<{ name: string, children: TSubCategory[] }>,
   name: string,
 };
 
 type HeaderState = {
   openMenu: boolean;
   activeGender: string;
-  activeGenderCategoriesData: Array<TCategories>;
+  activeGenderCategoriesData: TCategories[];
   hoverCategoryData: { name: string, data: TCategories };
   shouldShowDropdown: boolean;
 };
@@ -148,7 +148,7 @@ class Header extends React.Component<{}, HeaderState> {
           <div className={styles.category} key={`sub${subCategory.name}`}>
             <span>{subCategory.name}</span>
             <ul>
-              {filterEmptyCategrories(subCategory.children).map((sub: TName, idx: number) => sub.name !== '--' && <li key={`${`${idx}0`}${sub.name}`}>{sub.name}</li>)}
+              {filterEmptyCategrories(subCategory.children).map((sub: TSubSubCategory, idx: number) => sub.name !== '--' && <li key={`${`${idx}0`}${sub.name}`}>{sub.name}</li>)}
             </ul>
           </div>
         ))}

@@ -1,17 +1,18 @@
 import React from 'react';
 import styles from './MenuListCategory.module.scss';
 import Caret from '../../assets/svgs/Caret';
+import { TSubSubCategory } from '../header/Header';
 
 
-type MyProps = {
+type MenuListCategoryProps = {
   hasCaret?: boolean;
   handleCategory: (option: string) => void;
-  categoriesList: Array<{ name: string }>;
+  categoriesList: TSubSubCategory[];
 };
 
 const MenuListCategory = ({
   hasCaret, handleCategory, categoriesList,
-}: MyProps) => (
+}: MenuListCategoryProps) => (
     <div className={styles.categoryLink}>
       <ul>
         {categoriesList.map((option) => (

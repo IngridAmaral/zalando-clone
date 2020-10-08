@@ -1,11 +1,10 @@
 import React from 'react';
 import styles from './MenuListSubCategory.module.scss';
 import { filterEmptyCategrories } from '../../utils/filter-empty-categories';
-
-export type TSubCategory = { name: string };
+import { TSubSubCategory } from '../header/Header';
 
 type MenuListSubCategoryProps = {
-  subCategoryList: Array<TSubCategory>;
+  subCategoryList: TSubSubCategory[];
   subCategoryTitle: string;
 };
 
@@ -15,7 +14,7 @@ const MenuListSubCategory = ({ subCategoryTitle, subCategoryList }: MenuListSubC
       {subCategoryTitle}
     </span>
     <ul>
-      {filterEmptyCategrories(subCategoryList).map((item: TSubCategory) => <li key={item.name}>{item.name}</li>)}
+      {filterEmptyCategrories(subCategoryList).map((item) => <li key={item.name}>{item.name}</li>)}
     </ul>
   </div>
 );
