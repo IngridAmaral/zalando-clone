@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "suppressImplicitAnyIndexErrors": true,
   },
   "include": ["./src/**/**/*", "setupTests.js", "__mocks__", "custom.d.ts"],
   "exclude": ["node_modules"]

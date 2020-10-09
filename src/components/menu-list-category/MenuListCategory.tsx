@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './MenuListCategory.module.scss';
 import Caret from '../../assets/svgs/Caret';
-import { TSubSubCategory } from '../header/Header';
+import { TCategories } from '../header/Header';
 
 
 type MenuListCategoryProps = {
   hasCaret?: boolean;
-  handleCategory: (option: string) => void;
-  categoriesList: TSubSubCategory[];
+  handleCategory: (option: TCategories) => void;
+  categoriesList: TCategories[];
 };
 
 const MenuListCategory = ({
@@ -16,7 +16,7 @@ const MenuListCategory = ({
     <div className={styles.categoryLink}>
       <ul>
         {categoriesList.map((option) => (
-          <li key={option.name} onClick={() => handleCategory(option.name)}>
+          <li key={option.name} onClick={() => handleCategory(option)}>
             <span className={styles.item}>
               {option.name}
             </span>

@@ -24,20 +24,39 @@ type TGender = 'women' | 'men' | 'kids';
 
 export const GENDERS: TGender[] = ['women', 'men', 'kids'];
 
-export type TSubSubCategory = { name: string };
+export type TSubSubCategory = {
+  name: string,
+  url_key?: string,
+  type?: string,
+  red?: boolean,
+  tracking_code: string,
+  isTitle?: boolean,
+};
 
-export type TSubCategory = { name: string, children: TSubSubCategory[] };
+export type TSubCategory = {
+  name: string,
+  url_key?: string
+  type?: string,
+  red?: boolean,
+  tracking_code: string,
+  isTitle?: boolean,
+  children: TSubSubCategory[],
+};
 
 export type TCategories = {
-  children: Array<{ name: string, children: TSubCategory[] }>,
   name: string,
+  url_key?: string,
+  type?: string,
+  tracking_code: string,
+  image_link?: unknown,
+  children: TSubCategory[],
 };
 
 type HeaderState = {
   openMenu: boolean;
   activeGender: string;
   activeGenderCategoriesData: TCategories[];
-  hoverCategoryData: { name: string, data: TCategories };
+  activeCategoryData: { name: string, data: TCategories };
   shouldShowDropdown: boolean;
 };
 
@@ -46,7 +65,7 @@ class Header extends React.Component<{}, HeaderState> {
     openMenu: false,
     activeGender: GENDERS[0],
     activeGenderCategoriesData: [],
-    hoverCategoryData: { name: '', data: { name: '', children: [] } },
+    activeCategoryData: { name: '', data: { name: '', children: [], tracking_code: '', image_link: {}, url_key: '', type: '' } },
     shouldShowDropdown: false,
   };
 
@@ -83,11 +102,12 @@ class Header extends React.Component<{}, HeaderState> {
     });
   };
 
-  handleActive = (category: TCategories, name: string) => {
-    const { hoverCategoryData } = this.state;
+  updateActiveCategoryData  = (category: TCategories) => {
+    const { activeCategoryData } = this.state;
+    const { name } = category;
 
-    if (!hoverCategoryData || hoverCategoryData.name !== name) {
-      this.setState({ hoverCategoryData: { name: name.replace(/[^A-Z0-9]+/ig, ''), data: category } });
+    if (!activeCategoryData || activeCategoryData.name !== name) {
+      this.setState({ activeCategoryData: { name: name.replace(/[^A-Z0-9]+/ig, ''), data: category } });
     }
   };
 
@@ -135,7 +155,7 @@ class Header extends React.Component<{}, HeaderState> {
 
   renderDropDown = () => {
     const {
-      hoverCategoryData,
+      activeCategoryData,
       shouldShowDropdown,
     } = this.state;
     return (<div
@@ -143,24 +163,26 @@ class Header extends React.Component<{}, HeaderState> {
       onMouseLeave={this.hideDropdown}
       className={`${styles.dropdown} ${shouldShowDropdown ? styles.show : ''}`}
     >
-      <div id={`${hoverCategoryData.name}`} className={styles.categoriesLists}>
-        {hoverCategoryData.data.children.map((subCategory) => (
+      <div id={`${activeCategoryData.name}`} className={styles.categoriesLists}>
+        {activeCategoryData.data.children.map((subCategory) => (
           <div className={styles.category} key={`sub${subCategory.name}`}>
             <span>{subCategory.name}</span>
             <ul>
-              {filterEmptyCategrories(subCategory.children).map((sub: TSubSubCategory, idx: number) => sub.name !== '--' && <li key={`${`${idx}0`}${sub.name}`}>{sub.name}</li>)}
+              {filterEmptyCategrories(subCategory.children).map(
+                (sub) => sub.name !== '--' && <li key={sub.tracking_code}>{sub.name}</li>
+              )}
             </ul>
           </div>
         ))}
       </div>
       <img
-            alt="banner"
-            style={{
-              backgroundColor: '#0C7AA4',
-              color: '#FFFFFF',
-            }}
-            src="https://mosaic02.ztat.net/nvg/z-header-fragment/images/production/en-DE/women/beca8fef-ec5a-4538-b226-b360a12c626c/image/1599222782390/large2x.jpg"
-          />
+        alt="banner"
+        style={{
+          backgroundColor: '#0C7AA4',
+          color: '#FFFFFF',
+        }}
+        src="https://mosaic02.ztat.net/nvg/z-header-fragment/images/production/en-DE/women/beca8fef-ec5a-4538-b226-b360a12c626c/image/1599222782390/large2x.jpg"
+      />
     </div>)
   }
 
@@ -200,10 +222,10 @@ class Header extends React.Component<{}, HeaderState> {
           >
             {activeGenderCategoriesData.map((categories) => (
               <div
-                key={categories.name}
+                key={categories.tracking_code}
                 className={styles.option}
-                onFocus={() => this.handleActive(categories, categories.name)}
-                onMouseOver={() => this.handleActive(categories, categories.name)}
+                onFocus={() => this.updateActiveCategoryData (categories)}
+                onMouseOver={() => this.updateActiveCategoryData (categories)}
               >
                 <button type="button">
                   {categories.name}

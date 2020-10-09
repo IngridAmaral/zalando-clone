@@ -5,13 +5,13 @@ import Close from '../../assets/svgs/Close';
 import Goback from '../../assets/svgs/GoBack';
 import ZalandoIcon from '../../assets/svgs/ZalandoIcon';
 import styles from './Menu.module.scss';
-import { TCategories } from '../header/Header';
+import { TCategories, TSubSubCategory } from '../header/Header';
 
 export const SCROLL_THRESHOLD = 50;
 
-export const moreOptions: Array<Array<{ name: string }>> = [
-  [{ name: 'Help' }, { name: 'Newsletter' }],
-  [{ name: 'Dutsch' }, { name: 'English' }],
+export const moreOptions: Array<TCategories[]> = [
+  [{ name: 'Help' , tracking_code: 'help', children: []}, { name: 'Newsletter', tracking_code: 'newsletter', children: []}],
+  [{ name: 'Dutsch', tracking_code: 'dutsh', children: [] }, { name: 'English', tracking_code: 'english', children: []}],
 ];
 
 type MenuProps = {
@@ -43,11 +43,12 @@ class Menu extends React.Component<MenuProps, MenuState> {
     });
   };
 
-  handleSelectCategory = (option: string) => {
+  handleSelectCategory = (option: TSubSubCategory) => {
     const { categories } = this.props;
-    if (categories.some((category) => category.name === option)) {
+    const { name } = option;
+    if (categories.some((category) => category.name === name)) {
       this.setState({
-        categoryName: option,
+        categoryName: name,
         openCategory: true,
       });
     }
