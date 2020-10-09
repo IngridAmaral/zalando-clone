@@ -9,9 +9,7 @@ const Home = () => (
   <div>
     <Header />
     <div>
-      {campaignData.map((brand) => <CampaignWrapper brand={brand} />)}
-
-
+      {campaignData.map((brand) => <CampaignWrapper key={brand.brandName} brand={brand} />)}
     </div>
   </div>
 );
