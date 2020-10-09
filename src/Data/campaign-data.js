@@ -18,6 +18,9 @@ export const campaignData = [
         productImageLink:
           "https://img01.ztat.net/article/spp-media-p1/dc1249c16db93217b174bc29ef998493/a80fe245bf214568bcd1211ae49fb19f.jpg?imwidth=1800",
         id: "c0250dcd-1959-45fb-9c18-f9bdebc4d49a",
+        hasDifferentPrices: false,
+        isNew: false,
+        hasSustainabilityFlag: false,
       },
       {
         description: "STRATOS JACKET - Hardshell jacket - pinkclay/root",
