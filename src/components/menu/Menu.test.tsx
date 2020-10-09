@@ -3,13 +3,12 @@ import { shallow } from 'enzyme';
 import Menu, { SCROLL_THRESHOLD, moreOptions } from './Menu';
 import MenuListCategory from '../menu-list-category/MenuListCategory';
 import MenuListSubCategory from '../menu-list-sub-category/MenuListSubCategory';
-import { GENDERS, TCategories } from '../header/Header';
+import { GENDERS } from '../header/Header';
 import NAVCATEGORIES from '../../data/nav-categories';
 import styles from './Menu.module.scss';
 
 
 const activeGenderCategories = NAVCATEGORIES.women.children;
-
 
 const defaultProps = {
   onClose: () => { },
