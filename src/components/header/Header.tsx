@@ -53,7 +53,7 @@ export type TCategories = {
 };
 
 type HeaderState = {
-  openMenu: boolean;
+  isMenuOpen: boolean;
   activeGender: string;
   activeGenderCategoriesData: TCategories[];
   activeCategoryData: { name: string, data: TCategories };
@@ -62,7 +62,7 @@ type HeaderState = {
 
 class Header extends React.Component<{}, HeaderState> {
   state: HeaderState = {
-    openMenu: false,
+    isMenuOpen: false,
     activeGender: GENDERS[0],
     activeGenderCategoriesData: [],
     activeCategoryData: { name: '', data: { name: '', children: [], tracking_code: '', image_link: {}, url_key: '', type: '' } },
@@ -79,17 +79,17 @@ class Header extends React.Component<{}, HeaderState> {
   handleOpenMenu = () => {
     this.setState(
       (prevState) => ({
-        openMenu: !prevState.openMenu,
+        isMenuOpen: !prevState.isMenuOpen,
       }),
     );
   };
 
   handleClickOutside = (e: React.MouseEvent<HTMLDivElement>): void => {
     const { id } = e.target as HTMLDivElement;
-    const { openMenu } = this.state;
-    if (openMenu && id === 'wrapper-menu') {
+    const { isMenuOpen } = this.state;
+    if (isMenuOpen && id === 'lateral-menu') {
       e.stopPropagation();
-      this.setState({ openMenu: false });
+      this.setState({ isMenuOpen: false });
     }
   };
 
@@ -119,25 +119,24 @@ class Header extends React.Component<{}, HeaderState> {
     this.setState({ shouldShowDropdown: false });
   };
 
-  renderMenuSection = () => {
+  renderLateralMenu = () => {
     const {
-      openMenu,
+      isMenuOpen,
       activeGender,
       activeGenderCategoriesData,
     } = this.state;
 
     return (
       <div
-        id="wrapper-menu"
-        className={`${styles.lateralMenuWrapper} ${openMenu ? styles.fadeIn : ''}`}
+        id="lateral-menu"
+        className={`${styles.lateralMenuWrapper} ${isMenuOpen ? styles.fadeIn : ''}`}
         role="button"
         tabIndex={0}
         onClick={this.handleClickOutside}
       >
         <div
-          className={`${openMenu
-            ? styles.lateralMenuOpen
-            : styles.lateralMenu
+          className={`${styles.lateralMenu} ${isMenuOpen
+            && styles.lateralMenuOpen
             }`}
         >
           <Menu
@@ -146,7 +145,7 @@ class Header extends React.Component<{}, HeaderState> {
             activeGender={activeGender}
             genders={GENDERS}
             categories={activeGenderCategoriesData}
-            isMenuOpen={openMenu}
+            isMenuOpen={isMenuOpen}
           />
         </div>
       </div>
@@ -158,6 +157,7 @@ class Header extends React.Component<{}, HeaderState> {
       activeCategoryData,
       shouldShowDropdown,
     } = this.state;
+
     return (<div
       onMouseEnter={this.showDropdown}
       onMouseLeave={this.hideDropdown}
@@ -165,11 +165,11 @@ class Header extends React.Component<{}, HeaderState> {
     >
       <div id={`${activeCategoryData.name}`} className={styles.categoriesLists}>
         {activeCategoryData.data.children.map((subCategory) => (
-          <div className={styles.category} key={`sub${subCategory.name}`}>
+          <div className={styles.category} key={subCategory.tracking_code}>
             <span>{subCategory.name}</span>
             <ul>
               {filterEmptyCategrories(subCategory.children).map(
-                (sub) => sub.name !== '--' && <li key={sub.tracking_code}>{sub.name}</li>
+                (subSubCategory) => <li key={subSubCategory.tracking_code}>{subSubCategory.name}</li>
               )}
             </ul>
           </div>
@@ -237,7 +237,7 @@ class Header extends React.Component<{}, HeaderState> {
             <SearchIcon />
             Search
           </div>
-          {this.renderMenuSection()}
+          {this.renderLateralMenu()}
           {this.renderDropDown()}
         </div>
       </div >
