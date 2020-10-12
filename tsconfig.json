@@ -4,7 +4,7 @@
     "outDir": "./dist",
     "rootDir": "./",
     "sourceMap": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "module": "es6",
@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "suppressImplicitAnyIndexErrors": true,
   },
   "include": ["./src/**/**/*", "setupTests.js", "__mocks__", "custom.d.ts"],
   "exclude": ["node_modules"]

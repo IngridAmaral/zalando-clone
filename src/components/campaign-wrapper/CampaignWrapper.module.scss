@@ -1,0 +1,17 @@
+@import "../../styles/flex-box";
+@import "../../styles/colors";
+@import "../../styles/campaign";
+
+.campaignWrapper {
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: -1;
+}
+
+// IPAD
+@media (min-width: 768px) {
+}
+
+// NOTEBOOK
+@media (min-width: 1024px) {
+}

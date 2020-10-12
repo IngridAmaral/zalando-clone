@@ -1,14 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Menu, { SCROLL_THRESHOLD, moreOptions } from './Menu';
-import MenuListCategory from '../menuListCategory/MenuListCategory';
-import MenuListSubCategory from '../menuListSubCategory/MenuListSubCategory';
+import MenuListCategory from '../menu-list-category/MenuListCategory';
+import MenuListSubCategory from '../menu-list-sub-category/MenuListSubCategory';
 import { GENDERS } from '../header/Header';
-import NAVCATEGORIES from '../../data/navCategories';
+import NAVCATEGORIES from '../../data/nav-categories';
 import styles from './Menu.module.scss';
 
 
-const categoriesGender = NAVCATEGORIES.women.children
+const activeGenderCategories = NAVCATEGORIES.women.children;
 
 const defaultProps = {
   onClose: () => { },
@@ -16,7 +16,7 @@ const defaultProps = {
   activeGender: 'women',
   genders: GENDERS,
   isMenuOpen: true,
-  categories: categoriesGender
+  categories: activeGenderCategories,
 };
 
 describe('<Menu />', () => {
@@ -70,7 +70,7 @@ describe('<Menu />', () => {
   describe('when `openCategories` is true', () => {
     it('should render the subcategories list', () => {
       const wrapper = shallow(<Menu {...defaultProps} />);
-      wrapper.find(MenuListCategory).at(0).prop('handleCategory')(defaultProps.categories[0].name);
+      wrapper.find(MenuListCategory).at(0).prop('handleCategory')(defaultProps.categories[0]);
       wrapper.update();
 
       expect(wrapper.find(`.${styles.categoriesWrapper}`).exists()).toBe(true);
@@ -78,7 +78,7 @@ describe('<Menu />', () => {
 
     it('should render the correct number of subcategories', () => {
       const wrapper = shallow(<Menu {...defaultProps} />);
-      wrapper.find(MenuListCategory).at(0).prop('handleCategory')(defaultProps.categories[0].name);
+      wrapper.find(MenuListCategory).at(0).prop('handleCategory')(defaultProps.categories[0]);
       wrapper.update();
 
       defaultProps.categories.forEach((category) => {

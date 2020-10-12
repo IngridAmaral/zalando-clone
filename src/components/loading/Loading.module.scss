@@ -1,0 +1,30 @@
+@import "../../styles/flex-box";
+@import "../../styles/colors";
+
+.loading {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: hsla(92, 90%, 0%, 0.35);
+  @include center-all-row;
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  .text {
+    margin: 0;
+    margin-top: .5rem;
+    font-weight: 700;
+    color: $secondary;
+    margin-right: .5rem;
+    color: $terciary;
+  }
+}
+
+// IPAD
+@media (min-width: 768px) {
+}
+
+// NOTEBOOK
+@media (min-width: 1024px) {
+}
