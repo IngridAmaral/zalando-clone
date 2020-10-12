@@ -8,6 +8,7 @@ import Basket from '../../assets/svgs/Basket';
 import MenuIcon from '../../assets/svgs/Menu';
 import SearchIcon from '../../assets/svgs/Search';
 import Menu from '../menu/Menu';
+import Loading from '../loading/Loading';
 import { filterEmptyCategrories } from '../../utils/filter-empty-categories';
 import styles from './Header.module.scss';
 
@@ -194,7 +195,7 @@ class Header extends React.Component<{}, HeaderState> {
     } = this.state;
 
     if (!activeGenderCategoriesData.length) {
-      return (<div>loading</div>);
+      return (<Loading />);
     }
 
     return (
