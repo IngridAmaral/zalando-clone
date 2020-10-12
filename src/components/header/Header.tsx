@@ -220,15 +220,15 @@ class Header extends React.Component<{}, HeaderState> {
             onMouseEnter={this.showDropdown}
             onMouseLeave={this.hideDropdown}
           >
-            {activeGenderCategoriesData.map((categories) => (
+            {activeGenderCategoriesData.map((category) => (
               <div
-                key={categories.tracking_code}
+                key={category.tracking_code}
                 className={styles.option}
-                onFocus={() => this.updateActiveCategoryData (categories)}
-                onMouseOver={() => this.updateActiveCategoryData (categories)}
+                onFocus={() => this.updateActiveCategoryData (category)}
+                onMouseOver={() => this.updateActiveCategoryData (category)}
               >
                 <button type="button">
-                  {categories.name}
+                  {category.name}
                 </button>
               </div>
             ))}
