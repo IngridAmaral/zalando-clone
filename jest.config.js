@@ -8,7 +8,6 @@ module.exports = {
   transform: {
     "^.+\\.jsx?$": "babel-jest",
     "^.+\\.tsx?$": "ts-jest",
-    "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/fileTransformer.js",
   },
   moduleNameMapper: {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
