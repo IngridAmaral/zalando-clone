@@ -20,7 +20,7 @@ const HeaderTopRow = ({
           <div key={`${gender}top`} className={styles.gender}>
             <button
               onClick={() => changeGender(gender)}
-              className={`genderSelect ${activeGender === gender ? styles.active : ''}`}
+              className={`${styles.genderSelect} ${activeGender === gender ? styles.active : ''}`}
             >
               {gender}
             </button>
