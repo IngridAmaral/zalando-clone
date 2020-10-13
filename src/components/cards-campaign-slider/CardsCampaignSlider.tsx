@@ -5,10 +5,12 @@ import styles from './CardsCampaignSlider.module.scss';
 import './CardsCampaignSlider.scss';
 import { TCardData } from '../campaign-wrapper/CampaignWrapper';
 
+
 const SLIDER_OPTIONS = {
     perMove: 2,
     drag: true,
     keyBoard: true,
+    rewind: true,
     pagination: false,
     arrows: false,
     isNavigation: true,
