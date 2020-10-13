@@ -187,7 +187,6 @@ class Header extends React.Component<{}, HeaderState> {
     </div>)
   }
 
-
   render() {
     const {
       activeGender,
