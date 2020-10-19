@@ -10,6 +10,12 @@ describe('<Header />', () => {
     shallow(<Header />);
   });
 
+  it('the menu lateral does not exist', () => {
+    const wrapper = shallow(<Header />);
+
+    expect(wrapper.find(`.${styles.lateralMenu}`).exists()).toBe(true);
+  });
+
   it('opens the lateral menu when click menu icon', () => {
     const wrapper = shallow(<Header />);
     wrapper.find(`.${styles.openMenu}`).simulate('click');

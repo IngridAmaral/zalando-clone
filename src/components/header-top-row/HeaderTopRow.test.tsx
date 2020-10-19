@@ -20,24 +20,23 @@ describe('<HeaderTopRow />', () => {
   it('renders the correct number of gender options', () => {
     const wrapper = shallow(<HeaderTopRow {...defaultProps} />);
 
-    expect(wrapper.find(`.${styles.gender}`)).toHaveLength(GENDERS.length);
+    expect(wrapper.find(`.${styles.gender}`)).toHaveLength(defaultProps.genders.length);
   });
 
   it('renders the correct number of nav icons', () => {
     const wrapper = shallow(<HeaderTopRow {...defaultProps} />);
 
-    expect(wrapper.find(NavItem)).toHaveLength(ICONS.length);
+    expect(wrapper.find(NavItem)).toHaveLength(defaultProps.icons.length);
   });
 
   it('triggers the function on click and makes sure the correct gender is displayed', () => {
-    const click = jest.fn();
-    const wrapper = shallow(<HeaderTopRow {...defaultProps} changeGender={click} />);
+    const clickFunction = jest.fn();
+    const wrapper = shallow(<HeaderTopRow {...defaultProps} changeGender={clickFunction} />);
 
-    GENDERS.forEach((gender, idx) => {
-      wrapper.find('.genderSelect').at(idx).simulate('click');
+    GENDERS.forEach((_, idx) => {
+      wrapper.find(`.${styles.genderSelect}`).at(idx).simulate('click');
 
-      expect(wrapper.find('.genderSelect').at(idx).text()).toEqual(gender);
-      expect(click).toHaveBeenCalled();
+      expect(clickFunction).toHaveBeenCalled();
     })
   });
 });
