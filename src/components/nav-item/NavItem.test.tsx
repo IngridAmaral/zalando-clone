@@ -19,7 +19,7 @@ describe('<NavItem />', () => {
   });
 
 
-  it('should render the correct title', () => {
+  it('should render the correct name', () => {
     const wrapper = shallow(<NavItem {...defaultProps} />);
 
     expect(wrapper.find('span').text()).toEqual(defaultProps.icon.name);
