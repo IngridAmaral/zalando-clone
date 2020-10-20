@@ -2,62 +2,69 @@ import React from 'react';
 import styles from './CardCampaign.module.scss';
 import Wish from '../../assets/svgs/Wish';
 import FlagCampaign from '../flag-campaign/FlagCampaign';
-import { TCardData } from '../campaign-wrapper/CampaignWrapper';
+import { TCard } from '../campaign-wrapper/CampaignWrapper';
 import { addDecimal } from '../../utils/add-decimal';
 import { FLAGS } from '../../data/flags';
 
 type CardCampaignProps = {
-    cardData: TCardData,
+    card: TCard,
     brandName: string,
 }
 
-const renderPrice = (price: number, hasDifferentPrices: boolean = false) => (
+type TRenderPrice = {
+    price: number,
+    hasDifferentPrices?: boolean,
+}
+
+const renderPrice = ({price, hasDifferentPrices = false}: TRenderPrice) => (
     <span className={styles.priceTag}>
-        { hasDifferentPrices ? `${addDecimal(price)} €` : `From ${addDecimal(price)} €`}
+        { hasDifferentPrices ? `From ${addDecimal(price)} €` : `${addDecimal(price)} €`}
     </span>
 )
 
-const renderExtraInfo = (information: string) => (
+const renderExtraInformation = (information: string) => (
     <span className={styles.extraInformation}>
         {information}
     </span>
 )
 
-const renderTextContent = (cardData: TCardData, brandName: string) => (
+const renderTextContent = (card: TCard, brandName: string) => (
     <div className={styles.productInfos}>
         <div>
-            <span className={styles.title}>{brandName}</span>
-            <h3 className={styles.description}>{cardData.description}</h3>
+            <h1 className={styles.title}>{brandName}</h1>
+            <h3 className={styles.description}>{card.description}</h3>
         </div>
-        {renderPrice(cardData.price, cardData.hasDifferentPrices)}
-        {cardData.extraInformation && renderExtraInfo(cardData.extraInformation)}
+        {renderPrice(card)}
+        {card.extraInformation && renderExtraInformation(card.extraInformation)}
     </div>
 )
 
-const CardCampaign = ({ cardData, brandName }: CardCampaignProps) => (
+const CardCampaign = ({ card, brandName }: CardCampaignProps) => (
     <div className={styles.cardContainer}>
         <div className={styles.imageWrapper}>
             <img
                 className={styles.productImage}
-                alt={cardData.description}
-                src={cardData.productImageLink}
+                alt={card.description}
+                src={card.productImageLink}
             />
             <div className={styles.wish}>
                 <Wish />
             </div>
             <div className={styles.flags}>
-                {Object.keys(FLAGS).map((flag) => (
-                    cardData[flag] &&
+                {Object.keys(FLAGS).map((flagKey) => {
+                    const { flagText, background, color } = FLAGS[flagKey];
+
+                    return (card[flagKey] &&
                     <FlagCampaign
-                        key={flag}
-                        flagText={FLAGS[flag].flagText}
-                        background={FLAGS[flag].background}
-                        fontColor={FLAGS[flag].color}
-                    />
-                ))}
+                        key={flagKey}
+                        flagText={flagText}
+                        background={background}
+                        fontColor={color}
+                    />)
+                })}
             </div>
         </div>
-        {renderTextContent(cardData, brandName)}
+        {renderTextContent(card, brandName)}
     </div>
 );
 

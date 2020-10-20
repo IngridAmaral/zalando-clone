@@ -16,7 +16,6 @@ const {
   subTitle,
   linkText,
   mainImg,
-  text,
   cards,
   cardsBackground
 } = defaultProps.brand;
@@ -35,7 +34,6 @@ describe('<CampaignWrapper />', () => {
     expect(wrapper.find(BannerCampaign).prop('subTitle')).toEqual(subTitle);
     expect(wrapper.find(BannerCampaign).prop('linkText')).toEqual(linkText);
     expect(wrapper.find(BannerCampaign).prop('mainImg')).toEqual(mainImg);
-    expect(wrapper.find(BannerCampaign).prop('text')).toEqual(text);
   });  
 
   it('renders bottom campaign componenet with correct props', () => {
