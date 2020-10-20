@@ -9,10 +9,9 @@ type BannerCampaignProps = {
     subTitle: string,
     linkText: string,
     mainImg: string,
-    text: string,
 }
 
-const BannerCampaign = ({ brandName, background, fontColor, subTitle, linkText, mainImg, text }: BannerCampaignProps) => (
+const BannerCampaign = ({ brandName, background, fontColor, subTitle, linkText, mainImg }: BannerCampaignProps) => (
     <div
         className={styles.bannerCampaignContainer}
         style={{
@@ -32,7 +31,7 @@ const BannerCampaign = ({ brandName, background, fontColor, subTitle, linkText, 
             </div>
         </div>
         <div className={styles.imageWrapper}>
-            <img src={mainImg} alt={text} className={styles.mainImage} />
+            <img src={mainImg} alt={brandName} className={styles.mainImage} />
         </div>
     </div>
 );

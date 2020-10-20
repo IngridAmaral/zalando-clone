@@ -3,9 +3,10 @@ import { shallow } from 'enzyme';
 import BannerCampaign from './BannerCampaign';
 import styles from './BannerCampaign.module.scss';
 import { campaignData } from '../../data/campaign-data';
+import Go from '../../assets/svgs/GoBack';
 
 
-const { brandName, background, fontColor, subTitle, linkText, mainImg, text } = campaignData[0];
+const { brandName, background, fontColor, subTitle, linkText, mainImg } = campaignData[0];
 
 const defaultProps = {
   brandName: brandName,
@@ -14,7 +15,6 @@ const defaultProps = {
   subTitle: subTitle,
   linkText: linkText,
   mainImg: mainImg,
-  text: text
 }
 
 const style = { background: `${defaultProps.background}`, color: `${defaultProps.fontColor}` }
@@ -57,6 +57,12 @@ describe('<BannerCampaign />', () => {
   it('should render the correct alt in image', () => {
     const wrapper = shallow(<BannerCampaign {...defaultProps} />);
 
-    expect(wrapper.find(`.${styles.mainImage}`).prop('alt')).toEqual(text);
+    expect(wrapper.find(`.${styles.mainImage}`).prop('alt')).toEqual(brandName);
+  });
+
+  it('should render the go component with prop', () => {
+    const wrapper = shallow(<BannerCampaign {...defaultProps} />);
+
+    expect(wrapper.find(Go).prop('color')).toEqual(fontColor);
   });
 });
