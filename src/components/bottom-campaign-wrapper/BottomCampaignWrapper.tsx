@@ -1,12 +1,12 @@
 import React from 'react';
 import CardsCampaignSlider from '../cards-campaign-slider/CardsCampaignSlider';
 import FollowBrandCampaign from '../follow-brand-campaign/FollowBrandCampaign';
-import { TCardData } from '../campaign-wrapper/campaignWrapper';
+import { TCard } from '../campaign-wrapper/campaignWrapper';
 import styles from './BottomCampaignWrapper.module.scss';
 
 
 type BottomCampaignWrapperProps = {
-    cards: TCardData[],
+    cards: TCard[],
     brandName: string,
     cardsBackground: string,
     fontColor: string,
