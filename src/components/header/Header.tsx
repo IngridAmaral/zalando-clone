@@ -146,7 +146,6 @@ class Header extends React.Component<{}, HeaderState> {
             activeGender={activeGender}
             genders={GENDERS}
             categories={activeGenderCategoriesData}
-            isMenuOpen={isMenuOpen}
           />
         </div>
       </div>
