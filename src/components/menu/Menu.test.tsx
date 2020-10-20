@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Menu, { SCROLL_THRESHOLD, moreOptions } from './Menu';
-import MenuListCategory from '../menu-list-category/MenuListCategory';
-import MenuListSubCategory from '../menu-list-sub-category/MenuListSubCategory';
+import MenuCategories from '../menu-categories/MenuCategories';
+import MenuSubCategories from '../menu-sub-categories/MenuSubCategories';
 import { GENDERS } from '../header/Header';
 import NAVCATEGORIES from '../../data/nav-categories';
 import styles from './Menu.module.scss';
@@ -46,7 +46,6 @@ describe('<Menu />', () => {
 
     expect(wrapper.find(`.${styles.shrink}`).exists()).toBe(true);
 
-
     wrapper.find(`.${styles.menuContainer}`).simulate('scroll', eventExpand);
     wrapper.update();
 
@@ -63,36 +62,56 @@ describe('<Menu />', () => {
 
   it('should render the menu list component', () => {
     const wrapper = shallow(<Menu {...defaultProps} />);
+    // const handleCategoryFunc = () => {};
 
-    expect(wrapper.find(MenuListCategory).exists()).toBe(true);
+    expect(wrapper.find(MenuCategories).exists()).toBe(true);
+
+    wrapper.find(MenuCategories).forEach((menuList, idx) => {
+      if (menuList.prop('handleCategory')) {
+        expect(menuList.prop('categories')).toEqual(defaultProps.categories);
+        expect(menuList.prop('hasCaret')).toBe(true);
+        // expect(menuList.prop('handleCategory')).toBe(handleCategoryFunc);
+      } else {
+        expect(menuList.prop('categories')).toEqual(moreOptions[idx - 1]);
+      }
+    })
   });
 
   describe('when `openCategories` is true', () => {
     it('should render the subcategories list', () => {
       const wrapper = shallow(<Menu {...defaultProps} />);
-      wrapper.find(MenuListCategory).at(0).prop('handleCategory')(defaultProps.categories[0]);
-      wrapper.update();
 
-      expect(wrapper.find(`.${styles.categoriesWrapper}`).exists()).toBe(true);
+      wrapper.find(MenuCategories).forEach((menuList) => {
+        menuList.prop('handleCategory')?.(defaultProps.categories[0]);
+        wrapper.update();
+
+        expect(wrapper.find(MenuSubCategories).exists()).toBe(true);
+      });
     });
 
     it('should render the correct number of subcategories', () => {
       const wrapper = shallow(<Menu {...defaultProps} />);
-      wrapper.find(MenuListCategory).at(0).prop('handleCategory')(defaultProps.categories[0]);
-      wrapper.update();
 
-      defaultProps.categories.forEach((category) => {
-        if (category.name === wrapper.props().categoryName) {
-          expect(wrapper.find(MenuListSubCategory)).toHaveLength(category.children.length)
-        }
-      })
+
+      wrapper.find(MenuCategories).forEach((menuList) => {
+        menuList.prop('handleCategory')?.(defaultProps.categories[0]);
+        wrapper.update();
+
+        defaultProps.categories.forEach((category) => {
+          if (category.name === wrapper.props().categoryName) {
+            expect(menuList).toHaveLength(category.children.length)
+          }
+        });
+      });
     });
   });
 
   it('renders provided genders', () => {
     const wrapper = shallow(<Menu {...defaultProps} />);
 
-    expect(wrapper.find(`.${styles.selectGender}`).children()).toHaveLength(defaultProps.genders.length);
+    wrapper.find(`.${styles.selectGender}`).children().forEach((gender,idx) => {
+      expect(gender.text()).toEqual(defaultProps.genders[idx]);
+    })
   });
 
   it('triggers `onChangeGender` on click and checks if it renders the corret gender', () => {
@@ -110,7 +129,7 @@ describe('<Menu />', () => {
     const wrapper = shallow(<Menu {...defaultProps} />);
 
     moreOptions.forEach((optionsList, idx) => {
-      expect(wrapper.find(MenuListCategory).at(idx + 1).props().categoriesList).toStrictEqual(optionsList);
+      expect(wrapper.find(MenuCategories).at(idx + 1).props().categories).toStrictEqual(optionsList);
     })
   });
 

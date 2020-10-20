@@ -10,6 +10,9 @@ const defaultProps = {
   fontColor: FLAGS['isNew'].color
 }
 
+const style = { color: `${defaultProps.fontColor}`, background: `${defaultProps.background}` }
+
+
 describe('<FlagCampaign />', () => {
   it('renders without crashing', () => {
     shallow(<FlagCampaign {...defaultProps}/>);
@@ -19,5 +22,11 @@ describe('<FlagCampaign />', () => {
     const wrapper = shallow(<FlagCampaign {...defaultProps}/>);
 
     expect(wrapper.find(`.${styles.flag}`).text()).toBe(defaultProps.flagText);
+  });
+
+  it('should render the flag with the correct color style', () => {
+    const wrapper = shallow(<FlagCampaign {...defaultProps}/>);
+
+    expect(wrapper.find(`.${styles.flag}`).prop('style')).toEqual(style);
   });
 });

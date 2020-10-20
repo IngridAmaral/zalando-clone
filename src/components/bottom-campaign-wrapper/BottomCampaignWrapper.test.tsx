@@ -15,9 +15,6 @@ const defaultProps = {
   cardsBackground: cardsBackground
 }
 
-const style = { background: `${defaultProps.cardsBackground}`, color: `${defaultProps.fontColor}` }
-
-
 describe('<BottomCampaignWrapper />', () => {
   it('renders without crashing', () => {
     shallow(<BottomCampaignWrapper {...defaultProps} />);
@@ -25,6 +22,7 @@ describe('<BottomCampaignWrapper />', () => {
 
   it('renders the correct style', () => {
     const wrapper = shallow(<BottomCampaignWrapper {...defaultProps} />);
+    const style = { background: `${defaultProps.cardsBackground}`, color: `${defaultProps.fontColor}` }
 
     expect(wrapper.find(`.${styles.bottomCampaignContainer}`).prop('style')).toEqual(style);
   });

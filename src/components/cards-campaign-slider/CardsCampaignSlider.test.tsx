@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import CardsCampaignSlider from './CardsCampaignSlider';
 import CardCampaign from '../card-campaign/CardCampaign';
-import { TCardData } from '../campaign-wrapper/CampaignWrapper';
 import { campaignData } from '../../data/campaign-data';
 
 const defaultProps = {
@@ -24,8 +23,8 @@ describe('<CardsCampaignSlider />', () => {
   it('sends the correct props to each card', () => {
     const wrapper = shallow(<CardsCampaignSlider {...defaultProps} />);
 
-    defaultProps.cards.forEach((card: TCardData, idx: number) => {
-      expect(wrapper.find(CardCampaign).at(idx).prop('cardData')).toEqual(card);
+    defaultProps.cards.forEach((card, idx) => {
+      expect(wrapper.find(CardCampaign).at(idx).prop('card')).toEqual(card);
       expect(wrapper.find(CardCampaign).at(idx).prop('brandName')).toEqual(defaultProps.brandName);
     });
   });

@@ -3,7 +3,7 @@ import React from 'react';
 import CardCampaign from '../card-campaign/CardCampaign';
 import styles from './CardsCampaignSlider.module.scss';
 import './CardsCampaignSlider.scss';
-import { TCardData } from '../campaign-wrapper/CampaignWrapper';
+import { TCard } from '../campaign-wrapper/CampaignWrapper';
 
 
 const SLIDER_OPTIONS = {
@@ -28,7 +28,7 @@ const SLIDER_OPTIONS = {
 };
 
 type CardsCampaignSliderProps = {
-    cards: TCardData[],
+    cards: TCard[],
     brandName: string,
 }
 
@@ -40,7 +40,7 @@ const CardsCampaignSlider = ({ cards, brandName }: CardsCampaignSliderProps) => 
             {cards.map((card) => (
                 <SplideSlide key={card.id}>
                     <CardCampaign
-                        cardData={card}
+                        card={card}
                         brandName={brandName}
                     />
                 </SplideSlide>

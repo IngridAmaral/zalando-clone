@@ -1,6 +1,6 @@
 import React from 'react';
-import MenuListCategory from '../menu-list-category/MenuListCategory';
-import MenuListSubCategory from '../menu-list-sub-category/MenuListSubCategory';
+import MenuCategories from '../menu-categories/MenuCategories';
+import MenuSubCategories from '../menu-sub-categories/MenuSubCategories';
 import Close from '../../assets/svgs/Close';
 import Goback from '../../assets/svgs/GoBack';
 import ZalandoIcon from '../../assets/svgs/ZalandoIcon';
@@ -19,27 +19,23 @@ type MenuProps = {
   onChangeGender: (gender: string) => void;
   activeGender: string;
   genders: string[];
-  isMenuOpen: boolean;
   categories: TCategories[];
 };
 
 type MenuState = {
   shrinkMenuHeader: boolean;
   categoryName: string;
-  openCategory: boolean;
 };
 
 class Menu extends React.Component<MenuProps, MenuState> {
   state = {
     shrinkMenuHeader: false,
     categoryName: '',
-    openCategory: false,
   };
 
   backToOptions = () => {
     this.setState({
       categoryName: '',
-      openCategory: false,
     });
   };
 
@@ -49,7 +45,6 @@ class Menu extends React.Component<MenuProps, MenuState> {
     if (categories.some((category) => category.name === name)) {
       this.setState({
         categoryName: name,
-        openCategory: true,
       });
     }
   };
@@ -69,39 +64,38 @@ class Menu extends React.Component<MenuProps, MenuState> {
     }
   };
 
-  renderTitle = () => {
+  renderLateralMenuHeaderCategory = () => {
     const {
       onChangeGender,
       activeGender,
       genders,
     } = this.props;
 
+    return (
+      <div className={styles.gender}>
+        <div className={styles.activeGender}>{activeGender}</div>
+        <div className={styles.selectGender}>
+          {genders.map((gender) => (
+            <span
+              role="button"
+              tabIndex={0}
+              key={gender}
+              id={gender}
+              onClick={() => onChangeGender(gender)}
+              className={activeGender === gender ? styles.active : ''}
+            >
+              {gender}
+            </span>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  renderLateralMenuHeaderSubCategory = () => {
     const {
-      openCategory,
       categoryName,
     } = this.state;
-
-    if (!openCategory) {
-      return (
-        <div className={styles.gender}>
-          <div className={styles.activeGender}>{activeGender}</div>
-          <div className={styles.selectGender}>
-            {genders.map((gender) => (
-              <span
-                role="button"
-                tabIndex={0}
-                key={gender}
-                id={gender}
-                onClick={() => onChangeGender(gender)}
-                className={activeGender === gender ? styles.active : ''}
-              >
-                {gender}
-              </span>
-            ))}
-          </div>
-        </div>
-      );
-    }
 
     return (
       <div className={styles.headerCategory}>
@@ -115,21 +109,20 @@ class Menu extends React.Component<MenuProps, MenuState> {
         </div>
       </div>
     );
-  };
+  }
 
   renderMoreOptions = () => {
     return moreOptions.map((optionsList) => (
-      <MenuListCategory
+      <MenuCategories
         key={`${optionsList[0].name}moreopt`}
-        categoriesList={optionsList}
-        handleCategory={() => { }}
+        categories={optionsList}
       />
     ))
   }
 
   renderList = () => {
     const { categories } = this.props;
-    const { openCategory, shrinkMenuHeader, categoryName } = this.state;
+    const { categoryName, shrinkMenuHeader } = this.state;
 
     const currentCategory = categories.find(category => category.name === categoryName);
 
@@ -139,9 +132,9 @@ class Menu extends React.Component<MenuProps, MenuState> {
           id="categories-link"
           className={styles.options}
         >
-          <MenuListCategory
+          <MenuCategories
             hasCaret
-            categoriesList={categories}
+            categories={categories}
             handleCategory={this.handleSelectCategory}
           />
           {this.renderMoreOptions()}
@@ -153,17 +146,20 @@ class Menu extends React.Component<MenuProps, MenuState> {
           id="categories"
           className={`
             ${styles.categories} 
-            ${openCategory ? styles.show : styles.hide}
-            ${openCategory && shrinkMenuHeader ? styles.shrink : ''}
+            ${categoryName
+       ? styles.show : styles.hide}
+            ${categoryName
+       && shrinkMenuHeader ? styles.shrink : ''}
           `}
         >
-          {openCategory && (
+          {categoryName
+   && (
             <div className={styles.categoriesWrapper}>
               {currentCategory && currentCategory.children.map((subCategory) => (
-                <MenuListSubCategory
+                <MenuSubCategories
                   key={subCategory.name}
-                  subCategoryTitle={subCategory.name}
-                  subCategoryList={subCategory.children}
+                  subCategoryName={subCategory.name}
+                  subCategories={subCategory.children}
                 />
               ))}
             </div>
@@ -178,12 +174,12 @@ class Menu extends React.Component<MenuProps, MenuState> {
 
   render() {
     const { onClose } = this.props;
-    const { shrinkMenuHeader } = this.state;
+    const { shrinkMenuHeader, categoryName } = this.state;
 
     return (
       <div className={styles.menuContainer} onScroll={this.handleScroll}>
         <div className={`${styles.menuHeader} ${shrinkMenuHeader ? styles.shrink : ''}`}>
-          {this.renderTitle()}
+          {!categoryName ? this.renderLateralMenuHeaderCategory() : this.renderLateralMenuHeaderSubCategory() }
           <button
             className={styles.onCloseMenu}
             type="button"

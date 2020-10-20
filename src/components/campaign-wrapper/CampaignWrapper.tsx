@@ -3,7 +3,7 @@ import BannerCampaign from '../banner-campaign/BannerCampaign';
 import BottomCampaignWrapper from '../bottom-campaign-wrapper/BottomCampaignWrapper';
 import styles from './campaignWrapper.module.scss';
 
-export type TCardData = {
+export type TCard = {
     id: string,
     description: string,
     price: number,
@@ -22,7 +22,7 @@ type TBrand = {
     linkText: string,
     mainImg: string,
     text: string,
-    cards: TCardData[],
+    cards: TCard[],
     cardsBackground: string
 }
 
@@ -38,7 +38,6 @@ const CampaignWrapper = ({ brand }: CampaignWrapperProps) => {
         subTitle,
         linkText,
         mainImg,
-        text,
         cards,
         cardsBackground
     } = brand;
@@ -52,7 +51,6 @@ const CampaignWrapper = ({ brand }: CampaignWrapperProps) => {
                 subTitle={subTitle}
                 linkText={linkText}
                 mainImg={mainImg}
-                text={text}
             />
             <BottomCampaignWrapper
                 cards={cards}

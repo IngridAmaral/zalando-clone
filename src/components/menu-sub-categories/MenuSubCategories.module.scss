@@ -1,7 +1,7 @@
 @import "../../styles/flex-box";
 @import "../../styles/colors";
 
-.category {
+.subCategories {
   background: white;
   font-size: 0.9rem;
   padding: 1rem 1rem 0 1rem;
@@ -11,7 +11,7 @@
   box-sizing: border-box;
   height: fit-content;
 
-  .title {
+  .name {
     font-weight: bold;
     text-transform: uppercase;
   }
