@@ -6,18 +6,14 @@ import { campaignData } from '../../data/campaign-data';
 import Go from '../../assets/svgs/GoBack';
 
 
-const { brandName, background, fontColor, subTitle, linkText, mainImg } = campaignData[0];
 
 const defaultProps = {
-  brandName: brandName,
-  background: background,
-  fontColor: fontColor,
-  subTitle: subTitle,
-  linkText: linkText,
-  mainImg: mainImg,
+  brand: campaignData[0]
 }
 
-const style = { background: `${defaultProps.background}`, color: `${defaultProps.fontColor}` }
+const { brandName, background, fontColor, subTitle, linkText, mainImg } = defaultProps.brand;
+
+const style = { background: `${background}`, color: `${fontColor}` }
 
 describe('<BannerCampaign />', () => {
   it('renders without crashing', () => {

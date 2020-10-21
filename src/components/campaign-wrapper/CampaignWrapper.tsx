@@ -14,7 +14,7 @@ export type TCard = {
     extraInformation?: string,
 }
 
-type TBrand = {
+export type TBrand = {
     brandName: string,
     background: string,
     fontColor: string,
@@ -30,36 +30,16 @@ type CampaignWrapperProps = {
     brand: TBrand
 }
 
-const CampaignWrapper = ({ brand }: CampaignWrapperProps) => {
-    const {
-        brandName,
-        background,
-        fontColor,
-        subTitle,
-        linkText,
-        mainImg,
-        cards,
-        cardsBackground
-    } = brand;
+const CampaignWrapper = ({ brand }: CampaignWrapperProps) => (
+    <div className={styles.campaignWrapper}>
+        <BannerCampaign
+            brand={brand}
+        />
+        <BottomCampaignWrapper
+            brand={brand}
+        />
+    </div>
+);
 
-    return (
-        <div className={styles.campaignWrapper}>
-            <BannerCampaign
-                brandName={brandName}
-                background={background}
-                fontColor={fontColor}
-                subTitle={subTitle}
-                linkText={linkText}
-                mainImg={mainImg}
-            />
-            <BottomCampaignWrapper
-                cards={cards}
-                brandName={brandName}
-                cardsBackground={cardsBackground}
-                fontColor={fontColor}
-            />
-        </div>
-    )
-}
 
 export default CampaignWrapper;

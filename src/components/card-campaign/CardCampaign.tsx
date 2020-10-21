@@ -16,18 +16,6 @@ type TRenderPrice = {
     hasDifferentPrices?: boolean,
 }
 
-const renderPrice = ({price, hasDifferentPrices = false}: TRenderPrice) => (
-    <span className={styles.priceTag}>
-        { hasDifferentPrices ? `From ${addDecimal(price)} €` : `${addDecimal(price)} €`}
-    </span>
-)
-
-const renderExtraInformation = (information: string) => (
-    <span className={styles.extraInformation}>
-        {information}
-    </span>
-)
-
 const renderTextContent = (card: TCard, brandName: string) => (
     <div className={styles.productInfos}>
         <div>
@@ -37,6 +25,18 @@ const renderTextContent = (card: TCard, brandName: string) => (
         {renderPrice(card)}
         {card.extraInformation && renderExtraInformation(card.extraInformation)}
     </div>
+)
+
+const renderPrice = ({ price, hasDifferentPrices = false }: TRenderPrice) => (
+    <span className={styles.priceTag}>
+        { hasDifferentPrices ? `From ${addDecimal(price)} €` : `${addDecimal(price)} €`}
+    </span>
+)
+
+const renderExtraInformation = (information: string) => (
+    <span className={styles.extraInformation}>
+        {information}
+    </span>
 )
 
 const CardCampaign = ({ card, brandName }: CardCampaignProps) => (
@@ -55,12 +55,12 @@ const CardCampaign = ({ card, brandName }: CardCampaignProps) => (
                     const { flagText, background, color } = FLAGS[flagKey];
 
                     return (card[flagKey] &&
-                    <FlagCampaign
-                        key={flagKey}
-                        flagText={flagText}
-                        background={background}
-                        fontColor={color}
-                    />)
+                        <FlagCampaign
+                            key={flagKey}
+                            flagText={flagText}
+                            background={background}
+                            fontColor={color}
+                        />)
                 })}
             </div>
         </div>
