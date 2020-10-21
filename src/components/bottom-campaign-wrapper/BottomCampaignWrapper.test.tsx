@@ -6,14 +6,12 @@ import FollowBrandCampaign from '../follow-brand-campaign/FollowBrandCampaign';
 import styles from './BottomCampaignWrapper.module.scss';
 import { campaignData } from '../../data/campaign-data';
 
-const { cards, brandName, fontColor, cardsBackground } = campaignData[0];
 
 const defaultProps = {
-  cards: cards,
-  brandName: brandName,
-  fontColor: fontColor,
-  cardsBackground: cardsBackground
+  brand: campaignData[0],
 }
+
+const { cards, brandName, fontColor, cardsBackground } = defaultProps.brand;
 
 describe('<BottomCampaignWrapper />', () => {
   it('renders without crashing', () => {
@@ -22,7 +20,7 @@ describe('<BottomCampaignWrapper />', () => {
 
   it('renders the correct style', () => {
     const wrapper = shallow(<BottomCampaignWrapper {...defaultProps} />);
-    const style = { background: `${defaultProps.cardsBackground}`, color: `${defaultProps.fontColor}` }
+    const style = { background: `${cardsBackground}`, color: `${fontColor}` }
 
     expect(wrapper.find(`.${styles.bottomCampaignContainer}`).prop('style')).toEqual(style);
   });

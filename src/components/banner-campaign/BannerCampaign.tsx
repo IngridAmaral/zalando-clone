@@ -1,17 +1,16 @@
 import React from 'react';
 import Go from '../../assets/svgs/GoBack';
+import { TBrand } from '../campaign-wrapper/CampaignWrapper';
 import styles from './BannerCampaign.module.scss';
 
 type BannerCampaignProps = {
-    brandName: string,
-    background: string,
-    fontColor: string,
-    subTitle: string,
-    linkText: string,
-    mainImg: string,
+    brand: TBrand
 }
 
-const BannerCampaign = ({ brandName, background, fontColor, subTitle, linkText, mainImg }: BannerCampaignProps) => (
+const BannerCampaign = ({ brand }: BannerCampaignProps) => {
+    const { brandName, background, fontColor, subTitle, linkText, mainImg } = brand;
+
+return (
     <div
         className={styles.bannerCampaignContainer}
         style={{
@@ -34,6 +33,6 @@ const BannerCampaign = ({ brandName, background, fontColor, subTitle, linkText, 
             <img src={mainImg} alt={brandName} className={styles.mainImage} />
         </div>
     </div>
-);
+)};
 
 export default BannerCampaign;
