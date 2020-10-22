@@ -10,8 +10,8 @@ import { TCategories, TSubSubCategory } from '../header/Header';
 export const SCROLL_THRESHOLD = 50;
 
 export const moreOptions: Array<TCategories[]> = [
-  [{ name: 'Help' , tracking_code: 'help', children: []}, { name: 'Newsletter', tracking_code: 'newsletter', children: []}],
-  [{ name: 'Dutsch', tracking_code: 'dutsh', children: [] }, { name: 'English', tracking_code: 'english', children: []}],
+  [{ name: 'Help', tracking_code: 'help', children: [] }, { name: 'Newsletter', tracking_code: 'newsletter', children: [] }],
+  [{ name: 'Dutsch', tracking_code: 'dutsh', children: [] }, { name: 'English', tracking_code: 'english', children: [] }],
 ];
 
 type MenuProps = {
@@ -33,21 +33,7 @@ class Menu extends React.Component<MenuProps, MenuState> {
     categoryName: '',
   };
 
-  backToOptions = () => {
-    this.setState({
-      categoryName: '',
-    });
-  };
 
-  handleSelectCategory = (option: TSubSubCategory) => {
-    const { categories } = this.props;
-    const { name } = option;
-    if (categories.some((category) => category.name === name)) {
-      this.setState({
-        categoryName: name,
-      });
-    }
-  };
 
   handleScroll = (e: React.UIEvent<HTMLElement>): void => {
     const scrolled = e.currentTarget.scrollTop;
@@ -111,14 +97,11 @@ class Menu extends React.Component<MenuProps, MenuState> {
     );
   }
 
-  renderMoreOptions = () => {
-    return moreOptions.map((optionsList) => (
-      <MenuCategories
-        key={`${optionsList[0].name}moreopt`}
-        categories={optionsList}
-      />
-    ))
-  }
+  backToOptions = () => {
+    this.setState({
+      categoryName: '',
+    });
+  };
 
   renderList = () => {
     const { categories } = this.props;
@@ -145,25 +128,25 @@ class Menu extends React.Component<MenuProps, MenuState> {
         <div
           id="categories"
           className={`
-            ${styles.categories} 
+          ${styles.categories} 
+          ${categoryName
+              ? styles.show : styles.hide}
             ${categoryName
-       ? styles.show : styles.hide}
-            ${categoryName
-       && shrinkMenuHeader ? styles.shrink : ''}
-          `}
+              && shrinkMenuHeader ? styles.shrink : ''}
+              `}
         >
           {categoryName
-   && (
-            <div className={styles.categoriesWrapper}>
-              {currentCategory && currentCategory.children.map((subCategory) => (
-                <MenuSubCategories
-                  key={subCategory.name}
-                  subCategoryName={subCategory.name}
-                  subCategories={subCategory.children}
-                />
-              ))}
-            </div>
-          )}
+            && (
+              <div className={styles.categoriesWrapper}>
+                {currentCategory && currentCategory.children.map((subCategory) => (
+                  <MenuSubCategories
+                    key={subCategory.name}
+                    subCategoryName={subCategory.name}
+                    subCategories={subCategory.children}
+                  />
+                ))}
+              </div>
+            )}
           <div className={styles.menuFooter}>
             <ZalandoIcon />
           </div>
@@ -172,6 +155,25 @@ class Menu extends React.Component<MenuProps, MenuState> {
     );
   };
 
+  handleSelectCategory = (option: TSubSubCategory) => {
+    const { categories } = this.props;
+    const { name } = option;
+    if (categories.some((category) => category.name === name)) {
+      this.setState({
+        categoryName: name,
+      });
+    }
+  };
+
+  renderMoreOptions = () => {
+    return moreOptions.map((optionsList) => (
+      <MenuCategories
+        key={`${optionsList[0].name}moreopt`}
+        categories={optionsList}
+      />
+    ))
+  }
+
   render() {
     const { onClose } = this.props;
     const { shrinkMenuHeader, categoryName } = this.state;
@@ -179,7 +181,7 @@ class Menu extends React.Component<MenuProps, MenuState> {
     return (
       <div className={styles.menuContainer} onScroll={this.handleScroll}>
         <div className={`${styles.menuHeader} ${shrinkMenuHeader ? styles.shrink : ''}`}>
-          {!categoryName ? this.renderLateralMenuHeaderCategory() : this.renderLateralMenuHeaderSubCategory() }
+          {!categoryName ? this.renderLateralMenuHeaderCategory() : this.renderLateralMenuHeaderSubCategory()}
           <button
             className={styles.onCloseMenu}
             type="button"
