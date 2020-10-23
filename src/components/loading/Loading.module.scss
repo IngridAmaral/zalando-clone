@@ -1,5 +1,5 @@
-@import "../../styles/flex-box";
-@import "../../styles/colors";
+@import '../../styles/flex-box';
+@import '../../styles/colors';
 
 .loading {
   width: 100vw;
@@ -13,10 +13,10 @@
 
   .text {
     margin: 0;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     font-weight: 700;
     color: $secondary;
-    margin-right: .5rem;
+    margin-right: 0.5rem;
     color: $terciary;
   }
 }

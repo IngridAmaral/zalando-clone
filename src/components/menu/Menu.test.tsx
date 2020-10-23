@@ -7,12 +7,11 @@ import { GENDERS } from '../header/Header';
 import NAVCATEGORIES from '../../data/nav-categories';
 import styles from './Menu.module.scss';
 
-
 const activeGenderCategories = NAVCATEGORIES.women.children;
 
 const defaultProps = {
-  onClose: () => { },
-  onChangeGender: () => { },
+  onClose: () => {},
+  onChangeGender: () => {},
   activeGender: 'women',
   genders: GENDERS,
   isMenuOpen: true,
@@ -74,7 +73,7 @@ describe('<Menu />', () => {
       } else {
         expect(menuList.prop('categories')).toEqual(moreOptions[idx - 1]);
       }
-    })
+    });
   });
 
   describe('when `openCategories` is true', () => {
@@ -92,14 +91,13 @@ describe('<Menu />', () => {
     it('should render the correct number of subcategories', () => {
       const wrapper = shallow(<Menu {...defaultProps} />);
 
-
       wrapper.find(MenuCategories).forEach((menuList) => {
         menuList.prop('handleCategory')?.(defaultProps.categories[0]);
         wrapper.update();
 
         defaultProps.categories.forEach((category) => {
           if (category.name === wrapper.props().categoryName) {
-            expect(menuList).toHaveLength(category.children.length)
+            expect(menuList).toHaveLength(category.children.length);
           }
         });
       });
@@ -109,28 +107,40 @@ describe('<Menu />', () => {
   it('renders provided genders', () => {
     const wrapper = shallow(<Menu {...defaultProps} />);
 
-    wrapper.find(`.${styles.selectGender}`).children().forEach((gender,idx) => {
-      expect(gender.text()).toEqual(defaultProps.genders[idx]);
-    })
+    wrapper
+      .find(`.${styles.selectGender}`)
+      .children()
+      .forEach((gender, idx) => {
+        expect(gender.text()).toEqual(defaultProps.genders[idx]);
+      });
   });
 
   it('triggers `onChangeGender` on click and checks if it renders the corret gender', () => {
     defaultProps.genders.forEach((gender, idx) => {
       const click = jest.fn();
-      const wrapper = shallow(<Menu {...defaultProps} onChangeGender={click} />);
+      const wrapper = shallow(
+        <Menu {...defaultProps} onChangeGender={click} />
+      );
       wrapper.find(`.${styles.selectGender}`).childAt(idx).simulate('click');
 
       expect(click).toHaveBeenCalledTimes(1);
-      expect(wrapper.find(`.${styles.selectGender}`).childAt(idx).text()).toEqual(gender);
-    })
+      expect(
+        wrapper.find(`.${styles.selectGender}`).childAt(idx).text()
+      ).toEqual(gender);
+    });
   });
 
   it('renders more options with the correct list passed as props', () => {
     const wrapper = shallow(<Menu {...defaultProps} />);
 
     moreOptions.forEach((optionsList, idx) => {
-      expect(wrapper.find(MenuCategories).at(idx + 1).props().categories).toStrictEqual(optionsList);
-    })
+      expect(
+        wrapper
+          .find(MenuCategories)
+          .at(idx + 1)
+          .props().categories
+      ).toStrictEqual(optionsList);
+    });
   });
 
   it('should close sub categories and reset the name when click the go back icon', () => {
@@ -140,6 +150,6 @@ describe('<Menu />', () => {
 
     wrapper.find(`.${styles.goBack}`).simulate('click');
 
-    expect(wrapper.find(`.${styles.categoriesWrapper}`).exists()).toBe(false)
+    expect(wrapper.find(`.${styles.categoriesWrapper}`).exists()).toBe(false);
   });
 });

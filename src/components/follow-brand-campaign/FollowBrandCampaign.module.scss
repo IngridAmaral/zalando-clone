@@ -1,6 +1,6 @@
-@import "../../styles/flex-box";
-@import "../../styles/colors";
-@import "../../styles/campaign";
+@import '../../styles/flex-box';
+@import '../../styles/colors';
+@import '../../styles/campaign';
 
 .followBrandContainer {
   @include start-x-row;
@@ -8,11 +8,11 @@
   .followBrand {
     margin: 1rem 1rem 1rem 0;
     @include start-x-row;
-    padding: .5rem;
+    padding: 0.5rem;
     padding-right: 1rem;
-    
+
     box-sizing: border-box;
-    svg { 
+    svg {
       width: 1.5rem;
       transform: rotate(45deg);
     }

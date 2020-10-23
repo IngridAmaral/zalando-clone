@@ -18,7 +18,6 @@ describe('<NavItem />', () => {
     expect(wrapper.find(Language).exists()).toBe(true);
   });
 
-
   it('should render the correct name', () => {
     const wrapper = shallow(<NavItem {...defaultProps} />);
 
