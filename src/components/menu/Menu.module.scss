@@ -1,5 +1,5 @@
-@import "../../styles/flex-box";
-@import "../../styles/colors";
+@import '../../styles/flex-box';
+@import '../../styles/colors';
 
 .menuContainer {
   width: 100vw;
@@ -22,7 +22,7 @@
         rgba(20, 20, 20, 0.3),
         rgba(20, 20, 20, 0.3)
       ),
-      url("https://mosaic02.ztat.net/nvg/z-header-fragment/lipstick/en_DE/women/women-s2.jpg");
+      url('https://mosaic02.ztat.net/nvg/z-header-fragment/lipstick/en_DE/women/women-s2.jpg');
     background-size: cover;
     position: fixed;
     width: 100vw;

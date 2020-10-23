@@ -10,7 +10,7 @@ const subList = NAVCATEGORIES.women.children[0].children;
 
 const defaultProps = {
   subCategoryName: 'outfit',
-  subCategories: subList
+  subCategories: subList,
 };
 
 describe('<MenuSubCategories />', () => {
@@ -21,18 +21,19 @@ describe('<MenuSubCategories />', () => {
   it('renders the correct name', () => {
     const wrapper = shallow(<MenuSubCategories {...defaultProps} />);
 
-    expect(wrapper.find(`.${styles.name}`).text()).toEqual(defaultProps.subCategoryName);
+    expect(wrapper.find(`.${styles.name}`).text()).toEqual(
+      defaultProps.subCategoryName
+    );
   });
 
   it('renders the correctly the subCategory', () => {
     const wrapper = shallow(<MenuSubCategories {...defaultProps} />);
-    const excludeDash = filterEmptyCategrories(defaultProps.subCategories)
-    
+    const excludeDash = filterEmptyCategrories(defaultProps.subCategories);
+
     expect(wrapper.find('li')).toHaveLength(excludeDash.length);
-    
+
     excludeDash.forEach((subCategory: TSubSubCategory, idx: number) => {
       expect(wrapper.find('li').at(idx).text()).toEqual(subCategory.name);
     });
-
   });
 });

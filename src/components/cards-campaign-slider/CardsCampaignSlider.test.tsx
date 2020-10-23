@@ -6,8 +6,8 @@ import { campaignData } from '../../data/campaign-data';
 
 const defaultProps = {
   cards: campaignData[0].cards,
-  brandName: campaignData[0].brandName
-}
+  brandName: campaignData[0].brandName,
+};
 
 describe('<CardsCampaignSlider />', () => {
   it('renders without crashing', () => {
@@ -25,7 +25,9 @@ describe('<CardsCampaignSlider />', () => {
 
     defaultProps.cards.forEach((card, idx) => {
       expect(wrapper.find(CardCampaign).at(idx).prop('card')).toEqual(card);
-      expect(wrapper.find(CardCampaign).at(idx).prop('brandName')).toEqual(defaultProps.brandName);
+      expect(wrapper.find(CardCampaign).at(idx).prop('brandName')).toEqual(
+        defaultProps.brandName
+      );
     });
   });
 });

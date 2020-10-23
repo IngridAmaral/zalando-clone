@@ -4,12 +4,13 @@ import CampaignWrapper from '../components/campaign-wrapper/campaignWrapper';
 import { campaignData } from '../data/campaign-data';
 import './Home.scss';
 
-
 const Home = () => (
   <div>
     <Header />
     <div>
-      {campaignData.map((brand) => <CampaignWrapper key={brand.brandName} brand={brand} />)}
+      {campaignData.map((brand) => (
+        <CampaignWrapper key={brand.brandName} brand={brand} />
+      ))}
     </div>
   </div>
 );

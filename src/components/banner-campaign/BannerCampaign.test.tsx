@@ -5,15 +5,20 @@ import styles from './BannerCampaign.module.scss';
 import { campaignData } from '../../data/campaign-data';
 import Go from '../../assets/svgs/GoBack';
 
-
-
 const defaultProps = {
-  brand: campaignData[0]
-}
+  brand: campaignData[0],
+};
 
-const { brandName, background, fontColor, subTitle, linkText, mainImg } = defaultProps.brand;
+const {
+  brandName,
+  background,
+  fontColor,
+  subTitle,
+  linkText,
+  mainImg,
+} = defaultProps.brand;
 
-const style = { background: `${background}`, color: `${fontColor}` }
+const style = { background: `${background}`, color: `${fontColor}` };
 
 describe('<BannerCampaign />', () => {
   it('renders without crashing', () => {
@@ -23,7 +28,9 @@ describe('<BannerCampaign />', () => {
   it('renders with correct styles', () => {
     const wrapper = shallow(<BannerCampaign {...defaultProps} />);
 
-    expect(wrapper.find(`.${styles.bannerCampaignContainer}`).prop('style')).toEqual(style);
+    expect(
+      wrapper.find(`.${styles.bannerCampaignContainer}`).prop('style')
+    ).toEqual(style);
   });
 
   it('should render the correct brand title', () => {
@@ -41,7 +48,9 @@ describe('<BannerCampaign />', () => {
   it('should render the correct text link', () => {
     const wrapper = shallow(<BannerCampaign {...defaultProps} />);
 
-    expect(wrapper.find(`.${styles.link}`).find('span').text()).toEqual(linkText);
+    expect(wrapper.find(`.${styles.link}`).find('span').text()).toEqual(
+      linkText
+    );
   });
 
   it('should render the correct image', () => {

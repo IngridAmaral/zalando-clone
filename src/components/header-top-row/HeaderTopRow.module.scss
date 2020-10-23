@@ -1,5 +1,5 @@
-@import "../../styles/flex-box";
-@import "../../styles/colors";
+@import '../../styles/flex-box';
+@import '../../styles/colors';
 
 .topRow {
   @include space-between-center-row;
@@ -55,12 +55,12 @@
         button.active {
           outline: none;
           font-weight: 600;
-          border-bottom:   0.1rem $secondary solid;
+          border-bottom: 0.1rem $secondary solid;
         }
       }
 
       .gender:not(:first-child)::before {
-        content: "|";
+        content: '|';
         padding: 0 1rem;
       }
     }

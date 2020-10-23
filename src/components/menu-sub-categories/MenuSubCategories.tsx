@@ -8,13 +8,16 @@ type MenuSubCategoriesProps = {
   subCategoryName: string;
 };
 
-const MenuSubCategories = ({ subCategoryName, subCategories }: MenuSubCategoriesProps) => (
+const MenuSubCategories = ({
+  subCategoryName,
+  subCategories,
+}: MenuSubCategoriesProps) => (
   <div className={styles.subCategories}>
-    <span className={styles.name}>
-      {subCategoryName}
-    </span>
+    <span className={styles.name}>{subCategoryName}</span>
     <ul>
-      {filterEmptyCategrories(subCategories).map((item) => <li key={item.name}>{item.name}</li>)}
+      {filterEmptyCategrories(subCategories).map((item) => (
+        <li key={item.name}>{item.name}</li>
+      ))}
     </ul>
   </div>
 );

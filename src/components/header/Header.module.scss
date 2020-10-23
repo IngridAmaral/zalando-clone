@@ -1,5 +1,5 @@
-@import "../../styles/flex-box";
-@import "../../styles/colors";
+@import '../../styles/flex-box';
+@import '../../styles/colors';
 
 .headerContainer {
   padding: 0.8rem 1.25rem;
@@ -72,7 +72,7 @@
     }
 
     .lateralMenuWrapper::after {
-      content: "";
+      content: '';
       display: none;
       width: 100vw;
       height: 100vh;
@@ -80,7 +80,7 @@
     }
 
     .lateralMenuWrapper.fadeIn::after {
-      content: "";
+      content: '';
       display: flex;
     }
 

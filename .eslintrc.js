@@ -1,15 +1,14 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: ['react', '@typescript-eslint', 'jest'],
+  plugins: ['react', '@typescript-eslint', 'prettier'],
   extends: [
-    'airbnb-typescript',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:jest/recommended',
-    'prettier',
-    'prettier/react',
-    'prettier/@typescript-eslint',
+    'eslint:recommended',
     'plugin:prettier/recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier/@typescript-eslint',
   ],
   parserOptions: {
     ecmaVersion: 6,
@@ -20,7 +19,7 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
-    jest: true,
+    node: true,
   },
   rules: {
     'linebreak-style': 'off',
@@ -37,7 +36,10 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['./setupTests.js'],
+      files: ['./setupTests.js', '**/*.test.*'],
+      env: {
+        jest: true,
+      },
       rules: {
         'import/no-extraneous-dependencies': [
           'error',
@@ -46,4 +48,9 @@ module.exports = {
       },
     },
   ],
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
 };

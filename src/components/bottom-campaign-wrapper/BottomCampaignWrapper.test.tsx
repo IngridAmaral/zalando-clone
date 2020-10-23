@@ -6,10 +6,9 @@ import FollowBrandCampaign from '../follow-brand-campaign/FollowBrandCampaign';
 import styles from './BottomCampaignWrapper.module.scss';
 import { campaignData } from '../../data/campaign-data';
 
-
 const defaultProps = {
   brand: campaignData[0],
-}
+};
 
 const { cards, brandName, fontColor, cardsBackground } = defaultProps.brand;
 
@@ -20,9 +19,11 @@ describe('<BottomCampaignWrapper />', () => {
 
   it('renders the correct style', () => {
     const wrapper = shallow(<BottomCampaignWrapper {...defaultProps} />);
-    const style = { background: `${cardsBackground}`, color: `${fontColor}` }
+    const style = { background: `${cardsBackground}`, color: `${fontColor}` };
 
-    expect(wrapper.find(`.${styles.bottomCampaignContainer}`).prop('style')).toEqual(style);
+    expect(
+      wrapper.find(`.${styles.bottomCampaignContainer}`).prop('style')
+    ).toEqual(style);
   });
 
   it('renders the card campaign slider', () => {
@@ -35,7 +36,9 @@ describe('<BottomCampaignWrapper />', () => {
     const wrapper = shallow(<BottomCampaignWrapper {...defaultProps} />);
 
     expect(wrapper.find(CardsCampaignSlider).prop('cards')).toEqual(cards);
-    expect(wrapper.find(CardsCampaignSlider).prop('brandName')).toEqual(brandName);
+    expect(wrapper.find(CardsCampaignSlider).prop('brandName')).toEqual(
+      brandName
+    );
   });
 
   it('renders the follow brand', () => {
@@ -47,7 +50,11 @@ describe('<BottomCampaignWrapper />', () => {
   it('renders the correct props in follow brand', () => {
     const wrapper = shallow(<BottomCampaignWrapper {...defaultProps} />);
 
-    expect(wrapper.find(FollowBrandCampaign).prop('fontColor')).toEqual(fontColor);
-    expect(wrapper.find(FollowBrandCampaign).prop('brandName')).toEqual(brandName);
+    expect(wrapper.find(FollowBrandCampaign).prop('fontColor')).toEqual(
+      fontColor
+    );
+    expect(wrapper.find(FollowBrandCampaign).prop('brandName')).toEqual(
+      brandName
+    );
   });
 });

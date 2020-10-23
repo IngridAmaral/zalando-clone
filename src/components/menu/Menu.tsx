@@ -10,12 +10,18 @@ import { TCategories, TSubSubCategory } from '../header/Header';
 export const SCROLL_THRESHOLD = 50;
 
 export const moreOptions: Array<TCategories[]> = [
-  [{ name: 'Help', tracking_code: 'help', children: [] }, { name: 'Newsletter', tracking_code: 'newsletter', children: [] }],
-  [{ name: 'Dutsch', tracking_code: 'dutsh', children: [] }, { name: 'English', tracking_code: 'english', children: [] }],
+  [
+    { name: 'Help', tracking_code: 'help', children: [] },
+    { name: 'Newsletter', tracking_code: 'newsletter', children: [] },
+  ],
+  [
+    { name: 'Dutsch', tracking_code: 'dutsh', children: [] },
+    { name: 'English', tracking_code: 'english', children: [] },
+  ],
 ];
 
 type MenuProps = {
-  onClose: () => void,
+  onClose: () => void;
   onChangeGender: (gender: string) => void;
   activeGender: string;
   genders: string[];
@@ -33,8 +39,6 @@ class Menu extends React.Component<MenuProps, MenuState> {
     categoryName: '',
   };
 
-
-
   handleScroll = (e: React.UIEvent<HTMLElement>): void => {
     const scrolled = e.currentTarget.scrollTop;
     const { shrinkMenuHeader } = this.state;
@@ -51,11 +55,7 @@ class Menu extends React.Component<MenuProps, MenuState> {
   };
 
   renderLateralMenuHeaderCategory = () => {
-    const {
-      onChangeGender,
-      activeGender,
-      genders,
-    } = this.props;
+    const { onChangeGender, activeGender, genders } = this.props;
 
     return (
       <div className={styles.gender}>
@@ -76,26 +76,26 @@ class Menu extends React.Component<MenuProps, MenuState> {
         </div>
       </div>
     );
-  }
+  };
 
   renderLateralMenuHeaderSubCategory = () => {
-    const {
-      categoryName,
-    } = this.state;
+    const { categoryName } = this.state;
 
     return (
       <div className={styles.headerCategory}>
-        <button type="button" className={styles.goBack} onClick={this.backToOptions}>
+        <button
+          type="button"
+          className={styles.goBack}
+          onClick={this.backToOptions}
+        >
           <Goback />
         </button>
         <div className={styles.title}>
-          <h2>
-            {categoryName}
-          </h2>
+          <h2>{categoryName}</h2>
         </div>
       </div>
     );
-  }
+  };
 
   backToOptions = () => {
     this.setState({
@@ -107,14 +107,13 @@ class Menu extends React.Component<MenuProps, MenuState> {
     const { categories } = this.props;
     const { categoryName, shrinkMenuHeader } = this.state;
 
-    const currentCategory = categories.find(category => category.name === categoryName);
+    const currentCategory = categories.find(
+      (category) => category.name === categoryName
+    );
 
     return (
       <div className={`${styles.menuList}`}>
-        <div
-          id="categories-link"
-          className={styles.options}
-        >
+        <div id="categories-link" className={styles.options}>
           <MenuCategories
             hasCaret
             categories={categories}
@@ -129,24 +128,22 @@ class Menu extends React.Component<MenuProps, MenuState> {
           id="categories"
           className={`
           ${styles.categories} 
-          ${categoryName
-              ? styles.show : styles.hide}
-            ${categoryName
-              && shrinkMenuHeader ? styles.shrink : ''}
+          ${categoryName ? styles.show : styles.hide}
+            ${categoryName && shrinkMenuHeader ? styles.shrink : ''}
               `}
         >
-          {categoryName
-            && (
-              <div className={styles.categoriesWrapper}>
-                {currentCategory && currentCategory.children.map((subCategory) => (
+          {categoryName && (
+            <div className={styles.categoriesWrapper}>
+              {currentCategory &&
+                currentCategory.children.map((subCategory) => (
                   <MenuSubCategories
                     key={subCategory.name}
                     subCategoryName={subCategory.name}
                     subCategories={subCategory.children}
                   />
                 ))}
-              </div>
-            )}
+            </div>
+          )}
           <div className={styles.menuFooter}>
             <ZalandoIcon />
           </div>
@@ -171,8 +168,8 @@ class Menu extends React.Component<MenuProps, MenuState> {
         key={`${optionsList[0].name}moreopt`}
         categories={optionsList}
       />
-    ))
-  }
+    ));
+  };
 
   render() {
     const { onClose } = this.props;
@@ -180,8 +177,14 @@ class Menu extends React.Component<MenuProps, MenuState> {
 
     return (
       <div className={styles.menuContainer} onScroll={this.handleScroll}>
-        <div className={`${styles.menuHeader} ${shrinkMenuHeader ? styles.shrink : ''}`}>
-          {!categoryName ? this.renderLateralMenuHeaderCategory() : this.renderLateralMenuHeaderSubCategory()}
+        <div
+          className={`${styles.menuHeader} ${
+            shrinkMenuHeader ? styles.shrink : ''
+          }`}
+        >
+          {!categoryName
+            ? this.renderLateralMenuHeaderCategory()
+            : this.renderLateralMenuHeaderSubCategory()}
           <button
             className={styles.onCloseMenu}
             type="button"

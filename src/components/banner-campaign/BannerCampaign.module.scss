@@ -1,106 +1,104 @@
-@import "../../styles/flex-box";
-@import "../../styles/colors";
-@import "../../styles/campaign";
+@import '../../styles/flex-box';
+@import '../../styles/colors';
+@import '../../styles/campaign';
 
 .bannerCampaignContainer {
-    width: 100%;
-    overflow: hidden;
-    padding: 1.2rem 0 0 1.2rem;
-    box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+  padding: 1.2rem 0 0 1.2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .textContent {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 100%;
+    padding-bottom: 1.5rem;
+    box-sizing: border-box;
 
-    .textContent {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-        padding-bottom: 1.5rem;
-        box-sizing: border-box;
-        
-        .title {
-            .brand {
-                @include title;
-            }
-            
-            .subTitle {
-                @include subtitle;
-            }
-            
-            h2 {
-                margin: unset;
-            }
-        }
-        
-        .link {
-            @include start-x-row;
-            margin-top: 1rem;
-            
-            svg {
-                margin-left: 1rem;
-                width: 1.5rem;
-                transform: rotate(180deg);
-            }
-        }
+    .title {
+      .brand {
+        @include title;
+      }
+
+      .subTitle {
+        @include subtitle;
+      }
+
+      h2 {
+        margin: unset;
+      }
     }
-    
-    .imageWrapper {
-        width: 100%;
-        overflow: hidden;
-        box-sizing: border-box;
-        
-        .mainImage {
-            width: 100%;
-            height: auto;
-        }
+
+    .link {
+      @include start-x-row;
+      margin-top: 1rem;
+
+      svg {
+        margin-left: 1rem;
+        width: 1.5rem;
+        transform: rotate(180deg);
+      }
     }
+  }
+
+  .imageWrapper {
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    .mainImage {
+      width: 100%;
+      height: auto;
+    }
+  }
 }
 
 // IPAD
 @media (min-width: 768px) {
-    .bannerCampaignContainer {
-        flex-direction: row;
-        padding: 1.5rem 1.5rem 0 1.5rem;
-        justify-content: space-between;
+  .bannerCampaignContainer {
+    flex-direction: row;
+    padding: 1.5rem 1.5rem 0 1.5rem;
+    justify-content: space-between;
 
-        .textContent {
-            max-width: 45%;
-            padding: 0 .5rem 1.5rem .5rem;
+    .textContent {
+      max-width: 45%;
+      padding: 0 0.5rem 1.5rem 0.5rem;
 
-            .title {
-                margin-bottom: 0;
-            }
-         
-            .link {
-                margin-bottom: 0;
-            }
-        }
+      .title {
+        margin-bottom: 0;
+      }
 
-        .imageWrapper {
-            width: 45%;
-            max-height: 170px;
-            padding: 0 .5rem;
-        }
+      .link {
+        margin-bottom: 0;
+      }
     }
+
+    .imageWrapper {
+      width: 45%;
+      max-height: 170px;
+      padding: 0 0.5rem;
+    }
+  }
 }
 
 // NOTEBOOK
 @media (min-width: 1024px) {
-    .bannerCampaignContainer {
-        padding-left: 2rem;
-        .imageWrapper {
-            width: 55%;
-            max-height: 329px;
-        }
+  .bannerCampaignContainer {
+    padding-left: 2rem;
+    .imageWrapper {
+      width: 55%;
+      max-height: 329px;
     }
+  }
 }
 
 // NOTEBOOK
 @media (min-width: 1400px) {
-    .bannerCampaignContainer {
-        padding-left: 7rem;
-    }
+  .bannerCampaignContainer {
+    padding-left: 7rem;
+  }
 }
-
-
