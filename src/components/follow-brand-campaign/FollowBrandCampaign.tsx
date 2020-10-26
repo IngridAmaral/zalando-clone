@@ -7,10 +7,10 @@ type FollowBrandCampaignProps = {
   fontColor: string;
 };
 
-const FollowBrandCampaign = ({
+const FollowBrandCampaign: React.FC<FollowBrandCampaignProps> = ({
   brandName,
   fontColor,
-}: FollowBrandCampaignProps) => (
+}) => (
   <div className={styles.followBrandContainer}>
     <button
       className={styles.followBrand}

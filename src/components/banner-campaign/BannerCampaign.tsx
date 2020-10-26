@@ -1,5 +1,5 @@
 import React from 'react';
-import Go from '../../assets/svgs/GoBack';
+import Go from '../../assets/svgs/Goback';
 import { TBrand } from '../campaign-wrapper/CampaignWrapper';
 import styles from './BannerCampaign.module.scss';
 
@@ -7,7 +7,7 @@ type BannerCampaignProps = {
   brand: TBrand;
 };
 
-const BannerCampaign = ({ brand }: BannerCampaignProps) => {
+const BannerCampaign: React.FC<BannerCampaignProps> = ({ brand }) => {
   const {
     brandName,
     background,

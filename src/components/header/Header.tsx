@@ -32,19 +32,21 @@ export type TSubSubCategory = {
   red?: boolean;
   tracking_code: string;
   isTitle?: boolean;
+  image_link?: unknown;
 };
 
 export type TSubCategory = {
   name: string;
-  url_key?: string;
+  url_key: string;
   type?: string;
   red?: boolean;
   tracking_code: string;
   isTitle?: boolean;
+  image_link?: unknown;
   children: TSubSubCategory[];
 };
 
-export type TCategories = {
+export type TCategory = {
   name: string;
   url_key?: string;
   type?: string;
@@ -56,12 +58,12 @@ export type TCategories = {
 type HeaderState = {
   isMenuOpen: boolean;
   activeGender: string;
-  activeGenderCategoriesData: TCategories[];
-  activeCategoryData: { name: string; data: TCategories };
+  activeGenderCategoriesData: TCategory[];
+  activeCategoryData: { name: string; data: TCategory };
   shouldShowDropdown: boolean;
 };
 
-class Header extends React.Component<{}, HeaderState> {
+class Header extends React.Component<unknown, HeaderState> {
   state: HeaderState = {
     isMenuOpen: false,
     activeGender: GENDERS[0],
@@ -72,7 +74,6 @@ class Header extends React.Component<{}, HeaderState> {
         name: '',
         children: [],
         tracking_code: '',
-        image_link: {},
         url_key: '',
         type: '',
       },
@@ -80,14 +81,14 @@ class Header extends React.Component<{}, HeaderState> {
     shouldShowDropdown: false,
   };
 
-  componentDidMount() {
+  componentDidMount(): void {
     const { activeGender } = this.state;
     const activeData = navCategories[activeGender].children;
 
     this.setState({ activeGenderCategoriesData: activeData });
   }
 
-  handleOpenMenu = () => {
+  handleOpenMenu = (): void => {
     this.setState((prevState) => ({
       isMenuOpen: !prevState.isMenuOpen,
     }));
@@ -102,7 +103,7 @@ class Header extends React.Component<{}, HeaderState> {
     }
   };
 
-  handleGenderChange = (gender: string) => {
+  handleGenderChange = (gender: string): void => {
     const activeData = navCategories[gender].children;
 
     this.setState({
@@ -111,7 +112,7 @@ class Header extends React.Component<{}, HeaderState> {
     });
   };
 
-  updateActiveCategoryData = (category: TCategories) => {
+  updateActiveCategoryData = (category: TCategory): void => {
     const { activeCategoryData } = this.state;
     const { name } = category;
 
@@ -125,15 +126,15 @@ class Header extends React.Component<{}, HeaderState> {
     }
   };
 
-  showDropdown = () => {
+  showDropdown = (): void => {
     this.setState({ shouldShowDropdown: true });
   };
 
-  hideDropdown = () => {
+  hideDropdown = (): void => {
     this.setState({ shouldShowDropdown: false });
   };
 
-  renderLateralMenu = () => {
+  renderLateralMenu = (): JSX.Element => {
     const { isMenuOpen, activeGender, activeGenderCategoriesData } = this.state;
 
     return (
@@ -163,7 +164,7 @@ class Header extends React.Component<{}, HeaderState> {
     );
   };
 
-  renderDropDown = () => {
+  renderDropDown = (): JSX.Element => {
     const { activeCategoryData, shouldShowDropdown } = this.state;
 
     return (
@@ -205,7 +206,7 @@ class Header extends React.Component<{}, HeaderState> {
     );
   };
 
-  render() {
+  render(): JSX.Element {
     const { activeGender, activeGenderCategoriesData } = this.state;
 
     if (!activeGenderCategoriesData.length) {
