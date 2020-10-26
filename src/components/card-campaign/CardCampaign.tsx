@@ -39,7 +39,7 @@ const renderExtraInformation = (information: string) => (
   <span className={styles.extraInformation}>{information}</span>
 );
 
-const CardCampaign = ({ card, brandName }: CardCampaignProps) => (
+const CardCampaign: React.FC<CardCampaignProps> = ({ card, brandName }) => (
   <div className={styles.cardContainer}>
     <div className={styles.imageWrapper}>
       <img

@@ -8,10 +8,10 @@ type MenuSubCategoriesProps = {
   subCategoryName: string;
 };
 
-const MenuSubCategories = ({
+const MenuSubCategories: React.FC<MenuSubCategoriesProps> = ({
   subCategoryName,
   subCategories,
-}: MenuSubCategoriesProps) => (
+}) => (
   <div className={styles.subCategories}>
     <span className={styles.name}>{subCategoryName}</span>
     <ul>

@@ -7,11 +7,11 @@ type FlagCampaignProps = {
   fontColor: string;
 };
 
-const FlagCampaign = ({
+const FlagCampaign: React.FC<FlagCampaignProps> = ({
   flagText,
   background,
   fontColor,
-}: FlagCampaignProps) => (
+}) => (
   <span
     className={styles.flag}
     style={{ background: `${background}`, color: `${fontColor}` }}

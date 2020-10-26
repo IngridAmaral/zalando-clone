@@ -31,10 +31,10 @@ type CardsCampaignSliderProps = {
   brandName: string;
 };
 
-const CardsCampaignSlider = ({
+const CardsCampaignSlider: React.FC<CardsCampaignSliderProps> = ({
   cards,
   brandName,
-}: CardsCampaignSliderProps) => (
+}) => (
   <div className={styles.sliderContainer}>
     <Splide options={SLIDER_OPTIONS}>
       {cards.map((card) => (

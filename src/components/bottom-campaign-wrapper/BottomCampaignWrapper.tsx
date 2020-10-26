@@ -1,14 +1,16 @@
 import React from 'react';
 import CardsCampaignSlider from '../cards-campaign-slider/CardsCampaignSlider';
 import FollowBrandCampaign from '../follow-brand-campaign/FollowBrandCampaign';
-import { TBrand } from '../campaign-wrapper/campaignWrapper';
+import { TBrand } from '../campaign-wrapper/CampaignWrapper';
 import styles from './BottomCampaignWrapper.module.scss';
 
 type BottomCampaignWrapperProps = {
   brand: TBrand;
 };
 
-const BottomCampaignWrapper = ({ brand }: BottomCampaignWrapperProps) => {
+const BottomCampaignWrapper: React.FC<BottomCampaignWrapperProps> = ({
+  brand,
+}) => {
   const { brandName, fontColor, cards, cardsBackground } = brand;
 
   return (

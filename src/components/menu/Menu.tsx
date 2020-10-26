@@ -2,21 +2,45 @@ import React from 'react';
 import MenuCategories from '../menu-categories/MenuCategories';
 import MenuSubCategories from '../menu-sub-categories/MenuSubCategories';
 import Close from '../../assets/svgs/Close';
-import Goback from '../../assets/svgs/GoBack';
+import Goback from '../../assets/svgs/Goback';
 import ZalandoIcon from '../../assets/svgs/ZalandoIcon';
 import styles from './Menu.module.scss';
-import { TCategories, TSubSubCategory } from '../header/Header';
+import { TCategory, TSubSubCategory } from '../header/Header';
 
 export const SCROLL_THRESHOLD = 50;
 
-export const moreOptions: Array<TCategories[]> = [
+export const moreOptions: Array<TCategory[]> = [
   [
-    { name: 'Help', tracking_code: 'help', children: [] },
-    { name: 'Newsletter', tracking_code: 'newsletter', children: [] },
+    {
+      name: 'Help',
+      tracking_code: 'help',
+      children: [],
+      url_key: '',
+      type: '',
+    },
+    {
+      name: 'Newsletter',
+      tracking_code: 'newsletter',
+      children: [],
+      url_key: '',
+      type: '',
+    },
   ],
   [
-    { name: 'Dutsch', tracking_code: 'dutsh', children: [] },
-    { name: 'English', tracking_code: 'english', children: [] },
+    {
+      name: 'Dutsch',
+      tracking_code: 'dutsh',
+      children: [],
+      url_key: '',
+      type: '',
+    },
+    {
+      name: 'English',
+      tracking_code: 'english',
+      children: [],
+      url_key: '',
+      type: '',
+    },
   ],
 ];
 
@@ -25,7 +49,7 @@ type MenuProps = {
   onChangeGender: (gender: string) => void;
   activeGender: string;
   genders: string[];
-  categories: TCategories[];
+  categories: TCategory[];
 };
 
 type MenuState = {
@@ -54,7 +78,7 @@ class Menu extends React.Component<MenuProps, MenuState> {
     }
   };
 
-  renderLateralMenuHeaderCategory = () => {
+  renderLateralMenuHeaderCategory = (): JSX.Element => {
     const { onChangeGender, activeGender, genders } = this.props;
 
     return (
@@ -78,7 +102,7 @@ class Menu extends React.Component<MenuProps, MenuState> {
     );
   };
 
-  renderLateralMenuHeaderSubCategory = () => {
+  renderLateralMenuHeaderSubCategory = (): JSX.Element => {
     const { categoryName } = this.state;
 
     return (
@@ -97,13 +121,13 @@ class Menu extends React.Component<MenuProps, MenuState> {
     );
   };
 
-  backToOptions = () => {
+  backToOptions = (): void => {
     this.setState({
       categoryName: '',
     });
   };
 
-  renderList = () => {
+  renderList = (): JSX.Element => {
     const { categories } = this.props;
     const { categoryName, shrinkMenuHeader } = this.state;
 
@@ -152,9 +176,10 @@ class Menu extends React.Component<MenuProps, MenuState> {
     );
   };
 
-  handleSelectCategory = (option: TSubSubCategory) => {
+  handleSelectCategory = (option: TSubSubCategory | TCategory): void => {
     const { categories } = this.props;
     const { name } = option;
+
     if (categories.some((category) => category.name === name)) {
       this.setState({
         categoryName: name,
@@ -162,16 +187,15 @@ class Menu extends React.Component<MenuProps, MenuState> {
     }
   };
 
-  renderMoreOptions = () => {
-    return moreOptions.map((optionsList) => (
+  renderMoreOptions = (): JSX.Element[] =>
+    moreOptions.map((optionsList) => (
       <MenuCategories
         key={`${optionsList[0].name}moreopt`}
         categories={optionsList}
       />
     ));
-  };
 
-  render() {
+  render(): JSX.Element {
     const { onClose } = this.props;
     const { shrinkMenuHeader, categoryName } = this.state;
 

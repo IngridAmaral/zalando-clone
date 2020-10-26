@@ -11,12 +11,12 @@ type HeaderTopRowProps = {
   icons: TIcon[];
 };
 
-const HeaderTopRow = ({
+const HeaderTopRow: React.FC<HeaderTopRowProps> = ({
   changeGender,
   activeGender,
   icons,
   genders,
-}: HeaderTopRowProps) => (
+}): JSX.Element => (
   <div className={styles.topRow}>
     <div className={styles.genderTop}>
       {genders.map((gender) => (

@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import BannerCampaign from './BannerCampaign';
 import styles from './BannerCampaign.module.scss';
 import { campaignData } from '../../data/campaign-data';
-import Go from '../../assets/svgs/GoBack';
+import Go from '../../assets/svgs/Goback';
 
 const defaultProps = {
   brand: campaignData[0],
