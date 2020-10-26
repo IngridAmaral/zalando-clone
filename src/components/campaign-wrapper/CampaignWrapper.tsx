@@ -1,7 +1,7 @@
 import React from 'react';
 import BannerCampaign from '../banner-campaign/BannerCampaign';
 import BottomCampaignWrapper from '../bottom-campaign-wrapper/BottomCampaignWrapper';
-import styles from './campaignWrapper.module.scss';
+import styles from './CampaignWrapper.module.scss';
 
 export type TCard = {
   id: string;
@@ -30,7 +30,7 @@ type CampaignWrapperProps = {
   brand: TBrand;
 };
 
-const CampaignWrapper = ({ brand }: CampaignWrapperProps) => (
+const CampaignWrapper: React.FC<CampaignWrapperProps> = ({ brand }) => (
   <div className={styles.campaignWrapper}>
     <BannerCampaign brand={brand} />
     <BottomCampaignWrapper brand={brand} />
