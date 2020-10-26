@@ -4,7 +4,7 @@ type TGoBack = {
   color?: string;
 };
 
-const GoBack = ({ color = '#fff' }: TGoBack) => (
+const GoBack = ({ color = '#fff' }: TGoBack): JSX.Element => (
   <svg id="icon_svg-go-back-white" viewBox="0 0 24 24">
     <g fill="none" fillRule="evenodd">
       <path
