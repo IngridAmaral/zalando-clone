@@ -4,7 +4,7 @@ import Wish from '../../assets/svgs/Wish';
 import FlagCampaign from '../flag-campaign/FlagCampaign';
 import { TCard } from '../campaign-wrapper/CampaignWrapper';
 import { addDecimal } from '../../utils/add-decimal';
-import { FLAGS } from '../../data/flags';
+import { FLAGS } from '../../server/data/flags';
 
 type CardCampaignProps = {
   card: TCard;

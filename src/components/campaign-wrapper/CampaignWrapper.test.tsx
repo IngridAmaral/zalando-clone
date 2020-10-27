@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import CampaignWrapper from './CampaignWrapper';
 import BannerCampaign from '../banner-campaign/BannerCampaign';
 import BottomCampaignWrapper from '../bottom-campaign-wrapper/BottomCampaignWrapper';
-import { campaignData } from '../../data/campaign-data';
+import { campaignData } from '../../server/data/campaign-data';
 
 const defaultProps = {
   brand: campaignData[0],

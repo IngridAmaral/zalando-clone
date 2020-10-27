@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import FlagCampaign from './FlagCampaign';
 import styles from './FlagCampaign.module.scss';
-import { FLAGS } from '../../data/flags';
+import { FLAGS } from '../../server/data/flags';
 
 const defaultProps = {
   flagText: FLAGS['isNew'].flagText,

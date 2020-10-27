@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import CardsCampaignSlider from './CardsCampaignSlider';
 import CardCampaign from '../card-campaign/CardCampaign';
-import { campaignData } from '../../data/campaign-data';
+import { campaignData } from '../../server/data/campaign-data';
 
 const defaultProps = {
   cards: campaignData[0].cards,

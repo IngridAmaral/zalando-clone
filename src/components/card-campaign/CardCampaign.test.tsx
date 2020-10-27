@@ -3,10 +3,10 @@ import { shallow } from 'enzyme';
 import CardCampaign from './CardCampaign';
 import FlagCampaign from '../flag-campaign/FlagCampaign';
 import styles from './CardCampaign.module.scss';
-import { campaignData } from '../../data/campaign-data';
+import { campaignData } from '../../server/data/campaign-data';
 import { addDecimal } from '../../utils/add-decimal';
 import Wish from '../../assets/svgs/Wish';
-import { FLAGS } from '../../data/flags';
+import { FLAGS } from '../../server/data/flags';
 
 const defaultProps = {
   card: campaignData[0].cards[0],
