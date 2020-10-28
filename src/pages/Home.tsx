@@ -1,31 +1,32 @@
 import React from 'react';
 import Header from '../components/header/Header';
-import { connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import brandsAC from '../redux/actions/get-campaign-data';
-import { getBrands } from '../redux/reducers/campaign';
+import { fetchBrandsAC } from '../redux/action-creators/brands';
+import { getBrands } from '../redux/reducers/brands';
 import { RootState } from '../redux/store';
 import { Action, Dispatch } from 'redux';
-// import { ThunkAction } from 'redux-thunk';
 import { TBrand } from '../components/campaign-wrapper/CampaignWrapper';
 import CampaignWrapper from '../components/campaign-wrapper/CampaignWrapper';
-// import { campaignData } from '../server/data/campaign-data';
+import Loading from '../components/loading/Loading';
 import './Home.scss';
 
-// interface StateProps {}
+const mapStateToProps = (state: RootState) => ({
+  brands: getBrands(state),
+});
 
-type DispatchProps = {
-  fetchBrands: () => void;
-};
+const mapDispatchToProps = (dispatch: Dispatch<Action>) =>
+  bindActionCreators(
+    {
+      fetchBrands: fetchBrandsAC,
+    },
+    dispatch
+  );
 
-type OwnProps = {
-  brands: TBrand[];
-};
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
-type HomeProps = unknown & DispatchProps & OwnProps;
-
-// type HomeProps = {
-// };
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type HomeProps = PropsFromRedux;
 
 class Home extends React.Component<HomeProps> {
   componentDidMount(): void {
@@ -35,6 +36,12 @@ class Home extends React.Component<HomeProps> {
 
   render(): JSX.Element {
     const { brands } = this.props;
+    console.log('brands', brands);
+
+    if (!brands.length) {
+      return <Loading />;
+    }
+
     return (
       <div>
         <Header />
@@ -48,20 +55,4 @@ class Home extends React.Component<HomeProps> {
   }
 }
 
-// export default Home;
-
-const mapStateToProps = (state: RootState) => ({
-  brands: getBrands(state),
-});
-
-const mapDispatchToProps = (dispatch: Dispatch<Action>) =>
-  bindActionCreators(
-    {
-      fetchbrands: brandsAC,
-    },
-    dispatch
-  );
-
-const connector = connect(mapStateToProps, mapDispatchToProps)(Home);
-export default connector;
-// type PropsFromRedux = ConnectedProps<HomeProps>;
+export default connector(Home);
