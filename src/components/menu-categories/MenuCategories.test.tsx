@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MenuCategories from './MenuCategories';
 import Caret from '../../assets/svgs/Caret';
-import NAVCATEGORIES from '../../data/nav-categories';
+import NAVCATEGORIES from '../../server/data/nav-categories';
 import styles from './MenuCategories.module.scss';
 
 const list = NAVCATEGORIES.women.children;

@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import FollowBrandCampaign from './FollowBrandCampaign';
 import Follow from '../../assets/svgs/Close';
 import styles from './FollowBrandCampaign.module.scss';
-import { campaignData } from '../../data/campaign-data';
+import { campaignData } from '../../server/data/campaign-data';
 
 const defaultProps = {
   brandName: campaignData[0].brandName,

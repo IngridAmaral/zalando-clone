@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MenuSubCategories from './MenuSubCategories';
 import { TSubSubCategory } from '../header/Header';
-import NAVCATEGORIES from '../../data/nav-categories';
+import NAVCATEGORIES from '../../server/data/nav-categories';
 import { filterEmptyCategrories } from '../../utils/filter-empty-categories';
 import styles from './MenuSubCategories.module.scss';
 

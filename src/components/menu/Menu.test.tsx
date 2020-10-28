@@ -4,7 +4,7 @@ import Menu, { SCROLL_THRESHOLD, moreOptions } from './Menu';
 import MenuCategories from '../menu-categories/MenuCategories';
 import MenuSubCategories from '../menu-sub-categories/MenuSubCategories';
 import { GENDERS } from '../header/Header';
-import NAVCATEGORIES from '../../data/nav-categories';
+import NAVCATEGORIES from '../../server/data/nav-categories';
 import styles from './Menu.module.scss';
 
 const activeGenderCategories = NAVCATEGORIES.women.children;
