@@ -5,7 +5,7 @@ export const createServer = (): void => {
   new Server({
     routes() {
       this.namespace = '/';
-      this.get('campaign', () => campaignData);
+      this.get('brands', () => campaignData);
     },
   });
 };
