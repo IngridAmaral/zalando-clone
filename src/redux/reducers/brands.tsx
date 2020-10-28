@@ -1,33 +1,40 @@
-import { GET_CAMPAIGN } from '../action-types/types';
+import { GET_BRANDS } from '../types/brands';
 import { TBrand } from '../../components/campaign-wrapper/CampaignWrapper';
 import { RootState } from '../store';
 
-export const initialState = {
+export const initialState: TBrandsState = {
   isPending: false,
   brands: [],
   error: null,
 };
 
-export type TCampaignReducer = {
+export type TBrandsState = {
   isPending: boolean;
   brands: TBrand[];
   error: null | unknown;
 };
 
-export default function campaignReducer(
-  state = initialState,
-  action = { type: '', payload: [] }
-): TCampaignReducer {
+export type TAction = {
+  type: string;
+  payload: TBrand[];
+};
+
+export default function brandsReducer(
+  state: TBrandsState = initialState,
+  action: TAction
+): TBrandsState {
+  console.log('action', action.type);
+
   switch (action.type) {
-    case `${GET_CAMPAIGN}_PENDING`:
+    case `${GET_BRANDS}_PENDING`:
       return { ...state, isPending: true };
-    case `${GET_CAMPAIGN}_FULFILLED`:
+    case `${GET_BRANDS}_FULFILLED`:
       return {
         ...state,
         isPending: false,
         brands: action.payload,
       };
-    case `${GET_CAMPAIGN}_REJECTED`:
+    case `${GET_BRANDS}_REJECTED`:
       return {
         ...state,
         isPending: false,
@@ -39,7 +46,3 @@ export default function campaignReducer(
 }
 
 export const getBrands = (state: RootState): TBrand[] => state.brands.brands;
-export const getBrandsPending = (state: RootState): boolean =>
-  state.brands.isPending;
-export const getBrandsError = (state: RootState): null | unknown =>
-  state.brands.error;
