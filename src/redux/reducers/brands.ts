@@ -1,6 +1,8 @@
 import { GET_BRANDS } from '../types/brands';
 import { TBrand } from '../../components/campaign-wrapper/CampaignWrapper';
 import { RootState } from '../store';
+import { Reducer } from 'redux';
+// import { TBrandActions } from '../actions/brands';
 
 export const initialState: TBrandsState = {
   isPending: false,
@@ -19,12 +21,10 @@ export type TAction = {
   payload: TBrand[];
 };
 
-export default function brandsReducer(
+export const brandsReducer: Reducer<TBrandsState, TAction> = (
   state: TBrandsState = initialState,
   action: TAction
-): TBrandsState {
-  console.log('action', action.type);
-
+): TBrandsState => {
   switch (action.type) {
     case `${GET_BRANDS}_PENDING`:
       return { ...state, isPending: true };
@@ -43,6 +43,6 @@ export default function brandsReducer(
     default:
       return state;
   }
-}
+};
 
 export const getBrands = (state: RootState): TBrand[] => state.brands.brands;
