@@ -1,8 +1,8 @@
 import React from 'react';
 import CardsCampaignSlider from '../cards-campaign-slider/CardsCampaignSlider';
 import FollowBrandCampaign from '../follow-brand-campaign/FollowBrandCampaign';
-import { TBrand } from '../campaign-wrapper/CampaignWrapper';
 import styles from './BottomCampaignWrapper.module.scss';
+import { TBrand } from '../../redux/types/campaignBrands';
 
 type BottomCampaignWrapperProps = {
   brand: TBrand;
