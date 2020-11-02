@@ -1,6 +1,7 @@
 export interface IAction<T extends string> {
   readonly type: T;
 }
+
 export interface IActionPayload<T extends string, P> extends IAction<T> {
   readonly payload: P;
 }
