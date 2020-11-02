@@ -1,30 +1,8 @@
 import React from 'react';
+import { TBrand } from '../../redux/types/campaignBrands';
 import BannerCampaign from '../banner-campaign/BannerCampaign';
 import BottomCampaignWrapper from '../bottom-campaign-wrapper/BottomCampaignWrapper';
 import styles from './CampaignWrapper.module.scss';
-
-export type TCard = {
-  id: string;
-  description: string;
-  price: number;
-  productImageLink: string;
-  isNew?: boolean;
-  hasSustainabilityFlag?: boolean;
-  hasDifferentPrices?: boolean;
-  extraInformation?: string;
-};
-
-export type TBrand = {
-  brandName: string;
-  background: string;
-  fontColor: string;
-  subTitle: string;
-  linkText: string;
-  mainImg: string;
-  text: string;
-  cards: TCard[];
-  cardsBackground: string;
-};
 
 type CampaignWrapperProps = {
   brand: TBrand;

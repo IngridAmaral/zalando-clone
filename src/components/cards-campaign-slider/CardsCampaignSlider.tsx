@@ -3,7 +3,7 @@ import React from 'react';
 import CardCampaign from '../card-campaign/CardCampaign';
 import styles from './CardsCampaignSlider.module.scss';
 import './CardsCampaignSlider.scss';
-import { TCard } from '../campaign-wrapper/CampaignWrapper';
+import { TCard } from '../../redux/types/campaignBrands';
 
 const SLIDER_OPTIONS = {
   perMove: 2,

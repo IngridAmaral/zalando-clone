@@ -1,6 +1,6 @@
 import React from 'react';
 import Go from '../../assets/svgs/Goback';
-import { TBrand } from '../campaign-wrapper/CampaignWrapper';
+import { TBrand } from '../../redux/types/campaignBrands';
 import styles from './BannerCampaign.module.scss';
 
 type BannerCampaignProps = {

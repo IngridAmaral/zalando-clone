@@ -1,13 +1,12 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import promise from 'redux-promise-middleware';
-import brandsReducer from './reducers/brands';
+import { campaignBrandsReducer } from './reducers/campaignBrands';
 
 const rootReducer = combineReducers({
-  brands: brandsReducer,
+  campaignBrands: campaignBrandsReducer,
 });
 
-const middlewares = [thunk, promise];
+const middlewares = [thunk];
 
 export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 export type RootState = ReturnType<typeof rootReducer>;

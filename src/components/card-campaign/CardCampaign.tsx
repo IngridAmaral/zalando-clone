@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './CardCampaign.module.scss';
 import Wish from '../../assets/svgs/Wish';
 import FlagCampaign from '../flag-campaign/FlagCampaign';
-import { TCard } from '../campaign-wrapper/CampaignWrapper';
+import { TCard } from '../../redux/types/campaignBrands';
 import { addDecimal } from '../../utils/add-decimal';
 import { FLAGS } from '../../server/data/flags';
 

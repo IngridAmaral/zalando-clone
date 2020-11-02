@@ -1,8 +1,9 @@
 @import '../../styles/flex-box';
 @import '../../styles/colors';
+@import '../../styles/media-paddings';
 
 .headerContainer {
-  padding: 0.8rem 1.25rem;
+  padding: 0.8rem $mobile-padding;
   position: relative;
   z-index: 1;
 
@@ -59,7 +60,7 @@
 // IPAD
 @media (min-width: 768px) {
   .headerContainer {
-    padding: 0.8rem 2rem;
+    padding: 0.8rem $tablet-padding;
 
     .lateralMenuWrapper {
       outline: none;
@@ -104,7 +105,7 @@
 // NOTEBOOK
 @media (min-width: 1024px) {
   .headerContainer {
-    padding: 1rem 6rem;
+    padding: 1rem $notebook-padding;
 
     .bottomRow {
       .openMenu {
@@ -195,5 +196,11 @@
     .dropdown.show {
       max-height: 450px;
     }
+  }
+}
+
+@media (min-width: 1400px) {
+  .headerContainer {
+    padding: 1rem $notebook-big-padding;
   }
 }

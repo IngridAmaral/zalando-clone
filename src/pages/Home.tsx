@@ -1,24 +1,24 @@
 import React from 'react';
 import Header from '../components/header/Header';
-import { connect, ConnectedProps } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { fetchBrandsAC } from '../redux/action-creators/brands';
-import { getBrands } from '../redux/reducers/brands';
-import { RootState } from '../redux/store';
-import { Action, Dispatch } from 'redux';
-import { TBrand } from '../components/campaign-wrapper/CampaignWrapper';
 import CampaignWrapper from '../components/campaign-wrapper/CampaignWrapper';
 import Loading from '../components/loading/Loading';
 import './Home.scss';
+import { connect, ConnectedProps } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchBrandsDispatcher } from '../redux/actions-dispatcher/campaignBrands';
+import { getCampaignBrands } from '../redux/reducers/campaignBrands';
+import { RootState } from '../redux/store';
+import { Action, Dispatch } from 'redux';
+import { TBrand } from '../redux/types/campaignBrands';
 
 const mapStateToProps = (state: RootState) => ({
-  brands: getBrands(state),
+  campaignBrands: getCampaignBrands(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) =>
   bindActionCreators(
     {
-      fetchBrands: fetchBrandsAC,
+      fetchCampaignBrands: fetchBrandsDispatcher,
     },
     dispatch
   );
@@ -30,15 +30,14 @@ type HomeProps = PropsFromRedux;
 
 class Home extends React.Component<HomeProps> {
   componentDidMount(): void {
-    const { fetchBrands } = this.props;
-    fetchBrands();
+    const { fetchCampaignBrands } = this.props;
+    fetchCampaignBrands();
   }
 
   render(): JSX.Element {
-    const { brands } = this.props;
-    console.log('brands', brands);
+    const { campaignBrands } = this.props;
 
-    if (!brands.length) {
+    if (campaignBrands !== undefined && !campaignBrands.length) {
       return <Loading />;
     }
 
@@ -46,7 +45,7 @@ class Home extends React.Component<HomeProps> {
       <div>
         <Header />
         <div>
-          {brands.map((brand: TBrand) => (
+          {campaignBrands?.map((brand: TBrand) => (
             <CampaignWrapper key={brand.brandName} brand={brand} />
           ))}
         </div>
