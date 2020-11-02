@@ -1,19 +1,20 @@
-export type TAction<T extends string, P> = {
-  type: T;
-  payload?: P;
-};
+export interface IAction<T extends string> {
+  readonly type: T;
+}
+export interface IActionPayload<T extends string, P> extends IAction<T> {
+  readonly payload: P;
+}
 
-export function createAction<Type extends string>(
-  type: Type
-): TAction<Type, void>;
-export function createAction<Type extends string, Payload>(
-  type: Type,
-  payload: Payload
-): TAction<Type, Payload>;
+export function createAction<T extends string>(type: T): IAction<T>;
 
-export function createAction<Type extends string, Payload>(
-  type: Type,
-  payload?: Payload
-): TAction<Type, Payload> {
-  return payload !== undefined ? { type, payload } : { type };
+export function createAction<T extends string, P>(
+  type: T,
+  payload: P
+): IActionPayload<T, P>;
+
+export function createAction<T extends string, P>(
+  type: T,
+  payload?: P
+): IAction<T> | IActionPayload<T, P> {
+  return payload === undefined ? { type } : { type, payload };
 }
