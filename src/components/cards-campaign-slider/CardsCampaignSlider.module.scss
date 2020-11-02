@@ -1,6 +1,7 @@
 @import '../../styles/flex-box';
 @import '../../styles/colors';
 @import '../../styles/campaign';
+@import '../../styles/media-paddings';
 
 .sliderContainer {
   width: 100%;
@@ -14,20 +15,20 @@
 @media (min-width: 768px) {
   .sliderContainer {
     padding-left: 1.5rem;
-    padding-top: 2rem;
+    padding-top: $mobile-padding;
   }
 }
 
 // NOTEBOOK
 @media (min-width: 1024px) {
   .sliderContainer {
-    padding-left: 2rem;
+    padding-left: $tablet-padding;
   }
 }
 
 // NOTEBOOK BIG
 @media (min-width: 1400px) {
   .sliderContainer {
-    padding-left: 7rem;
+    padding-left: $notebook-big-padding;
   }
 }
