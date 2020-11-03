@@ -4,10 +4,10 @@ import BottomCampaignWrapper from './BottomCampaignWrapper';
 import CardsCampaignSlider from '../cards-campaign-slider/CardsCampaignSlider';
 import FollowBrandCampaign from '../follow-brand-campaign/FollowBrandCampaign';
 import styles from './BottomCampaignWrapper.module.scss';
-import { campaignData } from '../../server/data/campaign-data';
+import { campaignBrandsData } from '../../server/data/campaign-brands-data';
 
 const defaultProps = {
-  brand: campaignData[0],
+  brand: campaignBrandsData[0],
 };
 
 const { cards, brandName, fontColor, cardsBackground } = defaultProps.brand;

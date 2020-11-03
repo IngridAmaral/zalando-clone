@@ -1,4 +1,4 @@
-export const campaignData = [
+export const campaignBrandsData = [
   {
     brandName: 'The North Face',
     subTitle: 'I hike for...',

@@ -2,11 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import CardsCampaignSlider from './CardsCampaignSlider';
 import CardCampaign from '../card-campaign/CardCampaign';
-import { campaignData } from '../../server/data/campaign-data';
+import { campaignBrandsData } from '../../server/data/campaign-brands-data';
 
 const defaultProps = {
-  cards: campaignData[0].cards,
-  brandName: campaignData[0].brandName,
+  cards: campaignBrandsData[0].cards,
+  brandName: campaignBrandsData[0].brandName,
 };
 
 describe('<CardsCampaignSlider />', () => {
