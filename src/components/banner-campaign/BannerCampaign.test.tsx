@@ -2,11 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import BannerCampaign from './BannerCampaign';
 import styles from './BannerCampaign.module.scss';
-import { campaignData } from '../../server/data/campaign-data';
+import { campaignBrandsData } from '../../server/data/campaign-brands-data';
 import Go from '../../assets/svgs/Goback';
 
 const defaultProps = {
-  brand: campaignData[0],
+  brand: campaignBrandsData[0],
 };
 
 const {

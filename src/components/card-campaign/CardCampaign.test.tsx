@@ -3,14 +3,14 @@ import { shallow } from 'enzyme';
 import CardCampaign from './CardCampaign';
 import FlagCampaign from '../flag-campaign/FlagCampaign';
 import styles from './CardCampaign.module.scss';
-import { campaignData } from '../../server/data/campaign-data';
+import { campaignBrandsData } from '../../server/data/campaign-brands-data';
 import { addDecimal } from '../../utils/add-decimal';
 import Wish from '../../assets/svgs/Wish';
 import { FLAGS } from '../../server/data/flags';
 
 const defaultProps = {
-  card: campaignData[0].cards[0],
-  brandName: campaignData[0].brandName,
+  card: campaignBrandsData[0].cards[0],
+  brandName: campaignBrandsData[0].brandName,
 };
 
 describe('<CardCampaign />', () => {
@@ -87,7 +87,7 @@ describe('<CardCampaign />', () => {
     const wrapper = shallow(
       <CardCampaign
         {...defaultProps}
-        card={{ ...campaignData[0].cards[0], hasDifferentPrices: true }}
+        card={{ ...campaignBrandsData[0].cards[0], hasDifferentPrices: true }}
       />
     );
     const price = addDecimal(defaultProps.card.price);
@@ -101,7 +101,7 @@ describe('<CardCampaign />', () => {
     const wrapper = shallow(
       <CardCampaign
         {...defaultProps}
-        card={{ ...campaignData[0].cards[0], hasDifferentPrices: false }}
+        card={{ ...campaignBrandsData[0].cards[0], hasDifferentPrices: false }}
       />
     );
     const price = addDecimal(defaultProps.card.price);
