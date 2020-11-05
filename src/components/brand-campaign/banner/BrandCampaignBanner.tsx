@@ -1,13 +1,13 @@
 import React from 'react';
-import Go from '../../assets/svgs/Goback';
-import { TBrand } from '../../redux/types/campaignBrands';
-import styles from './BannerCampaign.module.scss';
+import Go from '../../../assets/svgs/Goback';
+import { TBrand } from '../../../redux/types/campaignBrands';
+import styles from './BrandCampaignBanner.module.scss';
 
-type BannerCampaignProps = {
+type BrandCampaignBannerProps = {
   brand: TBrand;
 };
 
-const BannerCampaign: React.FC<BannerCampaignProps> = ({ brand }) => {
+const BrandCampaignBanner: React.FC<BrandCampaignBannerProps> = ({ brand }) => {
   const {
     brandName,
     background,
@@ -19,7 +19,7 @@ const BannerCampaign: React.FC<BannerCampaignProps> = ({ brand }) => {
 
   return (
     <div
-      className={styles.bannerCampaignContainer}
+      className={styles.brandCampaignBannerContainer}
       style={{
         background: `${background}`,
         color: `${fontColor}`,
@@ -43,4 +43,4 @@ const BannerCampaign: React.FC<BannerCampaignProps> = ({ brand }) => {
   );
 };
 
-export default BannerCampaign;
+export default BrandCampaignBanner;

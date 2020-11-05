@@ -1,17 +1,13 @@
 import React from 'react';
-import styles from './FlagCampaign.module.scss';
+import styles from './Flag.module.scss';
 
-type FlagCampaignProps = {
+type FlagProps = {
   flagText: string;
   background: string;
   fontColor: string;
 };
 
-const FlagCampaign: React.FC<FlagCampaignProps> = ({
-  flagText,
-  background,
-  fontColor,
-}) => (
+const Flag: React.FC<FlagProps> = ({ flagText, background, fontColor }) => (
   <span
     className={styles.flag}
     style={{ background: `${background}`, color: `${fontColor}` }}
@@ -20,4 +16,4 @@ const FlagCampaign: React.FC<FlagCampaignProps> = ({
   </span>
 );
 
-export default FlagCampaign;
+export default Flag;

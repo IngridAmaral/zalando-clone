@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/header/Header';
-import CampaignWrapper from '../components/campaign-wrapper/CampaignWrapper';
+import BrandCampaign from '../components/brand-campaign/BrandCampaign';
 import Loading from '../components/loading/Loading';
 import './Home.scss';
 import { connect, ConnectedProps } from 'react-redux';
@@ -46,7 +46,7 @@ class Home extends React.Component<HomeProps> {
         <Header />
         <div>
           {campaignBrands?.map((brand: TBrand) => (
-            <CampaignWrapper key={brand.brandName} brand={brand} />
+            <BrandCampaign key={brand.brandName} brand={brand} />
           ))}
         </div>
       </div>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import FollowBrandCampaign from './FollowBrandCampaign';
-import Follow from '../../assets/svgs/Close';
-import styles from './FollowBrandCampaign.module.scss';
-import { campaignBrandsData } from '../../server/data/campaign-brands-data';
+import BrandCampaignFollow from './BrandCampaignFollow';
+import Follow from '../../../assets/svgs/Close';
+import styles from './BrandCampaignFollow.module.scss';
+import { campaignBrandsData } from '../../../server/data/campaign-brands-data';
 
 const defaultProps = {
   brandName: campaignBrandsData[0].brandName,
@@ -15,13 +15,13 @@ const style = {
   boxShadow: `inset 0 0 0 1px ${defaultProps.fontColor}`,
 };
 
-describe('<FollowBrandCampaign />', () => {
+describe('<BrandCampaignFollow />', () => {
   it('renders without crashing', () => {
-    shallow(<FollowBrandCampaign {...defaultProps} />);
+    shallow(<BrandCampaignFollow {...defaultProps} />);
   });
 
   it('renders the correct text', () => {
-    const wrapper = shallow(<FollowBrandCampaign {...defaultProps} />);
+    const wrapper = shallow(<BrandCampaignFollow {...defaultProps} />);
 
     expect(
       wrapper.find(`.${styles.followBrandContainer}`).childAt(1).text()
@@ -29,13 +29,13 @@ describe('<FollowBrandCampaign />', () => {
   });
 
   it('passes the correct prop collor to Follow', () => {
-    const wrapper = shallow(<FollowBrandCampaign {...defaultProps} />);
+    const wrapper = shallow(<BrandCampaignFollow {...defaultProps} />);
 
     expect(wrapper.find(Follow).prop('color')).toBe(defaultProps.fontColor);
   });
 
   it('should render the button with the correct color style', () => {
-    const wrapper = shallow(<FollowBrandCampaign {...defaultProps} />);
+    const wrapper = shallow(<BrandCampaignFollow {...defaultProps} />);
 
     expect(wrapper.find(`.${styles.followBrand}`).prop('style')).toEqual(style);
   });
