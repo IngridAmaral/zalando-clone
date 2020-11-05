@@ -1,9 +1,9 @@
-@import '../../styles/flex-box';
-@import '../../styles/colors';
-@import '../../styles/campaign';
-@import '../../styles/media-paddings';
+@import '../../../styles/flex-box';
+@import '../../../styles/colors';
+@import '../../../styles/campaign';
+@import '../../../styles/media-paddings';
 
-.bannerCampaignContainer {
+.brandCampaignBannerContainer {
   width: 100%;
   overflow: hidden;
   padding: $mobile-padding 0 0 $mobile-padding;
@@ -60,7 +60,7 @@
 
 // IPAD
 @media (min-width: 768px) {
-  .bannerCampaignContainer {
+  .brandCampaignBannerContainer {
     flex-direction: row;
     padding: $tablet-padding $tablet-padding 0 $tablet-padding;
     justify-content: space-between;
@@ -88,7 +88,7 @@
 
 // NOTEBOOK
 @media (min-width: 1024px) {
-  .bannerCampaignContainer {
+  .brandCampaignBannerContainer {
     padding-left: $notebook-padding;
     .imageWrapper {
       width: 55%;
@@ -99,7 +99,7 @@
 
 // NOTEBOOK BIG
 @media (min-width: 1400px) {
-  .bannerCampaignContainer {
+  .brandCampaignBannerContainer {
     padding-left: $notebook-big-padding;
   }
 }

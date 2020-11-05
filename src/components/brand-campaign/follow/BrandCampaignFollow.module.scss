@@ -1,13 +1,13 @@
-@import '../../styles/flex-box';
-@import '../../styles/colors';
-@import '../../styles/campaign';
-@import '../../styles/media-paddings';
+@import '../../../styles/flex-box';
+@import '../../../styles/colors';
+@import '../../../styles/campaign';
+@import '../../../styles/media-paddings';
 
-.followBrandContainer {
+.followContainer {
   @include start-x-row;
   padding-left: $mobile-padding;
 
-  .followBrand {
+  .follow {
     margin: 1rem 1rem 1rem 0;
     @include start-x-row;
     padding: 0.5rem;
@@ -23,21 +23,21 @@
 
 // IPAD
 @media (min-width: 768px) {
-  .followBrandContainer {
+  .followContainer {
     padding-left: 1.5rem;
   }
 }
 
 // NOTEBOOK
 @media (min-width: 1024px) {
-  .followBrandContainer {
+  .followContainer {
     padding-left: 2rem;
   }
 }
 
 // NOTEBOOK BIG
 @media (min-width: 1400px) {
-  .followBrandContainer {
+  .followContainer {
     padding-left: $notebook-big-padding;
   }
 }

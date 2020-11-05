@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import FlagCampaign from './FlagCampaign';
-import styles from './FlagCampaign.module.scss';
-import { FLAGS } from '../../server/data/flags';
+import Flag from './Flag';
+import styles from './Flag.module.scss';
+import { FLAGS } from '../../../../../server/data/flags';
 
 const defaultProps = {
   flagText: FLAGS['isNew'].flagText,
@@ -15,19 +15,19 @@ const style = {
   background: `${defaultProps.background}`,
 };
 
-describe('<FlagCampaign />', () => {
+describe('<Flag />', () => {
   it('renders without crashing', () => {
-    shallow(<FlagCampaign {...defaultProps} />);
+    shallow(<Flag {...defaultProps} />);
   });
 
   it('renders the correct flag text', () => {
-    const wrapper = shallow(<FlagCampaign {...defaultProps} />);
+    const wrapper = shallow(<Flag {...defaultProps} />);
 
     expect(wrapper.find(`.${styles.flag}`).text()).toBe(defaultProps.flagText);
   });
 
   it('should render the flag with the correct color style', () => {
-    const wrapper = shallow(<FlagCampaign {...defaultProps} />);
+    const wrapper = shallow(<Flag {...defaultProps} />);
 
     expect(wrapper.find(`.${styles.flag}`).prop('style')).toEqual(style);
   });

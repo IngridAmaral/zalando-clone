@@ -1,19 +1,19 @@
 import React from 'react';
-import Follow from '../../assets/svgs/Close';
-import styles from './FollowBrandCampaign.module.scss';
+import Follow from '../../../assets/svgs/Close';
+import styles from './BrandCampaignFollow.module.scss';
 
-type FollowBrandCampaignProps = {
+type BrandCampaignFollowProps = {
   brandName: string;
   fontColor: string;
 };
 
-const FollowBrandCampaign: React.FC<FollowBrandCampaignProps> = ({
+const BrandCampaignFollow: React.FC<BrandCampaignFollowProps> = ({
   brandName,
   fontColor,
 }) => (
-  <div className={styles.followBrandContainer}>
+  <div className={styles.followContainer}>
     <button
-      className={styles.followBrand}
+      className={styles.follow}
       style={{
         color: `${fontColor}`,
         boxShadow: `inset 0 0 0 1px ${fontColor}`,
@@ -27,4 +27,4 @@ const FollowBrandCampaign: React.FC<FollowBrandCampaignProps> = ({
   </div>
 );
 
-export default FollowBrandCampaign;
+export default BrandCampaignFollow;

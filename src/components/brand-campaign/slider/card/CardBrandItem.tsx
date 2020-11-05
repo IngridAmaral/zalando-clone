@@ -1,12 +1,12 @@
 import React from 'react';
-import styles from './CardCampaign.module.scss';
-import Wish from '../../assets/svgs/Wish';
-import FlagCampaign from '../flag-campaign/FlagCampaign';
-import { TCard } from '../../redux/types/campaignBrands';
-import { addDecimal } from '../../utils/add-decimal';
-import { FLAGS } from '../../server/data/flags';
+import Wish from '../../../../assets/svgs/Wish';
+import Flag from './flag/Flag';
+import { TCard } from '../../../../redux/types/campaignBrands';
+import { addDecimal } from '../../../../utils/add-decimal';
+import { FLAGS } from '../../../../server/data/flags';
+import styles from './CardBrandItem.module.scss';
 
-type CardCampaignProps = {
+type CardBrandItemProps = {
   card: TCard;
   brandName: string;
 };
@@ -39,7 +39,7 @@ const renderExtraInformation = (information: string) => (
   <span className={styles.extraInformation}>{information}</span>
 );
 
-const CardCampaign: React.FC<CardCampaignProps> = ({ card, brandName }) => (
+const CardBrandItem: React.FC<CardBrandItemProps> = ({ card, brandName }) => (
   <div className={styles.cardContainer}>
     <div className={styles.imageWrapper}>
       <img
@@ -56,7 +56,7 @@ const CardCampaign: React.FC<CardCampaignProps> = ({ card, brandName }) => (
 
           return (
             card[flagKey] && (
-              <FlagCampaign
+              <Flag
                 key={flagKey}
                 flagText={flagText}
                 background={background}
@@ -71,4 +71,4 @@ const CardCampaign: React.FC<CardCampaignProps> = ({ card, brandName }) => (
   </div>
 );
 
-export default CardCampaign;
+export default CardBrandItem;

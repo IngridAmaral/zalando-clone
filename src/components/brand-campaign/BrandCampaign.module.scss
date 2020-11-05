@@ -2,15 +2,12 @@
 @import '../../styles/colors';
 @import '../../styles/campaign';
 
-.flag {
-  padding: 0.2rem;
-  padding-right: 0.3rem;
-  font-weight: 700;
-  margin-top: 0.4rem;
-  width: fit-content;
-  font-size: 0.75rem;
-  letter-spacing: 0;
-  line-height: 1rem;
+.brandCampaignWrapper {
+  margin-bottom: 2rem;
+
+  .bottomBrandCampaignContainer {
+    @include start-column;
+  }
 }
 
 // IPAD

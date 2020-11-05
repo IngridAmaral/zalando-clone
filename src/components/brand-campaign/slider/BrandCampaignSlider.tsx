@@ -1,9 +1,9 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import React from 'react';
-import CardCampaign from '../card-campaign/CardCampaign';
-import styles from './CardsCampaignSlider.module.scss';
-import './CardsCampaignSlider.scss';
-import { TCard } from '../../redux/types/campaignBrands';
+import CardBrandItem from './card/CardBrandItem';
+import styles from './BrandCampaignSlider.module.scss';
+import './BrandCampaignSlider.scss';
+import { TCard } from '../../../redux/types/campaignBrands';
 
 const SLIDER_OPTIONS = {
   perMove: 2,
@@ -21,17 +21,17 @@ const SLIDER_OPTIONS = {
       perPage: 4.1,
     },
     1800: {
-      perPage: 4.3,
+      perPage: 4.4,
     },
   },
 };
 
-type CardsCampaignSliderProps = {
+type BrandCampaignSliderProps = {
   cards: TCard[];
   brandName: string;
 };
 
-const CardsCampaignSlider: React.FC<CardsCampaignSliderProps> = ({
+const BrandCampaignSlider: React.FC<BrandCampaignSliderProps> = ({
   cards,
   brandName,
 }) => (
@@ -39,11 +39,11 @@ const CardsCampaignSlider: React.FC<CardsCampaignSliderProps> = ({
     <Splide options={SLIDER_OPTIONS}>
       {cards.map((card) => (
         <SplideSlide key={card.id}>
-          <CardCampaign card={card} brandName={brandName} />
+          <CardBrandItem card={card} brandName={brandName} />
         </SplideSlide>
       ))}
     </Splide>
   </div>
 );
 
-export default CardsCampaignSlider;
+export default BrandCampaignSlider;
