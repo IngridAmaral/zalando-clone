@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Header, { GENDERS, ICONS } from './Header';
 import styles from './Header.module.scss';
-import HeaderTopRow from '../header-top-row/HeaderTopRow';
+import TopRow from './top-row/HeaderTopRow';
 
 describe('<Header />', () => {
   it('renders without crashing', () => {
@@ -82,15 +82,15 @@ describe('<Header />', () => {
   it('should pass the correct data to `HeaderTopRow`', () => {
     const wrapper = shallow(<Header />);
 
-    expect(wrapper.find(HeaderTopRow).prop('activeGender')).toEqual('women');
-    expect(wrapper.find(HeaderTopRow).prop('activeGender')).not.toEqual('men');
-    expect(wrapper.find(HeaderTopRow).prop('icons')).toEqual(ICONS);
-    expect(wrapper.find(HeaderTopRow).prop('genders')).toEqual(GENDERS);
+    expect(wrapper.find(TopRow).prop('activeGender')).toEqual('women');
+    expect(wrapper.find(TopRow).prop('activeGender')).not.toEqual('men');
+    expect(wrapper.find(TopRow).prop('icons')).toEqual(ICONS);
+    expect(wrapper.find(TopRow).prop('genders')).toEqual(GENDERS);
 
-    wrapper.find(HeaderTopRow).prop('changeGender')('men');
+    wrapper.find(TopRow).prop('changeGender')('men');
     wrapper.update;
 
-    expect(wrapper.find(HeaderTopRow).prop('activeGender')).toEqual('men');
+    expect(wrapper.find(TopRow).prop('activeGender')).toEqual('men');
   });
 
   it('loads the correct category when hovering nav item', () => {

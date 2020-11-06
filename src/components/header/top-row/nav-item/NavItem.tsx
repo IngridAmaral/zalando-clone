@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './NavItem.module.scss';
-import { TIcon } from '../header/Header';
+import { TIcon } from '../../Header';
 
 type NavItemProps = { icon: TIcon };
 

@@ -1,17 +1,17 @@
 import React from 'react';
-import NavItem from '../nav-item/NavItem';
-import logo from '../../constants/Imgs/logo';
+import NavItem from './nav-item/NavItem';
+import logo from '../../../constants/Imgs/logo';
 import styles from './HeaderTopRow.module.scss';
-import { TIcon } from '../header/Header';
+import { TIcon } from '../Header';
 
-type HeaderTopRowProps = {
+type TopRowProps = {
   changeGender: (gender: string) => void;
   activeGender: string;
   genders: string[];
   icons: TIcon[];
 };
 
-const HeaderTopRow: React.FC<HeaderTopRowProps> = ({
+const TopRow: React.FC<TopRowProps> = ({
   changeGender,
   activeGender,
   icons,
@@ -41,4 +41,4 @@ const HeaderTopRow: React.FC<HeaderTopRowProps> = ({
   </div>
 );
 
-export default HeaderTopRow;
+export default TopRow;
