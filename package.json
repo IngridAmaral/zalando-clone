@@ -1,6 +1,6 @@
 {
   "name": "zalando-clone",
-  "homepage": "https://github.com/IngridAmaral/zalando-clone",
+  "homepage": "https://ingridamaral.github.io/zalando-clone/",
   "version": "1.0.0",
   "description": "This is a clone version of Zalando website",
   "main": "index.tsx",
