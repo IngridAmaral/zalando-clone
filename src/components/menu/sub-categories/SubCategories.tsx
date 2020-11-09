@@ -1,14 +1,14 @@
 import React from 'react';
-import styles from './MenuSubCategories.module.scss';
-import { filterEmptyCategrories } from '../../utils/filter-empty-categories';
-import { TSubSubCategory } from '../header/Header';
+import styles from './SubCategories.module.scss';
+import { filterEmptyCategrories } from '../../../utils/filter-empty-categories';
+import { TSubSubCategory } from '../../header/Header';
 
-type MenuSubCategoriesProps = {
+type SubCategoriesProps = {
   subCategories: TSubSubCategory[];
   subCategoryName: string;
 };
 
-const MenuSubCategories: React.FC<MenuSubCategoriesProps> = ({
+const SubCategories: React.FC<SubCategoriesProps> = ({
   subCategoryName,
   subCategories,
 }) => (
@@ -22,4 +22,4 @@ const MenuSubCategories: React.FC<MenuSubCategoriesProps> = ({
   </div>
 );
 
-export default MenuSubCategories;
+export default SubCategories;

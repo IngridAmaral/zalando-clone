@@ -1,6 +1,6 @@
 import React from 'react';
 import navCategories from '../../server/data/nav-categories';
-import HeaderTopRow from '../header-top-row/HeaderTopRow';
+import TopRow from './top-row/HeaderTopRow';
 import Language from '../../assets/svgs/Language';
 import Account from '../../assets/svgs/Account';
 import Wish from '../../assets/svgs/Wish';
@@ -215,7 +215,7 @@ class Header extends React.Component<unknown, HeaderState> {
 
     return (
       <div className={styles.headerContainer}>
-        <HeaderTopRow
+        <TopRow
           changeGender={this.handleGenderChange}
           activeGender={activeGender}
           icons={ICONS}

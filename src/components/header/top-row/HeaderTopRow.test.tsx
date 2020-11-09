@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import HeaderTopRow from './HeaderTopRow';
-import { GENDERS, ICONS } from '../header/Header';
-import NavItem from '../nav-item/NavItem';
+import TopRow from './HeaderTopRow';
+import { GENDERS, ICONS } from '../Header';
+import NavItem from './nav-item/NavItem';
 import styles from './HeaderTopRow.module.scss';
 
 const defaultProps = {
@@ -14,11 +14,11 @@ const defaultProps = {
 
 describe('<HeaderTopRow />', () => {
   it('renders without crashing', () => {
-    shallow(<HeaderTopRow {...defaultProps} />);
+    shallow(<TopRow {...defaultProps} />);
   });
 
   it('renders the correct number of gender options', () => {
-    const wrapper = shallow(<HeaderTopRow {...defaultProps} />);
+    const wrapper = shallow(<TopRow {...defaultProps} />);
 
     expect(wrapper.find(`.${styles.gender}`)).toHaveLength(
       defaultProps.genders.length
@@ -26,7 +26,7 @@ describe('<HeaderTopRow />', () => {
   });
 
   it('renders the correct number of nav icons', () => {
-    const wrapper = shallow(<HeaderTopRow {...defaultProps} />);
+    const wrapper = shallow(<TopRow {...defaultProps} />);
 
     expect(wrapper.find(NavItem)).toHaveLength(defaultProps.icons.length);
   });
@@ -34,7 +34,7 @@ describe('<HeaderTopRow />', () => {
   it('triggers the function on click and makes sure the correct gender is displayed', () => {
     const clickFunction = jest.fn();
     const wrapper = shallow(
-      <HeaderTopRow {...defaultProps} changeGender={clickFunction} />
+      <TopRow {...defaultProps} changeGender={clickFunction} />
     );
 
     GENDERS.forEach((_, idx) => {

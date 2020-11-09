@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Menu, { SCROLL_THRESHOLD, moreOptions } from './Menu';
-import MenuCategories from '../menu-categories/MenuCategories';
-import MenuSubCategories from '../menu-sub-categories/MenuSubCategories';
+import Categories from './categories/Categories';
+import SubCategories from './sub-categories/SubCategories';
 import { GENDERS } from '../header/Header';
 import NAVCATEGORIES from '../../server/data/nav-categories';
 import styles from './Menu.module.scss';
@@ -61,15 +61,13 @@ describe('<Menu />', () => {
 
   it('should render the menu list component', () => {
     const wrapper = shallow(<Menu {...defaultProps} />);
-    // const handleCategoryFunc = () => {};
 
-    expect(wrapper.find(MenuCategories).exists()).toBe(true);
+    expect(wrapper.find(Categories).exists()).toBe(true);
 
-    wrapper.find(MenuCategories).forEach((menuList, idx) => {
+    wrapper.find(Categories).forEach((menuList, idx) => {
       if (menuList.prop('handleCategory')) {
         expect(menuList.prop('categories')).toEqual(defaultProps.categories);
         expect(menuList.prop('hasCaret')).toBe(true);
-        // expect(menuList.prop('handleCategory')).toBe(handleCategoryFunc);
       } else {
         expect(menuList.prop('categories')).toEqual(moreOptions[idx - 1]);
       }
@@ -80,19 +78,19 @@ describe('<Menu />', () => {
     it('should render the subcategories list', () => {
       const wrapper = shallow(<Menu {...defaultProps} />);
 
-      wrapper.find(MenuCategories).forEach((menuList) => {
-        menuList.prop('handleCategory')?.(defaultProps.categories[0]);
+      wrapper.find(Categories).forEach((menuList) => {
+        menuList.prop('selectCategory')?.(defaultProps.categories[0].name);
         wrapper.update();
 
-        expect(wrapper.find(MenuSubCategories).exists()).toBe(true);
+        expect(wrapper.find(SubCategories).exists()).toBe(true);
       });
     });
 
     it('should render the correct number of subcategories', () => {
       const wrapper = shallow(<Menu {...defaultProps} />);
 
-      wrapper.find(MenuCategories).forEach((menuList) => {
-        menuList.prop('handleCategory')?.(defaultProps.categories[0]);
+      wrapper.find(Categories).forEach((menuList) => {
+        menuList.prop('selectCategory')?.(defaultProps.categories[0].name);
         wrapper.update();
 
         defaultProps.categories.forEach((category) => {
@@ -136,7 +134,7 @@ describe('<Menu />', () => {
     moreOptions.forEach((optionsList, idx) => {
       expect(
         wrapper
-          .find(MenuCategories)
+          .find(Categories)
           .at(idx + 1)
           .props().categories
       ).toStrictEqual(optionsList);
