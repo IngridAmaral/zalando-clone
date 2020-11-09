@@ -1,5 +1,5 @@
-@import '../../styles/flex-box';
-@import '../../styles/colors';
+@import '../../../styles/flex-box';
+@import '../../../styles/colors';
 
 .topRow {
   @include space-between-center-row;
