@@ -3,17 +3,17 @@
   "homepage": "https://ingridamaral.github.io/zalando-clone/",
   "version": "1.0.0",
   "description": "This is a clone version of Zalando website",
-  "main": "index.tsx",
+  "main": "dist/index.tsx",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "build": "webpack --mode production",
     "start": "webpack-dev-server --open --mode development",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write \"src/**/*.(ts|tsx|scss)\"",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "build": "webpack --mode production",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "Ingrid Amaral",
