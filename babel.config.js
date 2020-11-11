@@ -8,5 +8,6 @@ module.exports = {
     '@babel/plugin-transform-modules-commonjs',
     '@babel/proposal-class-properties',
     '@babel/proposal-object-rest-spread',
+    '@babel/plugin-syntax-dynamic-import',
   ],
 };
