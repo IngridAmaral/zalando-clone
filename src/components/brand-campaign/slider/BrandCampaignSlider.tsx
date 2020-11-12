@@ -6,13 +6,13 @@ import './BrandCampaignSlider.scss';
 import { TCard } from '../../../redux/types/campaignBrands';
 
 const SLIDER_OPTIONS = {
-  perMove: 2,
+  perMove: 1,
   drag: true,
   keyBoard: true,
   rewind: true,
   pagination: false,
-  arrows: false,
   isNavigation: true,
+  arrows: true,
   breakpoints: {
     600: {
       perPage: 2.2,

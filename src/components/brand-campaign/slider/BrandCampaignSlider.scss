@@ -4,10 +4,13 @@
 
 .splide {
   width: 100%;
+  height: 100%;
   padding: 0rem 0 0.8rem 0;
   box-sizing: border-box;
+  position: relative;
+
   .splide__arrows {
-    width: 1.5rem;
+    display: none;
   }
 
   .splide__track {
@@ -24,4 +27,30 @@
 
 // NOTEBOOK
 @media (min-width: 1024px) {
+  .splide {
+    .splide__arrows {
+      display: inline;
+      width: 100%;
+      top: 50%;
+      background: black;
+      position: absolute;
+
+      .splide__arrow--prev,
+      .splide__arrow--next {
+        background-color: white;
+        position: absolute;
+        z-index: 10;
+        cursor: pointer;
+      }
+
+      .splide__arrow--prev {
+        left: 0;
+        transform: rotate(180deg);
+      }
+
+      .splide__arrow--next {
+        right: 1rem;
+      }
+    }
+  }
 }
